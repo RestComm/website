@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div class="bar">
+<ul>
+	<li class="browse_category">Select Category:</li>
+
+	<li><a href="http://www.mobicents.org/index.html" accesskey="h">Home</a></li>
+	<li class="active"><a href="http://www.mobicents.org/products.html" accesskey="p">Products</a></li>
+	<li><a href="http://www.mobicents.org/services.html" accesskey="s">Services</a></li>
+
+	<li><a href="http://www.mobicents.org/community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+	<li><a href="http://www.mobicents.org/faq.html" accesskey="c">FAQ</a></li>
+	<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+	<li><a href="http://www.mobicents.org/about.html" accesskey="a">About Us</a></li>
+
+</ul>
+</div>
+<div class="contentwrapper">
+<div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Diameter Ro/Rf</h2>
+<div class="section"><h3>Service Description</h3>
+  <p>When an INVITE is received, the Diameter Ro/Rf service checks if the caller has enough balance to establish the call, by sending an Diameter Credit-Control-Request with Cc-Request-Type AVP set to 'INITIAL_REQUEST' to the Online Charging Server (OCS) to reserve initial units. If the user is not provisioned in the OCS or has insufficient funds, a 402 (Payment Required) message is sent back to the caller and the call is cancelled; if the user has enough funds to proceed, an initial amount of credit is reserved and the call establishment proceeds.</p>
+  <p>If the callee does not answer the call the reserved units are returned back to the OCS. If the call is answered and correctly established the actual call charging starts: the initially reserved units (10 by default, corresponding to 10 seconds) start being consumed. Once those units are consumed, a new Credit-Control-Request is sent to OCS with Cc-Request-Type AVP set to 'UPDATE_REQUEST' in order to grant a new amount of units (10 by default). This is repeated whenever needed during the call.</p>
+  <p>Once the call is terminated, the amount of unused units are returned to the OCS by sending a Credit-Control-Request with Cc-Request-Type AVP set to 'TERMINATION_REQUEST'. If the balance is exhausted before the user hangs up, the call is terminated by the Ro/Rf service.</p>
+  <p>The following scenarios for 3GPP TS 32.260 (Rel 9.10) are implemented in this example, with the S-CSCF being discarded for simplicity and the AS playing both roles:</p>
+  <p align="center"><img src="diameter-ro-example-initiate.jpg"></p>
+  <p align="center"><img src="diameter-ro-example-terminate.jpg"></p>
+</div>
+<div class="section"><h3>How to activate it</h3>
+<div class="section"><h4>From the binary</h4>
+  <p>You can find the war file corresponding to this example <a href="http://???" class="externalLink">here</a>.<br />
+     Drop the downloaded war file into your <tt>jboss_home/server/default/deploy</tt> directory </p>
+  <p>Get the corresponding <a href="/diameter-ro-rf-servlet-dar.properties">dar configuration file</a>.<br />
+     Drop it in your <tt>jboss_home/server/default/conf/dars</tt> directory.<br />
+     To use this dar file for this service, specify in the Service xml tag, darConfigurationFileLocation attribute of the <tt>jboss_home/server/default/deploy/jbossweb.sar/server.xml</tt>, the following :<br />
+     <tt>conf/dars/diameter-ro-rf-servlet-dar.properties</tt></p>
+  <p>You can now run your container (JBoss).</p>
+</div>
+<div class="section"><h4>From the source</h4>
+  <p>Please check out the diameter-ro-rf example located under this <a href="http://mobicents.googlecode.com/svn/trunk/servers/sip-servlets/sip-servlets-examples/diameter-ro-rf/" class="externalLink">location</a> from the svn repository. Follow the instructions in the README.txt to build and run the example.</p>
+</div>
+</div>
+<div class="section"><h3>Configuration</h3>
+  <div class="section"><h4>MSS Client</h4>
+    <p>Configure your Diameter client under MSS with the following:</p>
+    <p><pre>
+&lt;?xml version="1.0"?&gt;
+&lt;Configuration xmlns="http://www.jdiameter.org/jdiameter-server"&gt;
+
+  &lt;LocalPeer&gt;
+    &lt;URI value="aaa://127.0.0.1:1812" /&gt;
+    &lt;IPAddresses&gt;
+      &lt;IPAddress value="127.0.0.1" /&gt;
+    &lt;/IPAddresses&gt;
+    &lt;Realm value="mobicents.org" /&gt;
+    &lt;VendorID value="193" /&gt;
+    &lt;ProductName value="jDiameter" /&gt;
+    &lt;FirmwareRevision value="1" /&gt;
+    &lt;OverloadMonitor&gt;
+      &lt;Entry index="1" lowThreshold="0.5" highThreshold="0.6"&gt;
+        &lt;ApplicationID&gt;
+          &lt;VendorId value="193" /&gt;
+          &lt;AuthApplId value="0" /&gt;
+          &lt;AcctApplId value="19302" /&gt;
+        &lt;/ApplicationID&gt;
+      &lt;/Entry&gt;
+    &lt;/OverloadMonitor&gt;
+  &lt;/LocalPeer&gt;
+
+  &lt;Parameters&gt;
+    &lt;AcceptUndefinedPeer value="true" /&gt;
+    &lt;DuplicateProtection value="true" /&gt;
+    &lt;DuplicateTimer value="240000" /&gt;
+    &lt;UseUriAsFqdn value="true" /&gt; &lt;!-- Needed for Ericsson Emulator (set to true) --&gt;
+    &lt;QueueSize value="10000" /&gt;
+    &lt;MessageTimeOut value="60000" /&gt;
+    &lt;StopTimeOut value="10000" /&gt;
+    &lt;CeaTimeOut value="10000" /&gt;
+    &lt;IacTimeOut value="30000" /&gt;
+    &lt;DwaTimeOut value="10000" /&gt;
+    &lt;DpaTimeOut value="5000" /&gt;
+    &lt;RecTimeOut value="10000" /&gt;
+  &lt;/Parameters&gt;
+
+  &lt;Network&gt;
+    &lt;Peers&gt;
+      &lt;!-- Ro/Rf --&gt;
+      &lt;Peer name="aaa://127.0.0.1:3868" attempt_connect="true" rating="1" /&gt;
+    &lt;/Peers&gt;
+
+    &lt;Realms&gt;
+      &lt;!--  Ro/Rf --&gt;
+      &lt;Realm name="mobicents.org" peers="127.0.0.1" local_action="LOCAL" dynamic="false" exp_time="1"&gt;
+        &lt;ApplicationID&gt;
+          &lt;VendorId value="10415" /&gt;
+          &lt;AuthApplId value="4" /&gt;
+          &lt;AcctApplId value="0" /&gt;
+        &lt;/ApplicationID&gt;
+      &lt;/Realm&gt;
+    &lt;/Realms&gt;
+  &lt;/Network&gt;
+
+  &lt;Extensions /&gt;
+
+&lt;/Configuration&gt;
+    </pre></p>
+  </div>
+  <div class="section"><h4>Mobicents Diameter Charging Server Simulator</h4>
+    <p>The server is already configured and ready to use. It will be running at port 3868 at IP address 127.0.0.1. The configuration can be changed by editing the file <tt>config-server.xml</tt> inside the Mobicents DCSS JAR.</p>
+    <p>The following account are provisioned by default:
+      <ul>
+        <li>sip:alexandre@mobicents.org (45 units)</li>
+        <li>sip:jderuelle@mobicents.org (123 units)</li>
+      </ul>
+      To add or change the provisioned accounts, please edit the file <tt>accounts.properties</tt> inside the Mobicents DCSS JAR, using the following format (the ':' needs to be escaped using a '\'): <pre>sip\:&lt;username&gt;@&lt;domain&gt; = &lt;units&gt;</pre>
+    </p>
+  </div>
+</div>
+<div class="section"><h3>How to play with it</h3>
+  <p>Download the Mobicents Diameter Charging Server Simulator from <a href="http://mobicents.googlecode.com/files/mobicents-dcs.jar" class="externalLink">here</a>.
+  <p>Configure it if needed and start it with <tt>java -jar &lt;filename.jar&gt;</tt>.
+  <p>Run your container (JBoss AS)</tt>.
+  <p>Start two SIP Phones of your choice such as one of the accounts is provisioned at the Charging Server (eg: sip:alexandre@mobicents.org).</p>
+  <p>The SIP phones have to be registered.</p>
+  <p>From the provisioned account, make a call to the other phone. You can play with it by accepting the call and see the balance being deducted or cancelling/rejecting the call and see the balance being returned.</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="products_sip_servlets.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="mss-downloads.html">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="mss-roadmap.html">Roadmap</a>
+          </li>
+              
+    <li class="none">
+                    <a href="license.html">License</a>
+          </li>
+              
+    <li class="none">
+                    <a href="qa.html">QA</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/MobicentsBooks/lastSuccessfulBuild/artifact/sip-servlets/index.html">Community User Guide</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/MobicentsBooks/lastSuccessfulBuild/artifact/jsr289/javadocs/index.html">SIP Servlets 1.1 Javadoc</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/MobicentsBooks/lastSuccessfulBuild/artifact/jsr289/extensions/index.html/index.html">Mobicents SIP Servlets Extensions Javadoc</a>
+          </li>
+          </ul>
+              <h5>Examples</h5>
+            <ul>
+              
+                
+              
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="examples.html">Examples</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="call_blocking.html">Call Blocking</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Call Forwarding</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="call_controller.html">Call Controller</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="speed_dial.html">Speed Dial</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="location_service.html">Location Service</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="speeddial_locationservice.html">Speed Dial/Location Service</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="click2call.html">Click to Call</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="chatserver.html">Chat Server</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="facebook-c2c.html">Facebook Click To Call Plugin</a>
+          </li>
+              </ul>
+        </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="mss-jb4-examples.html">JBoss 4.x only Examples</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="mss-jb5-examples.html">JBoss 5.x only Examples</a>
+                </li>
+          </ul>
+              <h5>Contribute</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="contributor.html">How to Contribute</a>
+          </li>
+              
+    <li class="none">
+                    <a href="tests.html">Write a Test/Run the Testsuite</a>
+          </li>
+              
+    <li class="none">
+                    <a href="feedback.html">Feedback</a>
+          </li>
+              
+    <li class="none">
+                    <a href="source-repository.html">Source Repository</a>
+          </li>
+              
+    <li class="none">
+                    <a href="mss-ide-setup.html">Mobicents Sip Servlets in Eclipse</a>
+          </li>
+          </ul>
+              <h5>Community</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="team-list.html">Project Team</a>
+          </li>
+              
+    <li class="none">
+                    <a href="acknowledgements.html">Acknowledgements</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/mobicents/issues/list?q=label%3Acomponent%20label%3Asip-servlets&can=2" class="externalLink">Issue Tracker</a>
+          </li>
+              
+    <li class="none">
+                    <a href="blogs.html">Project Blogs</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://forums.java.net/jive/forum.jspa?forumID=55" class="externalLink">User Forum</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://forums.java.net/jive/forum.jspa?forumID=54" class="externalLink">Develper Forum</a>
+          </li>
+              
+    <li class="none">
+                    <a href="https://sip-servlets.dev.java.net/" class="externalLink">Legacy Project site</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

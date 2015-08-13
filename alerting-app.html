@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Alerting Application</h2>
+<div class="section"><h3>Service Description</h3>
+<p>Application that can be used to alert a phone number that an event has occured. </p>
+<p>This application was developped so that the JBoss <a href="http://www.jopr.org" class="externalLink">RHQ/Jopr</a>
+ Enterprise Management Solution would be able to notify system administrators when a monitoring alert is fired by Jopr/RHQ</p>
+<p>More information can be found on <a href="http://pilhuhn.blogspot.com/2009/09/jopr-talking.html" class="externalLink">heiko's blog</a>
+ or on the <a href="https://docs.google.com/present/edit?id=0AXZ3Uhj-XHcDZGZjanI0OHpfMTg1aGZ3c3EzZHE&amp;hl=en" class="externalLink">following online presentation</a>
+ </p>
+<p>The intent is to have multiple communication channels to alert people through Twitter, SMS, Phone calls, XMPP etc...</p>
+<p>So the application features one context path per communication channel :</p>
+<ul><li>SMS is on http://<i>host</i>
+:<i>port</i>
+/alerting-app/sms : an SMS is send to the phone number</li>
+<li>Phone calls is on http://<i>host</i>
+:<i>port</i>
+/alerting-app/sms : a Phone call is placed to the phone number and the callee can give feedback by pressing phone buttons </li>
+</ul>
+<p>Each Servlet for a Communication Channel takes the mandatory following arguments :</p>
+<ul><li>alertId : the id of the alert (by example 12345)</li>
+<li>tel : the phone number you want to dial ( by example sip:mobicents@127.0.0.1:5060 for a SIP Phone or sip:+33679797979@callwithus.com for a phone call going through the callwithus VoIP provider)</li>
+<li>alertText : the text of the alert (by example Server 1 on Cluster Mobicents is overloaded, press 1 to restart, press 2 to stop...) </li>
+</ul>
+</div>
+<div class="section"><h3>How to activate it</h3>
+<div class="section"><h4>From the binary</h4>
+<p>You can find the war file corresponding to this example <a href="https://repository.jboss.org/nexus/content/groups/public/org/mobicents/servlet/sip/example/alerting-app/1.6.0.FINAL/alerting-app-1.6.0.FINAL.war" class="externalLink">here</a>
+.<br />
+Drop the downloaded war file into your <tt>tomcat_home/webapps</tt>
+ directory or <tt>jboss_home/server/default/deploy</tt>
+ directory </p>
+<p>Get the corresponding <a href="/alerting-app-dar.properties">dar configuration file</a>
+.<br />
+To understand what the dar configuration file is used for, check the <a href="./mss-dar.html">Application Router Documentation</a>
+.<br />
+Drop it in your <tt>tomcat_home/conf/dars</tt>
+ directory or <tt>jboss_home/server/default/conf/dars</tt>
+ directory.<br />
+To use this dar file for this service, specify in the Service xml tag, darConfigurationFileLocation attribute of the <tt>tomcat_home/conf/server.xml</tt>
+ file or <tt>jboss_home/server/default/deploy/jboss-web.deployer/server.xml</tt>
+, the following :<br />
+<tt>conf/dars/chatserver-dar.properties</tt>
+</p>
+<p>You can now run your container (Tomcat or Jboss).</p>
+</div>
+<div class="section"><h4>From the source</h4>
+<p>Please check out the chatserver example located under this <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/sip-servlets/sip-servlets-examples/alerting-app" class="externalLink">location</a>
+ from the svn repository. Follow the instructions in the README.txt to build and run the example.</p>
+<p>The DAR file for this example can be found at the root of the example Copy it to JBOSS_HOME/server/default/conf/dars or TOMCAT_HOME/conf/dars and use this as a DAR file (Service tag/darConfigurationFileLocation attribute in the tomcat or jboss's server.xml): ./conf/dars/alerting-app-dar.properties </p>
+</div>
+</div>
+<div class="section"><h3>How to play with it</h3>
+<p>Depending on which alert you want to try hit one of the following test pages : </p>
+<ul><li>SMS : http://localhost:8080/alerting-app/send-sms-alert-test.html (you will need to open an account with <a href="http://www.esendex.com" class="externalLink">Esendex</a>
+ and modify the web.xml to enter your credentials)</li>
+<li>Phone calls : http://localhost:8080/alerting-app/send-alert-test.html (if you need to call out to a real phone you will need to open an account with <a href="http://www.callwithus.com" class="externalLink">Call With Us</a>
+ or an online VoIP&quot;provider and modify the web.xml to enter your credentials)</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

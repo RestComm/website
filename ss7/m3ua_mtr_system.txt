@@ -1,0 +1,61 @@
+*
+* System.txt for the MAP demo under Windows
+*     M3UA version
+*
+* Essential Protocol modules running on the host:
+*
+LOCAL 0x00 * tim_nt - Timer task
+LOCAL 0xCF * s7_mgt - Management/config task
+LOCAL 0xC2 * mbm - Management task
+
+* Declare IDs for our protocol layers. The processes are started below by FORK_PROCESS
+LOCAL 0xD0 * SCTPD module -> sctpd.exe
+LOCAL 0xD1 * SCTP module  -> sctp.exe
+LOCAL 0xD2 * M3UA         -> m3ua_nt.exe
+LOCAL 0x33 * SCCP         -> sccp_nt.exe
+LOCAL 0x14 * TCAP         -> tcp_nt.exe
+LOCAL 0x15 * MAP          -> map_nt.exe
+
+LOCAL 0x2D * MTU or MTR - must register an ID for the app itself
+
+* Make sure MTP messages are routed to M3UA
+REDIRECT 0x22 0xD2
+*
+* Optional modules running on the host:
+LOCAL 0xEF * s7 log module
+*
+*
+* Now start-up all local tasks:
+*
+*FORK_PROCESS tim_nt.exe
+*FORK_PROCESS tick_nt.exe
+*FORK_PROCESS sctpd.exe
+*FORK_PROCESS sctp.exe
+FORK_PROCESS     ./tim
+FORK_PROCESS     ./tick
+FORK_PROCESS     ./sctpd
+FORK_PROCESS     ./sctp
+
+* Start modules with -L option if you have a license file,  or use '-t' to run in trial mode, i.e. running without a license for up to 10 hours
+*   -m option tells module which ID to use, although here they are the same as the default.
+*
+*FORK_PROCESS m3ua_nt.exe -Lpwestcott.lic
+*FORK_PROCESS mbm.exe -d
+*FORK_PROCESS SCCP_NT.EXE -Lpwestcott.lic -m0x33
+*FORK_PROCESS TCP_NT.EXE -Lpwestcott.lic -m0x14
+*FORK_PROCESS MAP_NT.EXE -Lpwestcott.lic -m0x15
+
+FORK_PROCESS ./HSTBIN/m3ua -t
+FORK_PROCESS ./mbm -d
+FORK_PROCESS ./HSTBIN/sccp -t
+FORK_PROCESS ./HSTBIN/tcap -t
+FORK_PROCESS ./HSTBIN/map -t
+
+* Start trace logger, the -f option captures the trace to a file.  -p will capture in PCAP format for Wireshark/Ethereal
+*FORK_PROCESS s7_log.exe -fcapture.txt 
+FORK_PROCESS     ./s7_log -psigtran-mtr.pcap
+* Start maintenance module
+*FORK_PROCESS s7_mgt.exe -d
+FORK_PROCESS     ./s7_mgt -k1981_m3ua.config.txt -d
+*
+* End of file

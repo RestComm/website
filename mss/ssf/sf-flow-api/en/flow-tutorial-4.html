@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>sf-flow-api - Add functions to the B2BUA application</title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+          <meta name="author" content="Yukinobu Imai" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div class="bar">
+<ul>
+	<li class="browse_category">Select Category:</li>
+
+	<li><a href="http://www.mobicents.org/index.html" accesskey="h">Home</a></li>
+	<li class="active"><a href="http://www.mobicents.org/products.html" accesskey="p">Products</a></li>
+	<li><a href="http://www.mobicents.org/services.html" accesskey="s">Services</a></li>
+
+	<li><a href="http://www.mobicents.org/community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+	<li><a href="http://www.mobicents.org/faq.html" accesskey="c">FAQ</a></li>
+
+	<li><a href="http://www.mobicents.org/about.html" accesskey="a">About Us</a></li>
+
+</ul>
+</div>
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">sf-flow-api</h3>
+<div class="section"><h2>Add functions to application</h2>
+<p>if you use sf-flow, you can add functions to application more easily. </p>
+<p>This page describes steps of adding &quot;100rel&quot; support.</p>
+</div>
+<div class="section"><h2>Add the &quot;100rel&quot; support to B2BUA application</h2>
+<div class="section"><h3>Needs of 100rel support</h3>
+<p>&quot;100rel&quot; support needs these changes.</p>
+<ul><li>Send provisional response by using SipServletResponse.sendReliably</li>
+<li>When received PRACK request, forward request.</li>
+<li>When received final response for PRACK, forward response.</li>
+</ul>
+</div>
+<div class="section"><h3>State transition diagram</h3>
+<p>The state transition diagram of application that supports &quot;100rel&quot; is Fig.87.</p>
+<img src="./images/transition2.png" alt="100rel Transition" /><p>Fig.8 State transition diagram</p>
+</div>
+<div class="section"><h3>Send provisional response by using SipServletResponse.sendReliably</h3>
+<p>If &quot;100rel&quot; is exist in the Supported or Require header of initial request, provisional response must be sent by SipServletResponse.sendReliably method.</p>
+<p>Forward1xxAction using sendReliably is below.</p>
+<div class="source"><pre>public class Forward1xxAction {
+    
+    @Transition(&quot;step10&quot;)
+    public void execute(SipServletResponse res) throws IOException, Rel100Exception {
+        
+        // create new Response
+        B2buaHelper helper = res.getRequest().getB2buaHelper();
+        SipServletRequest orgReq = helper.getLinkedSipServletRequest(res.getRequest());
+        SipServletResponse res2 = orgReq.createResponse(res.getStatus());
+        SipContentUtil.copy(res, res2);
+        
+        // send new Response
+        SipServletRequest req = res.getRequest();
+        boolean is100relSupported = SipHeaderUtil.isHeaderValueExist(req, &quot;Supported&quot;, &quot;100rel&quot;);
+        boolean is100relRequire = SipHeaderUtil.isHeaderValueExist(req, &quot;Require&quot;, &quot;100rel&quot;);
+        if (is100relSupported || is100relRequire) {
+            res2.sendReliably();
+        } else {
+            res2.send();
+        }
+    } 
+}</pre>
+</div>
+<p>SipHeaderUtil is Utility Class. Please see the source this Class details. </p>
+</div>
+<div class="section"><h3>When received PRACK request, forward request.</h3>
+<p>If received PRACK request, call the Action Class that forward PRACK. Changed SipRequest Class is below.</p>
+<div class="source"><pre>@TransitionSet(values={&quot;action.forwardAck&quot;, &quot;action.forwardReq&quot;})
+public class SipRequest {
+    
+    @Evaluate
+    public String evaluate(SipServletRequest req) {
+        if (&quot;ACK&quot;.equals(req.getMethod())) {
+            return &quot;action.forwardAck&quot;;
+        } else {
+            return &quot;action.forwardReq&quot;;
+        }
+    }
+    </pre>
+</div>
+<p>Type and run following command to generate ForwardReqAction.</p>
+<div class="source"><pre>$ mvn compile</pre>
+</div>
+<p>Implementation of ForwardReqAction is below.</p>
+<div class="source"><pre>public class ForwardReqAction {
+
+    @Transition(&quot;step10&quot;)
+    public void execute(SipSession session, SipServletRequest req) throws IOException, Rel100Exception {
+        
+        B2buaHelper helper = req.getB2buaHelper();
+        SipSession peerSession = helper.getLinkedSession(req.getSession());
+        
+        // create new SipRequest
+        SipServletRequest newReq = null;
+        if (&quot;PRACK&quot;.equals(req.getMethod())) {
+            List&lt;SipServletMessage&gt; pendings = helper.getPendingMessages(peerSession, UAMode.UAC);
+            SipServletResponse provisional = B2buaHelperUtil.getPendingResponse(pendings, &quot;INVITE&quot;);
+            newReq = provisional.createPrack();
+        } else {
+            newReq = helper.createRequest(peerSession, req, null);
+        }
+        SipContentUtil.copy(req, newReq);
+        
+        newReq.send();
+    }
+}</pre>
+</div>
+</div>
+<div class="section"><h3>When received final response for PRACK, forward response.</h3>
+<p>If received response for PRACK, call the Action Class that forward response. Changed SipResponse Class is below.</p>
+<div class="source"><pre>@TransitionSet(values={&quot;action.forward1xx&quot;, &quot;action.forwardResInv&quot;, &quot;action.forwardRes&quot;})
+public class SipResponse {
+    
+    @Evaluate
+    public String evaluate(SipServletResponse res) {
+        
+        int status = res.getStatus();
+        String method = res.getMethod();
+        
+        if (&quot;INVITE&quot;.equals(method)) {
+            if (status &lt; 200) {
+                return &quot;action.forward1xx&quot;;
+            } else {
+                return &quot;action.forwardResInv&quot;;
+            }
+        } else {
+            return &quot;action.forwardRes&quot;;
+        }
+    }
+}</pre>
+</div>
+<p>Type and run following command to generate ForwardResAction.</p>
+<div class="source"><pre>$ mvn compile</pre>
+</div>
+<p>Implementation of ForwardResAction is below.</p>
+<div class="source"><pre>public class ForwardResAction {
+
+    @Transition(&quot;step10&quot;)
+    public void execute(SipServletResponse res) throws IOException {
+        
+        // create new Response
+        B2buaHelper helper = res.getRequest().getB2buaHelper();
+        SipSession peerSession = helper.getLinkedSession(res.getSession());
+        List&lt;SipServletMessage&gt; pendings = helper.getPendingMessages(peerSession, UAMode.UAS);
+        SipServletRequest orgReq = B2buaHelperUtil.getPendingRequest(pendings, res.getMethod());
+        SipServletResponse orgRes = orgReq.createResponse(res.getStatus(), res.getReasonPhrase());
+        SipContentUtil.copy(res, orgRes);
+        
+        // send new Response
+        orgRes.send();
+    }
+}</pre>
+</div>
+<p>As above, you can add functions to application more easily.</p>
+<p>Next page is demonstration of B2BUA application.</p>
+<p><a href="./flow-tutorial-5.html"> Next page</a></p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>sf-flow-api</h3>
+<div class="right_articles">
+          <h5>sf-flow</h5>
+            <ul>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+      
+            
+            
+            
+      
+              
+            <li class="expanded">
+                    <a href="">Tutorial</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="index.html">Table of contents</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="flow-tutorial-1.html">Abstract of sf-flow</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="flow-tutorial-2.html">Maven2Archetype for sf-flow</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="flow-tutorial-3.html">Develop B2BUA application</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Add function to B2BUA application</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="flow-tutorial-5.html">Demonstration</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

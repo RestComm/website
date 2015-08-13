@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Diameter / Examples :: The Open Source Cloud Communications Platform</title>
+    <link rel="stylesheet" href="./../maven-mobicents-style.css" type="text/css" />
+    <meta name="author" content="Luka Cvrk (www.solucija.com)" />
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  </head>
+  <body>
+    <script src="http://www.google-analytics.com/urchin.js"
+      type="text/javascript">
+    </script>
+
+    <script type="text/javascript">
+      _uacct = "UA-212380-1";
+      urchinTracker();
+    </script>
+
+    <div class="content">
+      <div class="header">
+        <div class="top_info">
+          <div class="top_info_right"><!-- Search Google -->
+            <form method="get" action="http://www.google.com/custom" target="_top">
+              Search
+              <input name="q" maxlength="255" value="" type="text">
+              <input name="client" value="pub-5437763180786254" type="hidden">
+              <input name="forid" value="1" type="hidden">
+              <input name="channel" value="5452007684" type="hidden">
+              <input name="ie" value="ISO-8859-1" type="hidden">
+              <input name="oe" value="ISO-8859-1" type="hidden">
+              <input name="cof"
+                value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+                type="hidden">
+              <input name="hl" value="en" type="hidden">
+              <input name="q" value="mobicents" type="hidden">
+            </form>
+          </div>
+          <div class="top_info_left">The Open Source SLEE and SIP Server</div>
+        </div>
+        <div id="logo">
+          <h1><a href="http://www.mobicents.org-a.googlepages.com/" title="Mobicents">Mobicents</a></h1>
+        </div>
+      </div>
+  
+      <!-- Top Menu (begin) -->
+      <div class="bar">
+        <ul>
+          <li class="browse_category">Select Category:</li>
+          <li><a href="../index.html" accesskey="h">Home</a></li>
+          <li class="active"><a href="../products.html" accesskey="p">Products</a></li>
+          <li><a href="../services.html" accesskey="s">Services</a></li>
+          <li><a href="../community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+          <li><a href="../partners.html" accesskey="r">Partners</a></li>
+          <li><a href="../faq.html" accesskey="c">FAQ</a></li>
+          <li><a href="../incubator.html" accesskey="i">Incubator</a></li>
+          <li><a href="../about.html" accesskey="a">About Us</a></li>
+        </ul>
+      </div>
+      <!-- Top Menu (end) -->
+
+      <!-- Main Content Wrapper (begin) -->
+      <div class="contentwrapper">
+  
+        <!-- Page Content (begin) -->
+        <div class="left">
+          <h3 id="h3_2">Mobicents Diameter / Examples</h3>
+          <div class="section">
+            <h4><a name="Examples"></a>Diameter Examples</h4>
+            <p>
+              Mobicents Diameter provides a great variety of examples and integration with other Mobicents servers, such as JAIN
+              SLEE and SIP Servlets. The following examples are available:
+            </p>
+            <h3><a name="standalonex"></a>Standalone</h3>
+            <p>
+              <h4>Mobicents Diameter Charging Server Simulator</h4>
+              <p>
+                <p>The Mobicents Diameter Charging Server Simulator is a simple simulator able to provide limited charging options to clients, such as Mobicents SIP Servlets Ro/Rf example.</p>
+                <p>The DCS Simulator will be evolved to become a complete charging server product.</p>
+                <p>It can be downloaded from <a href="http://code.google.com/p/mobicents/downloads/detail?name=mobicents-dcs.jar">here</a>.</p>
+              </p>
+            </p>
+            <p>&nbsp;</p>
+            <h3><a name="jainsleex"></a>JAIN SLEE</h3>
+              <h4>Mobicents Diameter Base Example</h4>
+              <p>
+                <p>The example provided for Base is a simple application that interacts with Ericsson Diameter SDK (both client and server). The following use cases are provided by this example:</p>
+                <strong>1) Application acting as Client</strong>
+                <p>In this case, our application acts as a Diameter Accounting Client, issuing a Debit or Refund request to Ericsson Diameter Server. If the message is correctly built the server should send an answer back stating that the operation was carried on successfully. If not, it should respond with an error message.</p>
+                <strong>2) Application acting as Server</strong>
+                <p>In this situation we use Ericsson SDK as the client and the application SBB will act as the server. When the request sent by the client is received, it will check a pre-loaded set of user data and verify if the user exists, and if he has enough balance to do the Debit request. If both requirements are fulfilled, it should answer back with a 2001 (SUCCESS) Credit-Control-Answer message. If not it will answer with the appropriate code (either 5241 for USER_NOT_FOUND or 4241 for INSUFFICIENT_BALANCE).</p>
+                <strong>3) Application acting as Relay/Proxy</strong>
+                <p>In this last scenario our application just performs requests/answers proxying. In this scenario both Ericsson Client and Server are used. Ericsson client should be connected as a client to Mobicents Diameter, which on it's side should be configured as server (for receiving the connection from Ericsson Client) and as a client for establishing the connection to the Ericsson Server. In this scenario any Request received by the SBB is forwarded to the Server and any Answer received is routed back to the client.</p>
+                <br />
+                <p>Information on how to setup and detailed usage can be found at the Mobicents JAIN SLEE <a href="http://groups.google.com/group/mobicents-public/web/mobicents-diameter-base">Diameter Base</a> wiki page.</p>
+              </p>
+              <h4>Mobicents Diameter OpenIMS Example</h4>
+              <p>
+                <p>In this example we will show some integration between Mobicents and OpenIMS, using the Diameter Sh interface to receive profile updates and SIP.</p> 
+                <p>The idea is to provide a service that will let a user, who has been offline, know who called him while he was offline. To do that our service will be a proxy for SIP messages in the AS so he can capture the 404 sent by the CSCF when a call is made to him, while the user is offline. </p> 
+                <p>It will also register on the HSS for receiving changes to the User-IMS-State, using the proper Diameter Sh message, Profile-Notification-Request.</p> 
+                <p>When a call to a non-registered user happens, data is stored, regarding the person who called and the time of the call.&#160; When the user becomes online (registers it's SIP phone), the HSS will fire a notification with the new user state, and by that time we will look into our map to find if the user has missed any call while offline.&#160; If so, the user will receive a message, for each missed call, stating &quot;UserXXX <i>sip:xxx@open-ims.test</i> tried to call you on dd/mm/yyyy at hh:mm:ss&quot;.</p> 
+                <p>This flow is described in the <a class="externalLink" href="http://mobicents-public.googlegroups.com/web/Mobicents-Diameter-Sh-OpenIMS-SD.jpg">diagram</a> (SIP details and CSCF &lt;-&gt; HSS communication are not described for simplicity purposes)</p>
+                <br />
+                <p>Information on how to setup and detailed usage is similar to the one found at the Mobicents SIP Servlets <a href="../mss-diameter_sh.html">Diameter Sh OpenIMS Core Integration Service</a> example page and can be found at the Mobicents JAIN SLEE <a href="http://groups.google.com/group/mobicents-public/web/mobicents-diameter-sh-openims">Diameter Sh OpenIMS Integration</a> example page.</p>
+              </p>
+            <p>&nbsp;</p>
+            <h3><a name="sipservletsx"></a>SIP Servlets</h3>
+              <h4>Mobicents Diameter Event Charging Example</h4>
+              <p>
+                <p>Diameter Event Charging service based on Location Service that performs call charging at a fixed-rate (event charging). When the call is initiated there's a debit of 10.0 euros. In case of the call being rejected or the caller hangs up before an answer is received, that value is refunded into the user account.</p> 
+                <p>The steps performed by the application and container are as follows:</p> 
+                <ul>
+                  <li>Alice makes a call to sip:receiver@sip-servlets.com. The INVITE is received by the servlet container <b>which sends the debit request to the Charging Server</b> and invokes the location service</li> 
+                  <li>The location service determines, using non-SIP means, where the callee (receiver) is registered with two locations, identified by, say, two SIP URIs (sip:receiver@127.0.0.1:5090 and sip:receiver@127.0.0.1:6090).</li> 
+                  <li>The service proxies to those two destinations in parallel, without record-routing, and without the supervised mode.</li> 
+                  <li>Once one of the destinations return 200 (OK), the other branch is cancelled by the container.</li> 
+                  <li>The 200 is forwarded upstream to Alice and the call setup is completed as per usual.</li> 
+                  <li><b>If none of the destinations accepts the call, a Diameter Accounting-Request for refund is sent to the Diameter Charging Server in order to credit the 10.0 euros debited.</b></li> 
+                </ul>
+                <p>Information on how to setup and detailed usage can be found at the Mobicents SIP Servlets <a href="../diameter_event_charging.html">Diameter Event Charging Service</a> example page.</p>
+              </p>
+              <h4>Mobicents Diameter OpenIMS Example</h4>
+              <p>
+                <p>In this example we will show some integration between Mobicents and OpenIMS, using the Diameter Sh interface to receive profile updates and SIP.</p> 
+                <p>The idea is to provide a service that will let a user, who has been offline, know who called him while he was offline. To do that our service will be a proxy for SIP messages in the AS so he can capture the 404 sent by the CSCF when a call is made to him, while the user is offline. </p> 
+                <p>It will also register on the HSS for receiving changes to the User-IMS-State, using the proper Diameter Sh message, Profile-Notification-Request.</p> 
+                <p>When a call to a non-registered user happens, data is stored, regarding the person who called and the time of the call.&#160; When the user becomes online (registers it's SIP phone), the HSS will fire a notification with the new user state, and by that time we will look into our map to find if the user has missed any call while offline.&#160; If so, the user will receive a message, for each missed call, stating &quot;UserXXX <i>sip:xxx@open-ims.test</i> tried to call you on dd/mm/yyyy at hh:mm:ss&quot;.</p> 
+                <p>This flow is described in the <a class="externalLink" href="http://mobicents-public.googlegroups.com/web/Mobicents-Diameter-Sh-OpenIMS-SD.jpg">diagram</a> (SIP details and CSCF &lt;-&gt; HSS communication are not described for simplicity purposes)</p>
+                <br />
+                <p>Information on how to setup and detailed usage can be found at the Mobicents SIP Servlets <a href="../mss-diameter_sh.html">Diameter Sh OpenIMS Core Integration Service</a> example page.</p>
+              </p>
+              <h4>Mobicents Diameter Ro/Rf Client Example</h4>
+              <p>
+                <p>When an INVITE is received, the Diameter Ro/Rf service checks if the caller has enough balance to establish the call, by sending an Diameter Credit-Control-Request with Cc-Request-Type AVP set to 'INITIAL_REQUEST' to the Online Charging Server (OCS) to reserve initial units. If the user is not provisioned in the OCS or has insufficient funds, a 402 (Payment Required) message is sent back to the caller and the call is cancelled; if the user has enough funds to proceed, an initial amount of credit is reserved and the call establishment proceeds.</p> 
+                <p>If the callee does not answer the call the reserved units are returned back to the OCS. If the call is answered and correctly established the actual call charging starts: the initially reserved units (10 by default, corresponding to 10 seconds) start being consumed. Once those units are consumed, a new Credit-Control-Request is sent to OCS with Cc-Request-Type AVP set to 'UPDATE_REQUEST' in order to grant a new amount of units (10 by default). This is repeated whenever needed during the call.</p> 
+                <p>Once the call is terminated, the amount of unused units are returned to the OCS by sending a Credit-Control-Request with Cc-Request-Type AVP set to 'TERMINATION_REQUEST'. If the balance is exhausted before the user hangs up, the call is terminated by the Ro/Rf service.</p> 
+                <p>The following scenarios for 3GPP TS 32.260 (Rel 9.10) are implemented in this example, with the S-CSCF being discarded for simplicity and the AS playing both roles:</p> 
+                <p align="center"><img src="../diameter-ro-example-initiate.jpg"></p> 
+                <p align="center"><img src="../diameter-ro-example-terminate.jpg"></p>
+                <p>Information on how to setup and detailed usage can be found at the Mobicents SIP Servlets <a href="../mss-diameter_rorf.html">Diameter Ro/Rf</a> example page.</p>
+              </p>
+          </div>
+        </div>
+        <!-- Page Content (end) -->
+
+        <!-- Right Side Menu (begin) -->
+        <div class="right">
+          <h3>Mobicents Diameter</h3>
+          <div class="right_articles">
+            <h5>&nbsp;Overview</h5>
+            <ul>
+              <li class="none">
+                <a href="index.html">Introduction</a>
+              </li>
+              <li class="none">
+                <a href="diameter-applications-overview.html">Applications Overview</a>
+              </li>
+              <li class="none">
+                <a href="diameter-high-availability-fault-tolerance.html">High-Availability / Fault-Tolerance Overview</a>
+              </li>
+              <li class="none">
+                <a href="diameter-roadmap.html">Roadmap</a>
+              </li>
+              <li class="none">
+                <a href="diameter-downloads.html">Downloads</a>
+              </li>
+            </ul>
+            <h5>&nbsp;Documentation</h5>
+            <ul>
+              <li class="none">
+                <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/diameter/core/index.html" target="_blank">Diameter User Guide</a>
+              </li>
+              <li class="none">
+                <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/diameter/tools/jopr-plugin/index.html" target="_blank">RHQ Plugin User Guide</a>
+              </li>
+              <br />
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-base/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Base RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cca/user-guide/en-US/html_single/" target="_blank">JAIN SLEE CCA RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cx-dx/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Cx/Dx RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cx-dx/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Gq' RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cx-dx/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Gx RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-ro/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Ro RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-rf/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Rf RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cx-dx/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Rx RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-sh-client/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Sh-Client RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-sh-server/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Sh-Server RA</a>
+              </li>
+              <li class="none">
+                &nbsp;
+              </li>
+              <li class="none">
+	            <a href="diameter-docs.html">Documentation Page</a><br/>
+	            (PDF versions and other)
+              </li>				
+            </ul>
+            <h5>&nbsp;Examples</h5>
+            <ul>
+              <li class="none">
+                <a href="diameter-examples.html#standalone">Standalone Examples</a>
+              </li>
+              <li class="none">
+                <a href="diameter-examples.html#jainslee">JAIN SLEE Examples</a>
+              </li>
+              <li class="none">
+                <a href="diameter-examples.html#sipservlets">SIP Servlets Examples</a>
+              </li>
+            </ul>
+            <h5>&nbsp;Community</h5>
+            <ul>
+              <li class="none">
+                <a href="http://groups.google.com/group/mobicents-public">Forum / Mailing List</a>
+              </li>
+              <li class="none">
+                <a href="http://code.google.com/p/mobicents/issues/list?q=component%3DDiameter">Issue Tracker</a>
+              </li>
+              <li class="none">
+                <a href="http://mobicents.googlecode.com/svn/trunk/">Anonymous SVN</a>
+              </li>
+              <li class="none">
+                <a href="https://mobicents.googlecode.com/svn/trunk/">Committer SVN</a>
+              </li>
+              <li class="none">
+                <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/diameter">Browse SVN</a>
+              </li>
+              <li class="none">
+                <a href="http://groups.google.com/group/mobicents-public/web">User Wiki</a>
+              </li>
+              <li class="none">
+                <a href="diameter-docs.html">Documentation</a>
+              </li>
+            </ul> 
+          </div>
+          <p align="center">
+            <br />
+            <a href="http://www.rhq-project.org/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+          </p>
+        </div>
+        <!-- Right Side Menu (end) -->
+
+      </div>
+      <!-- Main Content Wrapper (end) -->
+      <div class="footer">
+    </p>
+  </div>
+
+  <!-- Footer (begin) --> 
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img src="../logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>SSF, SIP Servlets Applications Development Framework</h2>
+<div class="section"><h3>Description </h3>
+<p>&quot;SSF&quot; allows Java programmers who typically build general-purpose applications to embed voice communication functionality, such as telephone or audio conferencing functions, into web applications, even without specific expertise in voice communication programming or special SIP knowledge.</p>
+<p>This will facilitate the development of web applications that support voice communication.<br />
+The functionality enabled by these developments include the ability to talk by phone to others working on the same web screen without explicitly dialing a number or sending results of various web operations automatically from web applications via telephone.</p>
+<p>This framework is being contributed by <a href="http://www.oki.com/" class="externalLink">OKI Japan</a>
+.</p>
+<ul><li>Overview of SSF : <a href="./mss/ssf/sf-api/site/en/index.html">in english</a>
+, <a href="./mss/ssf/sf-api/site/index.html">in japanese</a>
+ </li>
+<li>Tutorial on SSF : <a href="./mss/ssf/sf-flow-api/en/index.html">in english</a>
+, <a href="./mss/ssf/sf-flow-api/index.html">in japanese</a>
+</li>
+<li>SSF on JBoss5 : <a href="./mss/ssf/sf-jboss5/en/index.html">in english</a>
+, <a href="./mss/ssf/sf-jboss5/index.html">in japanese</a>
+</li>
+<li>Roadmap on SSF : <a href="./mss/ssf/ssf-roadmap.html">in english</a>
+</li>
+</ul>
+</div>
+<div class="section"><h3>Requirements</h3>
+</div>
+</div>
+<div class="section"><h2>This framework requires the following knowledge :</h2>
+<ul><li>JavaEE 5 or higher</li>
+<li>SIP Servlet API 1.1</li>
+<li>SpringFramework (2.5.x)</li>
+<li>Maven2 (2.1.x) </li>
+</ul>
+<div class="section"><h3>SSF Maven 2 Archetype</h3>
+<p>A Maven 2 archetype for SSF is available to get you started.</p>
+<p>SSF archetype requires to access to the jboss repositories of Maven2.</p>
+<p>Please read the following URL, and add the JBoss Maven repositories to your $HOME/.m2/settings.xml.</p>
+<p><a href="http://community.jboss.org/wiki/MavenGettingStarted-Developers" class="externalLink">http://community.jboss.org/wiki/MavenGettingStarted-Developers</a>
+</p>
+<div class="section"><h4>sf-core-archetype</h4>
+<p>You can create the maven project using core libraries of ssf with the following command.</p>
+<p><tt>$ mvn archetype:create -DarchetypeGroupId=org.mobicents.ssf -DarchetypeArtifactId=sf-core-archetype <br />
+-DarchetypeVersion=1.0.0-SNAPSHOT -DgroupId=&lt;your groupId&gt; -DartifactId=&lt;your artifactId&gt;</tt>
+ </p>
+<p>This project includes SpringFramework Context for SIP, SIP annotations, and other libraries.</p>
+</div>
+<div class="section"><h4>sf-flow-archetype</h4>
+<p>You can create the maven project using state management of ssf with the following command.</p>
+<p><tt>$ mvn archetype:create -DarchetypeGroupId=org.mobicents.ssf -DarchetypeArtifactId=sf-flow-archetype <br />
+-DarchetypeVersion=1.0.0-SNAPSHOT -DgroupId=&lt;your groupId&gt; -DartifactId=&lt;your artifactId&gt;</tt>
+</p>
+<p>This project includes state management, annotation libraries, ant other libraries.</p>
+</div>
+</div>
+<div class="section"><h3>Samples</h3>
+<p>You can get the sample sources with the following command.</p>
+<p><tt>$ svn co http://mobicents.googlecode.com/svn/trunk/frameworks/sip-servlets/ssf/sf-examples</tt>
+</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

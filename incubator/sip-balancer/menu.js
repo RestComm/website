@@ -1,0 +1,12 @@
+var cText = ''
+        cText+='<p><a href="intro.html">Introduction</a></p>'
+        cText+='<p><a href="http://groups.google.com/group/mobicents-public">Forum</a></p>'
+        cText+='<p><a href="http://mobicents.googlecode.com/svn/trunk/tools/sip-balancer">Anonymous SVN</a></p>'
+        cText+='<p><a href="https://mobicents.googlecode.com/svn/trunk/tools/sip-balancer">Committer SVN</a></p>'
+        cText+='<p><a href="http://code.google.com/p/mobicents/source/browse/trunk/tools/sip-balancer">Browse SVN</a></p>'
+        cText+='<p><a href="http://groups.google.com/group/mobicents-public/web">User Wiki</a></p>'
+        cText+='<p><a href="./javadocs/index.html">SIP Balancer Javadocs API</a></p>'
+        cText+='<p><a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/sip-balancer/index.html">User Guide</a></p>'
+        cText+='<p><a href="http://code.google.com/p/mobicents/issues/list?can=2&q=Component%3DSip-Balancer&colspec=ID+Priority+Component+Milestone+Version+Release+Type+Status+Owner+Summary&cells=tiles">Issue Tracker</a></p>'
+        cText+='<p><a href="roadmap.html">Roadmap</a></p>'
+document.write(cText)

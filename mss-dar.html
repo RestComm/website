@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Default Application Router</h2>
+</div>
+<div class="section"><h2><i>This page is obsolete : More detailed and better looking installation instructions are available from the <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/sip-servlets/index.html#sssicar-SIP_Servlets_Server-Application-Router" class="externalLink">Mobicents Sip Servlets User Guide</a>
+</i>
+</h2>
+<div class="section"><h3>Role of the Application router </h3>
+<p>The Application Router is called by the container to select a SIP servlet application to service an initial request.<br />
+It embodies the logic used to choose which applications to invoke.<br />
+An Application Router is required for a container to function, but it is a separate logical entity from the container.&#160; The Application Router is solely responsible for application selection and must not implement application logic.<br />
+For example, the Application Router cannot modify a request or send a response.</p>
+<p>The Application Router implements the SipApplicationRouter interface, which defines the API between the container and the Application Router.&#160; There is no direct interaction between the Application Router and applications.<br />
+It is also important to note that, besides the information passed by the container, the Application Router is free to make use of any other information or data stores.&#160; How it accesses that information and what information it makes use of is a matter of its implementation and is not defined in the Sip Servlets 1.1 specification.</p>
+<p>The role of the deployer is defined in the Servlet API :</p>
+<p>The deployer in a SIP servlet environment controls application composition by defining and deploying the Application Router implementation.&#160; Giving the deployer control over application composition is desirable because it is the deployer who is most aware of and responsible for the totality of services provided to his or her subscribers. Furthermore, this specification intentionally allows the Application Router implementation to consult arbitrary information or data stores.&#160; This is because the deployer maintains subscriber information and this information is often private and valuable.</p>
+</div>
+<div class="section"><h3>Default Application Router</h3>
+<p>Mobicents Sip Servlets provides an implementation of the Default Application Router (DAR) as defined per Sip Servlets 1.1 specification, Appendix C.</p>
+<div class="section"><h4>the DAR Configuration file</h4>
+<p>The DAR works off a simple configuration text file which is modeled as a Java properties file:</p>
+<ul><li>The properties file MUST be made available to the DAR and the location/content of this file MUST be accessible from a hierarchical URI which itself is to be supplied as a system property &quot;javax.servlet.sip.ar.dar.configuration&quot;.<br />
+In the case of Mobicents Sip Servlets, it is also possible to configure it through the server.xml configuration file (See the <a href="./configuration.html">Configuration Section</a>
+ for more details) or the (See the <a href="./sip-servlets-managment.htm">sip servlets managment console</a>
+</li>
+<li>The properties file is first read by the container when it loads up.</li>
+<li>The properties file is refreshed each time an application is deployed/undeployed. </li>
+<li>The properties file has a simple format in which the name of the property is the SIP method and the value is a simple comma separated stringified value for the SipApplicationRouterInfo object.<p><tt>INVITE: (sip-router-info-1), (sip-router-info-2)..</tt>
+</p>
+<p><tt>SUBSCRIBE: (sip-router-info-3), (sip-router-info-4)..</tt>
+</p>
+<p><tt>ALL: (sip-router-info-5), (sip-router-info-6)..</tt>
+</p>
+<p>Note: starting from Mobicents Sip Servlets version 1.0, There is a special keyword called ALL here (taht is specific to Mobicents Sip Servlets) allowing a mapping between a sip-router-info data and all methods supported by the container (INVITE, REGISTER, SUBSCRIBE, etc...) to save time for the configuration of an app that listen to all incoming methods. If both the ALL and a specific method are defined in the DAR file, the specific method takes precedence oever the ALL, and ALL is called when there is no applications to server for the specific method anymore. </p>
+</li>
+</ul>
+<p>The sip-router-info data that goes in the properties file is a stringified version of the SipApplicationRouterInfo object. It consists of the following information :</p>
+<ul><li>The name of the application as known to the container. (read as is present in the app-name tag of the sip.xml deployment descriptor of the application or the @SipApplication annotation)</li>
+<li>The identity of the subscriber that the DAR returns. It can return any header in the SIP request using the DAR directive DAR:SIP_HEADER e.g &quot;DAR:From&quot; would return the SIP URI in From header. Or alternatively it can return any string.</li>
+<li>The routing region, one of the strings &quot;ORIGINATING&quot;, &quot;TERMINATING&quot; or &quot;NEUTRAL&quot; (Currently this information is not used by the DAR to make routing decisions)</li>
+<li>A SIP URI indicating the route as returned by the Application Router, it can be an empty string. (this can be used to route the request externally)</li>
+<li>A route modifier which can be any one of the strings &quot;ROUTE&quot;, &quot;ROUTE_BACK&quot; or &quot;NO_ROUTE&quot; (to be used in conjunction with the above route to route a request externally)<ul><li>a string representing in which orders the applications should be invoked (starts at 0). This will be removed later on and the position of sip-router-info data will be the order</li>
+</ul>
+</li>
+</ul>
+<p>Following is an example of the DAR configuration file:</p>
+<p><tt>INVITE: (&quot;OriginatingCallWaiting&quot;, &quot;DAR:From&quot;, &quot;ORIGINATING&quot;, &quot;&quot;, &quot;NO_ROUTE&quot;, &quot;0&quot;), (&quot;CallForwarding&quot;, &quot;DAR:To&quot;, &quot;TERMINATING&quot;, &quot;&quot;,&quot;NO_ROUTE&quot;, &quot;1&quot;)</tt>
+</p>
+<p>In this example, the DAR is setup to invoke two applications on INVITE request, one each in the originating and the terminating half.&#160; The applications are identified by their names as defined in the application deployment descriptors and used here. <br />
+The subscriber identity returned in this case is the URI from the From and To header respectively for the two applications.&#160; The DAR does not return any route to the container and maintains the invocation state in the stateInfo as the index of the last application in the list.</p>
+</div>
+</div>
+<div class="section"><h3>Routing of SIP Messages to applications</h3>
+<div class="section"><h4>Initial Requests and Application Selection Process</h4>
+<p>Initial Requests are requests that can essentialy be dialog creating (<b>&quot;INVITE&quot;, &quot;REGISTER&quot;, &quot;SUBSCRIBE&quot;, &quot;OPTIONS&quot;, &quot;MESSAGE&quot;, &quot;NOTIFY&quot;, &quot;PUBLISH&quot;, &quot;REFER&quot;</b>
+) and not part of an already existing dialog. (There is some other corner cases that you can check in the Sip Servlets 1.1 specification, Appendix B Definition of an Initial Request )</p>
+<p>Those Initial requests are routed to applications deployed in the container according to the Sip Servlets 1.1 specification, Section 15.4.1 Procedure for Routing an Initial Request.<br />
+Here is a quick summary by the example of the routing (through the Default Application Router) of an INVITE to two applications deployed in the container. Those 2 applications are a Location Service and a Call Blocking application :</p>
+<p>The DAR file will look like this for those 2 applications to be invoked in the order</p>
+<p><tt>INVITE: (&quot;LocationService&quot;, &quot;DAR:From&quot;, &quot;ORIGINATING&quot;, &quot;&quot;, &quot;NO_ROUTE&quot;, &quot;0&quot;), (&quot;CallBlocking&quot;, &quot;DAR:To&quot;, &quot;TERMINATING&quot;, &quot;&quot;,&quot;NO_ROUTE&quot;, &quot;1&quot;)</tt>
+</p>
+<p>a new INVITE (not a re-INVITE) arrives at the container . Since it is a dialog creating request and the INVITE is not part of any dialog, the Application Router is called.<br />
+It will see that the first application to invoke is the LocationService so it will return that information to the container (along with the rest of the sip-router-info data) so that the container knows which application to invoke.<br />
+The container then invokes the LocationService that proxies the INVITE (which is considered essentially as a new INVITE see Sip Servlets 1.1 Specification, Section 15.2.2 Sending an Initial Request) to the known IP Address of the registered user for the Request URI.\</p>
+<p>Since the INVITE has been proxied, the container will invoke the Application Router for the proxied INVITE to see if any more applications are interested into it. It will see that the second application to invoke is the CallBlocking application so it will return that information to the container (along with the rest of the sip-router-info data) so that the container knows which application to invoke.&#160; The container will route the INVITE within the container to the next application in the chain, The Call Blocking application will decide that the user calling is black listed so it will reject the call with a Forbidden response. Since the Call Blocking acted as a UAS the Application Selection Process is stopped. (the container will not invoke the application router anymore for this INVITE).</p>
+<p>So now the path that the INVITE has taken (ie LocationService, CallBlocking) is called the application path. the Routing of the responses will now occur which brings us to the next section </p>
+<p><i>Please note that we took the assumption of a request coming to the server, but applications can act as UAC and also generate initial requests on their own.<br />
+In such cases, no entry in the dar file is needed for the given application initiating the request to be able to route it to ohter applications in the container or outside.</i>
+ </p>
+</div>
+<div class="section"><h4>Response Routing</h4>
+<p>Responses always follow the reverse of the path taken by the corresponding request.<br />
+In our case the Forbidden response will first go back to LocationService then back to the caller. This is true for responses to both initial and subsequent requests.&#160; The application path is a logical concept and as such may or may not be explicitly represented within containers.</p>
+<p>Let's say the Call Blocking application now instead of sending a Forbidden response allowed the call and proxied the INVITE to the same Request URI chosen by the Location Service. Then when the callee sends back the 200 OK Response, this response goes back the same way through the application path, so in our case Call Blocking, then Location Service, then back to the caller. </p>
+<p>An important note here with regard to that second scenario that according to the Sip Servlets 1.1 specification, Sections 15.1.2 The Role of Applications and 15.1.4 Application Independence, the Call Blocking application cannot just do nothing with the request and expect the container to route the request in its place (either to a next application in chain if another one is present or to the outside world if none is present).\ The Application has to do something with request (either proxy it or act as a UAS). </p>
+</div>
+<div class="section"><h4>Subsequent Requests</h4>
+<p>Subsequent requests are all requests that are not Initial.</p>
+<p>Now let's keep the second scenario in mind where the Call Blocking application allowed the call. So the caller has received the 200 OK response back. Now according to the SIP specification (RFC 3261), it sends an ACK. The ACK arrives at the container and is not a dialog creating request and is already part of an ongoing dialog (early dialog) so the request is detected as a Subsequent request and will follow the application path created by the initial request. So the ACK will go through Location Service, Call Blocking and then to the callee. </p>
+</div>
+</div>
+<div class="section"><h3>Limitations </h3>
+<p>It is not possible to filter out the requests based on some headers to target specific applications, like if From Header user domain part is equals to sip-servlets.org call Application 1 and if not called Application 2.</p>
+<p>As you would notice, this is a minimalist Application Router with no processing logic besides the declaration of the application order.&#160; It is expected that in real world deployments, the Application Router shall play an extremely important role in application orchestration and composition.&#160; It is likely to make use of complex rules and diverse data repositories. <br />
+The DAR is intended to be a very simple implementation that is available as part of the reference implementation, and could be used instead of a real world Application Router.</p>
+<p>So far we didn't had requests for a more elaborated Application Router but if you need one you can either open an issue see <a href="./feedback.html"> the feedback page</a>
+ or look at the <a href="./mss-dfc.html">DFC Application Router from ECharts</a>
+. </p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

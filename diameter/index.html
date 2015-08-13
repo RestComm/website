@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Diameter :: The Open Source Cloud Communications Platform</title>
+    <link rel="stylesheet" href="./../maven-mobicents-style.css" type="text/css" />
+    <meta name="author" content="Luka Cvrk (www.solucija.com)" />
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  </head>
+  <body>
+    <script src="http://www.google-analytics.com/urchin.js"
+      type="text/javascript">
+    </script>
+
+    <script type="text/javascript">
+      _uacct = "UA-212380-1";
+      urchinTracker();
+    </script>
+
+    <div class="content">
+      <div class="header">
+        <div class="top_info">
+          <div class="top_info_right"><!-- Search Google -->
+            <form method="get" action="http://www.google.com/custom" target="_top">
+              Search
+              <input name="q" maxlength="255" value="" type="text">
+              <input name="client" value="pub-5437763180786254" type="hidden">
+              <input name="forid" value="1" type="hidden">
+              <input name="channel" value="5452007684" type="hidden">
+              <input name="ie" value="ISO-8859-1" type="hidden">
+              <input name="oe" value="ISO-8859-1" type="hidden">
+              <input name="cof"
+                value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+                type="hidden">
+              <input name="hl" value="en" type="hidden">
+              <input name="q" value="mobicents" type="hidden">
+            </form>
+          </div>
+          <div class="top_info_left">The Open Source SLEE and SIP Server</div>
+        </div>
+        <div id="logo">
+          <h1><a href="http://www.mobicents.org-a.googlepages.com/" title="Mobicents">Mobicents</a></h1>
+        </div>
+      </div>
+  
+      <!-- Top Menu (begin) -->
+      <div class="bar">
+        <ul>
+          <li class="browse_category">Select Category:</li>
+          <li><a href="../index.html" accesskey="h">Home</a></li>
+          <li class="active"><a href="../products.html" accesskey="p">Products</a></li>
+          <li><a href="../services.html" accesskey="s">Services</a></li>
+          <li><a href="../community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+          <li><a href="../partners.html" accesskey="r">Partners</a></li>
+          <li><a href="../faq.html" accesskey="c">FAQ</a></li>
+          <li><a href="../incubator.html" accesskey="i">Incubator</a></li>
+          <li><a href="../about.html" accesskey="a">About Us</a></li>
+        </ul>
+      </div>
+      <!-- Top Menu (end) -->
+
+      <!-- Main Content Wrapper (begin) -->
+      <div class="contentwrapper">
+  
+        <!-- Page Content (begin) -->
+        <div class="left">
+          <h3 id="h3_2">Mobicents Diameter / Introduction</h3>
+          <div class="section">
+            <h2><a name="Introduction"></a>Introduction</h2>
+            <p>
+              Diameter is an Authentication, Authorization and Accounting (AAA) protocol, specified by the IETF to overcome
+              several limitations from the dial-up access designed RADIUS (Remote Authentication Dial In User Service) protocol, 
+              satisfying the ever-growing requirements of network applications.
+            </p>
+            <br />
+            <p>
+              Diameter has been widely adopted by 3GPP (3rd Generation Partnership Project) and 3GPP2 to provide AAA in IMS 
+              (IP Multimedia Subsystem) by the means of specific application extensions.
+            </p>
+            <br />
+            <p>
+              Mobicents Diameter provides an open source Diameter implementation, implementing the Base Protocol as well as some
+              of the most important and widely used applications, allowing a fast development of IMS components, such as 
+              Application Server (AS), Home Subscriber Server (HSS), Call Session Control Function (CSCF), Subscriber Location 
+              Function (SLF), etc. It is easily extensible to provide support for new applications, be them 3GPP specified or any
+              vendor custom application.
+            </p>
+            <br />
+            <p>
+              The source code license is LGPL. You can learn more about the license <a name="LGPL" target="_blank" href="http://www.gnu.org/licenses/lgpl.html">here</a>.
+            </p>
+            <br />
+          </div>
+          <div class="section">
+            <h2><a name="SupportedApplications"></a>Supported Diameter Applications</h2>
+            <p>
+              The following Diameter Applications (Client and Server) are currently supported in Mobicents Diameter solution:
+              <ul>
+                <li>Diameter Base (IETF RFC 3588)</li>
+                <li>Diameter Credit-Control Application (IETF RFC 4006)</li>
+                <li>IMS Sh Interface (3GPP TS 29.328 and 3GPP TS 29.329)</li>
+                <li>IMS Rf Interface (3GPP TS 32.225 and 3GPP TS 32.299)</li>
+                <li>IMS Ro Interface (3GPP TS 32.225 and 3GPP TS 32.299)</li>
+                <li>IMS Cx Interface (3GPP TS 29.228 and 3GPP TS 29.229)</li>
+                <li>IMS Dx Interface (3GPP TS 29.228 and 3GPP TS 29.229)</li>
+              </ul>
+              Find more info about the supported applications in the <a href="diameter-applications-overview.html">Diameter Applications Overview</a> section.
+            </p>
+            <br />
+          </div>
+          <div class="section">
+            <h2><a name="Features"></a>Mobicents Diameter Features</h2>
+            <p>
+              Besides the basic Diameter features, Mobicents solution provides the following features:
+              <ul>
+                <li><strong>High-Availability/Fault-Tolerance support</strong> both at stack level and at Mobicents JAIN SLEE 
+                  Resource Adaptors. Learn more about the architecture on the <a href="diameter-high-availability-fault-tolerance.html">
+                  High-Availability/Fault-Tolerance Overview</a> section.</li>
+                <li><strong>Statistics generation</strong>, to enable monitoring of the Diameter stack, know it's average load, 
+                  number of received requests, processing time per request, etc.;</li>
+                <li><strong>Overload Monitor</strong>, configurable per Diameter application, allowing the stack to reject new 
+                  requests when overloaded;</li>
+                <li>Simple <strong>XML Configuration</strong> through one XML file, the whole stack (own peer, realms, peers, 
+                  timeout parameters, etc.) can be configured;</li>
+                <li><strong>Management facilities</strong>, allowing to remotely manage and monitor the stack by the standard JMX 
+                  (Java Management Extensions) API and also though an GUI provided by a plugin to be used in the RHQ/JON 
+                  management interface;</li>
+                <li><strong>Message Validation</strong> both for incoming and outgoing messages, with configurable depth;</li>
+                <li><strong>Extension Points</strong> allowing quickly to test custom implementations for several core functions, 
+                  such as load-balancing, replicated datasources, etc;</li>
+                <li>Easily <strong>extendable and customizable Diameter Applications</strong> by adding new AVP definitions and 
+                  state machine behaviors</li>
+              </ul>
+            </p>
+            <br />
+          </div>
+          <div class="section">
+            <h2><a name="Integration"></a>Mobicents Diameter Integration</h2>
+            <p>
+              Mobicents Diameter contains a stack wrapper, called Multiplexer (MUX) allowing several applications to share the 
+              same stack instance. The Diameter MUX is compatible with and runs on top of JBoss AS 4.x and JBoss AS 5.x. Please 
+              find the different versions in the <a href="diameter-downloads.html">Downloads</a> section.
+            </p>
+            <p>
+              Mobicents Diameter solution integrates easily both with Mobicents JAIN SLEE Container, by providing JAIN SLEE 1.0 and 1.1 compatible Resource adaptors for all the above mentioned applications, and with Mobicents SIP Servlets, providing similar demonstration examples for both platforms. You can learn more about them in the <a href="diameter-examples.html">Examples</a> section.
+            </p>
+            <br />
+          </div>
+        </div>
+        <!-- Page Content (end) -->
+
+        <!-- Right Side Menu (begin) -->
+        <div class="right">
+          <h3>Mobicents Diameter</h3>
+          <div class="right_articles">
+            <h5>&nbsp;Overview</h5>
+            <ul>
+              <li class="none">
+                <strong>Introduction</strong>
+              </li>
+              <li class="none">
+                <a href="diameter-applications-overview.html">Applications Overview</a>
+              </li>
+              <li class="none">
+                <a href="diameter-high-availability-fault-tolerance.html">High-Availability / Fault-Tolerance Overview</a>
+              </li>
+              <li class="none">
+                <a href="diameter-roadmap.html">Roadmap</a>
+              </li>
+              <li class="none">
+                <a href="diameter-downloads.html">Downloads</a>
+              </li>
+            </ul>
+            <h5>&nbsp;Documentation</h5>
+            <ul>
+              <li class="none">
+                <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/diameter/core/index.html" target="_blank">Diameter User Guide</a>
+              </li>
+              <li class="none">
+                <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/diameter/tools/jopr-plugin/index.html" target="_blank">RHQ Plugin User Guide</a>
+              </li>
+              <br />
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-base/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Base RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cca/user-guide/en-US/html_single/" target="_blank">JAIN SLEE CCA RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cx-dx/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Cx/Dx RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cx-dx/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Gq' RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cx-dx/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Gx RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-ro/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Ro RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-rf/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Rf RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-cx-dx/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Rx RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-sh-client/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Sh-Client RA</a>
+              </li>
+              <li class="none">
+                <a href="http://docs.jboss.org/mobicents/jain-slee/resources/diameter-sh-server/user-guide/en-US/html_single/" target="_blank">JAIN SLEE Sh-Server RA</a>
+              </li>
+              <li class="none">
+                &nbsp;
+              </li>
+              <li class="none">
+	            <a href="diameter-docs.html">Documentation Page</a><br/>
+	            (PDF versions and other)
+              </li>				
+            </ul>
+            <h5>&nbsp;Examples</h5>
+            <ul>
+              <li class="none">
+                <a href="diameter-examples.html">Standalone Examples</a>
+              </li>
+              <li class="none">
+                <a href="diameter-examples.html#jainslee">JAIN SLEE Examples</a>
+              </li>
+              <li class="none">
+                <a href="diameter-examples.html#sipservlets">SIP Servlets Examples</a>
+              </li>
+            </ul>
+            <h5>&nbsp;Community</h5>
+            <ul>
+              <li class="none">
+                <a href="http://groups.google.com/group/mobicents-public">Forum / Mailing List</a>
+              </li>
+              <li class="none">
+                <a href="http://code.google.com/p/mobicents/issues/list?q=component%3DDiameter">Issue Tracker</a>
+              </li>
+              <li class="none">
+                <a href="http://mobicents.googlecode.com/svn/trunk/">Anonymous SVN</a>
+              </li>
+              <li class="none">
+                <a href="https://mobicents.googlecode.com/svn/trunk/">Committer SVN</a>
+              </li>
+              <li class="none">
+                <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/diameter">Browse SVN</a>
+              </li>
+              <li class="none">
+                <a href="http://groups.google.com/group/mobicents-public/web">User Wiki</a>
+              </li>
+              <li class="none">
+                <a href="diameter-docs.html">Documentation</a>
+              </li>
+            </ul> 
+          </div>
+          <p align="center">
+            <br />
+            <a href="http://www.rhq-project.org/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+          </p>
+        </div>
+        <!-- Right Side Menu (end) -->
+
+      </div>
+      <!-- Main Content Wrapper (end) -->
+      <div class="footer">
+    </p>
+  </div>
+
+  <!-- Footer (begin) --> 
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img src="../logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+    </div>
+  </body>
+</html>

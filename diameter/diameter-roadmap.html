@@ -1,0 +1,874 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Diameter / Roadmap :: The Open Source Cloud Communications Platform</title>
+    <link rel="stylesheet" href="./../maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link rel="stylesheet" href="./../tabs/tabs.css" TYPE="text/css" MEDIA="screen">        
+	<script type="text/javascript" src="./../tabs/tabber.js">
+	document.write('<style type="text/css">.tabber{display:none;}</style>');
+	</script>
+  </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org-a.googlepages.com/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+  <div class="bar">
+    <ul>
+      <li class="browse_category">Select Category:</li>
+
+      <li><a href="../index.html" accesskey="h">Home</a></li>
+      <li class="active"><a href="../products.html" accesskey="p">Products</a></li>
+      <li><a href="../services.html" accesskey="s">Services</a></li>
+      <li><a href="../community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+      <li><a href="../partners.html" accesskey="r">Partners</a></li>
+      <li><a href="../faq.html" accesskey="c">FAQ</a></li><li><a href="../incubator.html" accesskey="i">Incubator</a></li>
+
+      <li><a href="../about.html" accesskey="a">About Us</a></li>
+    </ul>
+  </div>
+<div class="contentwrapper">
+<div class="left">
+<h3 id="h3_2">Mobicents Diameter</h3>
+<div class="section"><h2><a name="Roadmap"></a>
+Roadmap</h2>
+<p>
+If you would like to propose any kind of features that you would like to see supported, feel free to open a new thread on mobicents-public@google-groups.com or on dev or users lists to discuss it with us or open a new issue categorized as feature.
+</p>
+
+<div class="tabber">
+<!--#roadmap.gen.start-->
+  <div class="tabbertab" title="1.x series">
+	<div class="section"><h3><a name="Planned_Versions"></a>
+	Planned Versions</h3>
+	</div>
+	<h3>
+	<a name="1.4.2.FINAL_-_15th October 2012"></a>
+	<p>1.4.2.FINAL - 15th October 2012</p>
+</h3>
+<p>
+<img src="../images/greyball16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1969" class="externalLink">
+						Allow Mobicents Diameter RA to use a private stack or a shared one 
+						</a>
+<br />
+<img src="../images/greyball16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1971" class="externalLink">
+						Add default handling of initial request in factories
+						</a>
+<br />
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul><li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=656" class="externalLink">
+									Diameter Sh message SubscribeNotificationAnswer lacks setUserData
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1959" class="externalLink">
+									Create jUnit automated tests to cover every type of Diameter JAIN SLEE activity and message 
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1967" class="externalLink">
+									Improve initial interrogation scenario in CCA
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1968" class="externalLink">
+									Restrain messages which can be sent at specific Diameter Application sessions/activities 
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1970" class="externalLink">
+									Improve Mobicents Diameter Charging Server  
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1972" class="externalLink">
+									Continue JAIN SLEE HSS work and integrate with Mobicents SIP Presence
+								</a>
+</li>
+</ul>
+<br />
+</p>
+<h3>
+	<a name="1.4.1.FINAL_-_31st July 2012"></a>
+	<p>1.4.1.FINAL - 31st July 2012</p>
+</h3>
+<p>
+<img src="../images/greyball16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1253" class="externalLink">
+						Switch diameter/dictionary/validator configuration to JAXB
+						</a>
+<br />
+<img src="../images/yellowball.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1955" class="externalLink">
+						Support Secure Transport (IPSec/TLS) in Mobicents Diameter 
+						</a>
+<br />
+<img src="../images/greyball16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1961" class="externalLink">
+						Integrate Diameter with Mobicents Load Balancer 
+						</a>
+<br />
+<img src="../images/greyball16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1962" class="externalLink">
+						Support alternative and configurable (pluggable) Diameter load-balancing algorithms 
+						</a>
+<br />
+<img src="../images/greyball16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1964" class="externalLink">
+						Create Diameter Example integrating with Mobicents JAIN SLEE B2BUA 
+						</a>
+<br />
+<img src="../images/greyball16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1965" class="externalLink">
+						Create/Improve documentation on developing with Mobicents Diameter Stack 
+						</a>
+<br />
+<img src="../images/greyball16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=3056" class="externalLink">
+						Support SCTP in Mobicents Diameter
+						</a>
+<br />
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul><li><img src="../images/yellowball.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1948" class="externalLink">
+									Normalize code and signature for Diameter JAIN SLEE Resource Adaptors 
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1950" class="externalLink">
+									Create base code for Diameter JAIN SLEE Resource Adaptors 
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1951" class="externalLink">
+									Improve, Test and create Example for Diameter as a RELAY agent 
+								</a>
+</li>
+<li><img src="../images/yellowball.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1952" class="externalLink">
+									Improve, Test and create Example for Diameter as a REDIRECT agent 
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1953" class="externalLink">
+									Improve, Test and create Example for Diameter as a TRANSLATION agent 
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1954" class="externalLink">
+									Allow configuration and disabling of Session timers 
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1956" class="externalLink">
+									Populate  Diameter activities with more state 
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2239" class="externalLink">
+									Stop using ThreadGroup and remove references to it
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2584" class="externalLink">
+									Minimize configuration lookup
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2744" class="externalLink">
+									Fix Diameter Enum type implementation
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3167" class="externalLink">
+									Mobicents Diameter Stack: Limit/Clean Peer Table
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3196" class="externalLink">
+									Diameter Ro Ra: IllegalStateException resulted DIAMETER_UNKOWN_SESSION_ID response to valid and open session, due to some sort of race condition
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3199" class="externalLink">
+									Features needed: restore lost or not existing Diameter Ro sessions and retrieve session object by id. Patch is attached
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3205" class="externalLink">
+									Diameter TCP stack fails sometimes
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3229" class="externalLink">
+									Diameter Rx Client state handling
+								</a>
+</li>
+<li><img src="../images/greyball16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3238" class="externalLink">
+									Diameter: Concurrency problem by handling CER
+								</a>
+</li>
+</ul>
+<br />
+</p>
+<div class="section"><h3><a name="Released_Versions"></a>
+Released Versions</h3>
+</div>
+<h3>
+	<a name="1.4.0.FINAL_-_15th May 2012"></a>
+	<p>1.4.0.FINAL - 15th May 2012</p>
+</h3>
+<p>
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1947" class="externalLink">
+						Optimize clustering introduced in Mobicents Diameter 1.3.x 
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=3185" class="externalLink">
+						Configurable table size for Duplicate Answers
+						</a>
+<br />
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul><li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2205" class="externalLink">
+									Allow creation of answers without Result-Code
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3184" class="externalLink">
+									Diameter duplicate request protection is not cleaning entries
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3187" class="externalLink">
+									DCCA: AvpNotAllowedException while setting Service-Identifier in Multiple-Services-Credit-Control
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3194" class="externalLink">
+									Diameter RAs "doOtherEvent" not delivering Answers
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3195" class="externalLink">
+									AVP protected flag is inverted when adding DiameterAvp to AvpSet
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3198" class="externalLink">
+									Diameter Ro/Rf RAs: MmsInformationImpl::getRecipientAddresses() causes ClassCastException
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3204" class="externalLink">
+									Check ports in range (when defined) before assigning socket
+								</a>
+</li>
+</ul>
+<br />
+</p>
+<h3>
+	<a name="1.4.0.CR3_-_12th April 2012"></a>
+	<p>1.4.0.CR3 - 12th April 2012</p>
+</h3>
+<p>
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2662" class="externalLink">
+						Support CableLabs Diameter Cx/Dx implementation (along with ETSI/TGPP)
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2903" class="externalLink">
+						Diameter Sh support for Rel 9 (AVP's missing)
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2966" class="externalLink">
+						Allow Dynamic Vendor/Application-Id in Factory generated Messages/AVPs
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=3034" class="externalLink">
+						Cluster support for Diameter Rx
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=3149" class="externalLink">
+						Mobicents Diameter: Update all license references to LGPL
+						</a>
+<br />
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul><li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2446" class="externalLink">
+									Unknown realm name [null] error when sending diameter response under high concurrency
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2586" class="externalLink">
+									Unhandled buffer underrun in Diameter stack
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2729" class="externalLink">
+									Enhance Peer Table algorithm for Peer storage
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2948" class="externalLink">
+									Diameter Gx client sets CC-request-type twice when sending CCRs
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2949" class="externalLink">
+									Diameter Rx AVP problems with AAA and STA
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3026" class="externalLink">
+									PeerFSMImpl doesn't send OKAY -> DOWN notification
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3038" class="externalLink">
+									Diameter IllegalStateException on application session release() when in cluster
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3078" class="externalLink">
+									Diameter S6a RA Documentation
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3090" class="externalLink">
+									AsynchronousCloseException when Diameter client tries to reestablish a connection
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3094" class="externalLink">
+									Mobicents Diameter rejects messages with no Application ID AVPs
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3095" class="externalLink">
+									Error parsing multiple Application ID's when deploying Diameter Rf RA
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3096" class="externalLink">
+									Diameter grouped child AVPs throw ClassCastException
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3108" class="externalLink">
+									Diameter S6a RA misses sendNotifyRequest on S6aClientSessionActivity
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3110" class="externalLink">
+									Diameter Gq Session state errors
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3114" class="externalLink">
+									Diameter CCA RA fails trying to create Client Session Activity
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3163" class="externalLink">
+									Diameter URI should allow URIs without scheme
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3168" class="externalLink">
+									Diameter CCA RA adds Service-Context-ID AVP to CCA
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3169" class="externalLink">
+									Diameter: Gx/Gy Missing AVPs in Dictionary
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3171" class="externalLink">
+									Diameter Stack: Schema error in 1.5.8.0
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3176" class="externalLink">
+									Diameter RAs: NPE when receiving Requests
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3178" class="externalLink">
+									Diameter: Improve error message when AvpDataException is thrown
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3179" class="externalLink">
+									Print Diameter Stack version on startup/stop
+								</a>
+</li>
+</ul>
+<br />
+</p>
+<h3>
+	<a name="1.4.0.CR2_-_1st February 2012"></a>
+	<p>1.4.0.CR2 - 1st February 2012</p>
+</h3>
+<p>
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2619" class="externalLink">
+						Mobicents JAIN SLEE Diameter S6a Resource Adaptor
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2649" class="externalLink">
+						Mobicents Diameter Stack RedirectAgent configuration
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2910" class="externalLink">
+						Mobicents Diameter Stack 3GPP S6a Reference Point Support
+						</a>
+<br />
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul><li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2633" class="externalLink">
+									Diameter Gx RAR Auth App Id possible bug
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2709" class="externalLink">
+									Possible Data Loss for octet string
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2721" class="externalLink">
+									Diameter Activities started with incorrect context method
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2859" class="externalLink">
+									Update Clustering section in Diameter RAs Documentation
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2869" class="externalLink">
+									CxDx Avp Factory and MessageFactory does not exposes base factories
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2899" class="externalLink">
+									Improve Diameter Cx/Dx AVPs in JAIN SLEE RA
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2913" class="externalLink">
+									Allow to reconnect after DWA send failure.
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2933" class="externalLink">
+									RxSessionDataFactory was not added in org.jdiameter.common.impl.data.LocalDataSource.java
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2935" class="externalLink">
+									Rx STR/ASA and RAR messages cannot be sent or received
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2944" class="externalLink">
+									Auth Application ID and vendor ID combination matching problems
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2980" class="externalLink">
+									Mobicents DIAMETER Gq, Gx, Ro and Rx RAs do not work in clustered mode
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2981" class="externalLink">
+									Session-Id not in first index position of ACA even with validator enabled
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2982" class="externalLink">
+									Acct-Application-Id is duplicated in ACA
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3004" class="externalLink">
+									Allow usage of custom classes/packages for Sh Transparent Data
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3012" class="externalLink">
+									(Some) Diameter RA-Types do not reference ErrorAnswer event
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3013" class="externalLink">
+									(Some) Diameter RA-Types do not reference ExtensionDiameterMessage event
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3024" class="externalLink">
+									DiameterAvp.longValue() method does not work for 32 bit types
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3028" class="externalLink">
+									DiameterMessageImpl does not fill AVP type when constructing structure
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3032" class="externalLink">
+									Diameter Stack: Avp.getOctetString() should return a byte[] and not a String
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3033" class="externalLink">
+									Diameter Base RA: getAvpAsOctetString should return a byte[] and not a String
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3045" class="externalLink">
+									Diameter messages Application-Id in header may not match AVPs
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3054" class="externalLink">
+									Diameter Base RA throws NPE sending message when validator is enabled and message is not in dictionary
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3058" class="externalLink">
+									Diameter RAs: Unable to add more than one AVP with same code as childs of other AVP
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3062" class="externalLink">
+									Diameter Gq RA does not support Application-Id configuration
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=3072" class="externalLink">
+									T Flag is set on Answer if Request has it set.
+								</a>
+</li>
+</ul>
+<br />
+</p>
+<h3>
+	<a name="1.4.0.CR1_-_7th September 2011"></a>
+	<p>1.4.0.CR1 - 7th September 2011</p>
+</h3>
+<p>
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2632" class="externalLink">
+						Rx Diameter Resource Adaptor 
+						</a>
+<br />
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul><li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1605" class="externalLink">
+									Message timeout should not be called when request has failed to be sent
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2546" class="externalLink">
+									Arrays as Child AVP's for Grouped AVP are not working properly.
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2617" class="externalLink">
+									Diameter Ro client session null pointer
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2639" class="externalLink">
+									Diameter Gq' RA Documentation
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2648" class="externalLink">
+									Diameter: CyclicDependencyException
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2710" class="externalLink">
+									Starting stack with Mode.ANY_PEER fails if number of peers to connect to is 0
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2748" class="externalLink">
+									Support Diameter applications in configuration even with no listener
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2749" class="externalLink">
+									Mobicents Diameter CCA/Ro sends no Answer if session is unknown
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2757" class="externalLink">
+									OctetString conversion discards chars
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2758" class="externalLink">
+									Address toString() method produces wrong output
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2824" class="externalLink">
+									IPFilterRule type handling methods missing in Diameter RAs
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2831" class="externalLink">
+									Mobicents Diameter Base RA supported Auth Applications as Acct
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2846" class="externalLink">
+									DIameter activities ending before final answer is sent
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2848" class="externalLink">
+									Diameter Rx RA Documentation
+								</a>
+</li>
+</ul>
+<br />
+</p>
+<h3>
+	<a name="1.4.0.BETA2_-_6th July 2011"></a>
+	<p>1.4.0.BETA2 - 6th July 2011</p>
+</h3>
+<p>
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2443" class="externalLink">
+						Improve peer and realm routing
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2484" class="externalLink">
+						Diameter Gq' Interface support
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2485" class="externalLink">
+						Mobicents Diameter Gq' Resource Adaptor
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2504" class="externalLink">
+						Mobicents Diameter Stack should allow app to pick Disconnect-Cause value
+						</a>
+<br />
+<img src="../images/cleargreenbutton16.png"/><a href="http://code.google.com/p/mobicents/issues/detail?id=2670" class="externalLink">
+						Diameter: Update PicoContainer to latest version (2.13.5)
+						</a>
+<br />
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul><li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2444" class="externalLink">
+									LocalTimerFacilityImpl not thread safe: causes infinite loop in HashMap under high concurrency
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2449" class="externalLink">
+									net.java.slee.resource.diameter.ro.RoSessionActivity should extend DiameterActivity
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2456" class="externalLink">
+									Diameter stack sends CEA over close connection
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2457" class="externalLink">
+									Diameter Stack fails to send a response back to a connected client
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2458" class="externalLink">
+									Improve Diameter Stack Logging
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2487" class="externalLink">
+									Diameter: Sending Gx Re-Auth answer raises ClassCastException
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2493" class="externalLink">
+									Diameter User Guide isn't displayed in firefox-4, midori
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2531" class="externalLink">
+									DIAMETER RAs throws NPE on sync send when no answer is received
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2543" class="externalLink">
+									CxDx PPA and RTA Fail
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2545" class="externalLink">
+									IPFilterRule does not conforms RFC 3588
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2564" class="externalLink">
+									Bad CC-Request-Number in charging-server-simulator
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2567" class="externalLink">
+									Update Mobicents Charging Server Simulator to Mobicents Diameter 1.4.0
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2571" class="externalLink">
+									Timers are not failed over to fresh node - on standby
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2575" class="externalLink">
+									Diameter App Sessions created without Application Id
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2581" class="externalLink">
+									Authorization-Lifetime AVP should be Unsigned32 instead of Integer32 in Dictionary
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2589" class="externalLink">
+									Application session assume SessionListener to be of StateChangeListener type, causing ClassCastException
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2603" class="externalLink">
+									Configurable REQUEST_TABLE_SIZE and REQUEST_TABLE_CLEAR_SIZE
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2628" class="externalLink">
+									Connection is not reestablished after diameter server restart
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2636" class="externalLink">
+									Diameter: correction and enhancement of AvpSet remove method 
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2658" class="externalLink">
+									Mobicents Diameter Stack support for Gx and RA contain incorrect references to CCA
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2661" class="externalLink">
+									Diameter Gx RAR message has incorrect App ID
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2666" class="externalLink">
+									Diameter: Peer added with stack stopped tries to connect
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2697" class="externalLink">
+									Inconsistent treatment of AVP mandatory field
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2698" class="externalLink">
+									Diameter Answers created from Requests do not maintain 'P' bit
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2703" class="externalLink">
+									CCA/Ro/Gx RAs add ReAuthRequestType and AuthApplicationId to RAR on send, even if already present
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2704" class="externalLink">
+									DIAMETER RAs do not return answer when using sync send
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2713" class="externalLink">
+									Diameter Sh RAs Session Message Factory produces messages with Acct Application-Id instead of Auth
+								</a>
+</li>
+<li><img src="../images/cleargreenbutton16.png" /><a href="http://code.google.com/p/mobicents/issues/detail?id=2715" class="externalLink">
+									Diameter OpenIMS (JSLEE) Example uses invalid value for Auth-Session-State AVP
+								</a>
+</li>
+</ul>
+<br />
+</p>
+<h3>
+	<a name="1.4.0.BETA1_-_31st December 2010"></a>
+	<p>1.4.0.BETA1 - 31st December 2010</p>
+</h3>
+<p>
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+<h3>
+	<a name="1.3.3.FINAL_-_20th December 2010"></a>
+	<p>1.3.3.FINAL - 20th December 2010</p>
+</h3>
+<p>
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+<h3>
+	<a name="1.3.2.FINAL_-_31st October 2010"></a>
+	<p>1.3.2.FINAL - 31st October 2010</p>
+</h3>
+<p>
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+<h3>
+	<a name="1.3.00.FINAL_-_14th July 2010"></a>
+	<p>1.3.00.FINAL - 14th July 2010</p>
+</h3>
+<p>
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+<h3>
+	<a name="1.2.01.GA_-_15th April 2010 "></a>
+	<p>1.2.01.GA - 15th April 2010 </p>
+</h3>
+<p>
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+<h3>
+	<a name="1.2.00.GA_-_20th February 2010"></a>
+	<p>1.2.00.GA - 20th February 2010</p>
+</h3>
+<p>
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+<h3>
+	<a name="1.1.2.GA_-_14th February 2010"></a>
+	<p>1.1.2.GA - 14th February 2010</p>
+</h3>
+<p>
+
+<img src="../images/greenball16.png" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+
+  </div>
+
+<!--#roadmap.gen.end-->
+</div>
+
+<!-- /div-->
+</div>
+
+</div>
+
+    <div class="right">
+      <h3>Mobicents Diameter</h3>
+      <div class="right_articles">
+	 <h5>Overview</h5>
+	 
+	  <ul>
+	 <li class="none">
+	  <a href="http://groups.google.com/group/mobicents-public">Forum</a>
+	 </li>
+	  <li class="none">
+	    <a href="http://mobicents.googlecode.com/svn/trunk/">Anonymous SVN</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="https://mobicents.googlecode.com/svn/trunk/">Committer SVN</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://code.google.com/p/mobicents/issues/list?q=Diameter&updated=79&ts=1207472184">Issue Tracker</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://groups.google.com/group/mobicents-public/web">User Wiki</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="diameter-docs.html">Documentation</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="diameter-downloads.html">Downloads</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/diameter">Browse SVN</a>
+	 </li>	 
+	 <li class="none">
+              <strong>Roadmap</strong>
+        </li>
+	 </ul> 
+
+      </div>
+    </div>
+  </div>
+<div class="footer">
+
+    </p>
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img src="../logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

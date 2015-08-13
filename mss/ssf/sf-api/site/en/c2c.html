@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>sf-api - Create Click To Call application</title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+          <meta name="author" content="Naoki Nishihara" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div class="bar">
+<ul>
+	<li class="browse_category">Select Category:</li>
+
+	<li><a href="http://www.mobicents.org/index.html" accesskey="h">Home</a></li>
+	<li class="active"><a href="http://www.mobicents.org/products.html" accesskey="p">Products</a></li>
+	<li><a href="http://www.mobicents.org/services.html" accesskey="s">Services</a></li>
+
+	<li><a href="http://www.mobicents.org/community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+	<li><a href="http://www.mobicents.org/faq.html" accesskey="c">FAQ</a></li>
+
+	<li><a href="http://www.mobicents.org/about.html" accesskey="a">About Us</a></li>
+
+</ul>
+</div>
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">sf-api</h3>
+<div class="section"><h2>Extending the application.</h2>
+<p>Now add the function to execute 3PCC.</p>
+<p>In this case, if the handler might receive the same method of SIP messages when executing to proxy and 3PCC int the same SipServlet, each handler must be sort messages.</p>
+<p>For this reason, you'd better to process messages by the other application on the same context.</p>
+<div class="section"><h3>Update sip.xml</h3>
+<p>As shown in the following configuration.</p>
+<img src="./images/servlet-context2.png" alt="Configuration of ApplicationContext" /><p>Edit sip.xml for this configuration.</p>
+<div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;sip-app xmlns=&quot;http://www.jcp.org/xml/ns/sipservlet&quot;
+  xmlns:javaee=&quot;http://java.sun.com/xml/ns/javaee&quot;&gt;
+
+    &lt;app-name&gt;sf-core-app&lt;/app-name&gt;
+    &lt;distributable /&gt;
+
+    &lt;context-param&gt;
+        &lt;param-name&gt;&lt;/param-name&gt;
+        &lt;param-value&gt;&lt;/param-value&gt;
+    &lt;/context-param&gt;
+
+    &lt;listener&gt;
+        &lt;listener-class&gt;org.mobicents.ssf.servlet.SipDispatcherListener&lt;/listener-class&gt;
+    &lt;/listener&gt;
+
+    &lt;servlet-selection&gt;
+        &lt;main-servlet&gt;sip-dispatcher&lt;/main-servlet&gt;
+    &lt;/servlet-selection&gt;
+
+    &lt;servlet&gt;
+        &lt;!-- Receive all inbound requests --&gt;
+        &lt;javaee:servlet-name&gt;sip-dispatcher&lt;/javaee:servlet-name&gt;
+        &lt;javaee:servlet-class&gt;org.mobicents.ssf.servlet.SipDispatcherServlet&lt;/javaee:servlet-class&gt;
+        &lt;javaee:load-on-startup&gt;10&lt;/javaee:load-on-startup&gt;
+    &lt;/servlet&gt;
+&lt;!-- 
+        Receive all dispatcher requests from Web
+--&gt;
+    &lt;servlet&gt;
+        &lt;javaee:servlet-name&gt;sip-dispatcher-call&lt;/javaee:servlet-name&gt;
+        &lt;javaee:servlet-class&gt;org.mobicents.ssf.servlet.SipDispatcherServlet&lt;/javaee:servlet-class&gt;
+        &lt;javaee:load-on-startup&gt;11&lt;/javaee:load-on-startup&gt;
+    &lt;/servlet&gt;
+
+    &lt;!--
+        &lt;proxy-config&gt;
+        &lt;sequential-search-timeout&gt;0&lt;/sequential-search-timeout&gt;
+        &lt;/proxy-config&gt;
+    --&gt;
+&lt;/sip-app&gt;</pre>
+</div>
+<p>Adding &quot;sip-dispatcher-call&quot; for receiving events from web application.</p>
+<p>And edit web.xml for calling sip application.</p>
+<div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
+        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;
+        version=&quot;2.4&quot;&gt;
+  &lt;display-name&gt;SSF Web Applications&lt;/display-name&gt;
+  &lt;distributable/&gt;
+  &lt;context-param&gt;
+    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+    &lt;param-value&gt;
+      /WEB-INF/common-beans.xml
+    &lt;/param-value&gt;
+  &lt;/context-param&gt;
+  &lt;listener&gt;
+    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+  &lt;/listener&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;dispatcher&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;webDispatcher&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.mobicents.ssf.servlet.WebDispatcherServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;targetSipServletName&lt;/param-name&gt;
+      &lt;param-value&gt;sip-dispatcher-call&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;dispatcher&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;webDispatcher&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/webDispatcher.html&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+&lt;/web-app&gt;</pre>
+</div>
+<p>In this configuration, adding initialization parameter &quot;targetSipServletName&quot; to WebDispatcherServlet.</p>
+</div>
+<div class="section"><h3>WebDispatcherServlet</h3>
+<div class="section"><h4>About WebDispatcherServlet</h4>
+<p>WebDispatcherServiet work with SipDispatcherServlet, and call SipDispatcherServlet to execute sip processing from web application</p>
+<p>WebDispatcherServlet flow is as follows.</p>
+<ul><li>Initialization<p>Get &quot;targetSipServletName&quot; from the initialization parameter. </p>
+</li>
+<li>In calling SipDispatcherServlet<ul><li>If the value of &quot;targetSipServletName&quot; is specified in web.xml, get SipDispatcherServlet specified name from ServletContext<p>If it is not specified, get SipDispatcherServlet first found in attribute value of SrevletContext. </p>
+</li>
+<li>Get request parameter map by HttpServletRequest.requestParameterMap().</li>
+<li>If the value of &quot;WebDispatcherServlet.SIP_APPLICATION_SESSINO_ID&quot; is specified in the parameter or the attribute of the request, processing SIP using specified id. <p>If it is not specified, create a new SipApplicationSession.</p>
+</li>
+<li>If the value of &quot;WebDispatcerServlet.SYNC_CALL&quot; is specified in the parameter or the attribute of the request, and the value is &quot;true&quot;, SipDispatcherServlet handles synchronous events.<p>Otherwise and default is &quot;false&quot;, and SypDispatcherServlet handles asynchronous events.</p>
+<p>In the synchronous processing, you cannot use the synchronization function with SipApplicationSession, that is provided by SIP container. If you send a SIP message, we recommended that you use asynchronous processing.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Please check the SIP Servlet container function about synchronous processing with SIP messages. </p>
+</div>
+<div class="section"><h4>Calling WebDispatcherServlet</h4>
+<p>If WebDispatcherServlet is registered as &quot;webDispatcher&quot;, the way to call WebDispatcherServlet from JSP or Servlet is below.</p>
+<div class="source"><pre>    RequestDispatcher dispatcher = req.getSession().getServletContext().getNamedDispatcher(&quot;webDispatcher&quot;);
+    dispatcher.include(req, res);
+    
+    String id = (String)req.getAttribute(WebDispatcherServlet.SIP_APPLICATION_SESSION_ID);
+    if(logger.isDebugEnabled()) {
+        logger.debug(&quot;id:&quot; + id);
+    }</pre>
+</div>
+</div>
+</div>
+<div class="section"><h3>Create the handler for handling calls from web application</h3>
+<div class="source"><pre>@Component
+public class CallHandler {
+    private Logger logger = LoggerFactory.getLogger(CallHandler.class);
+    
+    @DispatcherMapping(params={&quot;exec=makeCall&quot;})
+    public void makeCall(DispatcherParams params, Conference conf, Call call) throws Exception {
+        if(logger.isDebugEnabled()) {
+            logger.debug(&quot;params:&quot; + params);
+        }
+        String p = params.getParameterAsString(&quot;parties&quot;);
+        String mode = params.getParameterAsString(&quot;mode&quot;);
+        
+        String[] parties = toArray(p);
+        
+        SipApplicationSession appSession = params.getApplicationSession();
+        call.setSipApplicationSession(appSession);
+        conf.startCall(call, parties, mode);
+    }
+    
+    public String[] toArray(String p) {
+        StringTokenizer token = new StringTokenizer(p, &quot; ,&quot;);
+        ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        while(token.hasMoreTokens()) {
+            list.add(token.nextToken());
+        }
+        
+        return list.toArray(new String[]{});
+    }
+}</pre>
+</div>
+<p>Description of a new annotation.</p>
+<ul><li>@DispatcherMapping<p>This is a original annotation of SSF. In this case, when the parameter has the value &quot;makeCall&quot; when specified the parameter name as &quot;exec&quot; and specified the parameter value as &quot;makeCall&quot;, this method is called by SSF. And as arguments of method beans are managed in Spring's ApplicationContext</p>
+<p>And beans in Spring's ApplicationContext will be available for arguments of method.</p>
+<p>In this case, DispatcherParams, Conference, and Call are injected by SSF. Parameters of HTTP request is wrapped by DispatcherParams.</p>
+</li>
+</ul>
+</div>
+<div class="section"><h3>Create beans of each processing</h3>
+<p>For execute 3PCC, registers beans to SpringFramework below.</p>
+<ul><li>LocationService<p>This bean is used by proxy and registrar. It is singleton scoped bean to get or register the contact information of UE(User Equipment).</p>
+</li>
+<li>UserManagementService<p>This bean is used by registrar. It is singleton scoped bean to manage user's information.</p>
+</li>
+<li>Conference<p>This bean is singleton socped bean to start a conference.</p>
+</li>
+<li>Call<p>This bean is singleton scoped bean to manage a call.</p>
+</li>
+</ul>
+<p>These beans are injected for arguments by SSF. </p>
+<p>Starting 3PCC sequence is below.</p>
+<img src="./images/sample-seq1.png" alt="Starting 3PCC sequence" /><ol type="1"><li>Call WebDispatcherServlet<p>WebDispatcherServlet is called by the user's web application. SSF creates a SipApplicationSession, a event, and a handler with mapping of the event.</p>
+</li>
+<li>Get the instance of Conference<p>Get the instance that is a argument of CallHandler.makeCall().</p>
+</li>
+<li>Create instance of Call.<p>Create a &quot;sipApplicationSession&quot; scoped instance that is a argument of CallHandler.makeCall().</p>
+</li>
+<li>CallHnadler.makeCall()<p>CallHandler class is called for starting a call. This method gets the necessary information from DispatcherParams class, and calls Conference class.</p>
+</li>
+<li>Conference.startCall()<p>This method is called for starting a conference. </p>
+</li>
+<li>Call.addParty()<p>This method is called for adding participants before starting 3PCC.</p>
+<p>The scope of Call class is &quot;sipApplicationSession&quot;, and the lifecycle of a Call instance is same as SipApplicationSession's lifecycle.</p>
+</li>
+<li>Call.start()<p>A call is started for added parties.</p>
+<p>INVITE request is sended to first added party.</p>
+</li>
+</ol>
+<p>As mentioned above, you can start 3PCC to combine beans.</p>
+<p>Please refer source files of each bean about other processes. </p>
+<p>SSF can facilitate to divide SIP processing to simple units of beans.</p>
+<p>SIP Servlet API, ApplicationServer with EJB3.1 may be able to do same way, but that will complicate implementations.</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>sf-api</h3>
+<div class="right_articles">
+          <h5>SSF API</h5>
+            <ul>
+              
+          
+              
+      
+            
+      
+            
+      
+            
+            
+                    
+            <li class="expanded">
+                    <a href="index.html">Abstraction</a>
+                  <ul>
+                  
+          
+              
+      
+            
+      
+            
+            
+              
+            <li class="expanded">
+                    <a href="core-tutorial.html">Core tutorial</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="create-sipserver.html">Create SIP Server</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="mock-test.html">SIP Mock test</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Create Click To Call Application</strong>
+        </li>
+              </ul>
+        </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

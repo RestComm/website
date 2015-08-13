@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - Jopr Integration</title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<p><b><i>This page is obsolete : More detailed and better looking installation instructions are available from the <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/sip-servlets/index.html#d0e6267" class="externalLink">Mobicents Sip Servlets User Guide</a>
+</i>
+</b>
+</p>
+<p><b><i>Throughout this page you can click on the images to see them larger.</i>
+</b>
+</p>
+<div class="section"><h2><a name="Description"></a>
+Description</h2>
+<p>
+				Jopr is an enterprise management solution for JBoss middleware projects and other application technologies. 
+				This pluggable project provides administration, monitoring, alerting, operational control and configuration 
+				in an enterprise setting with fine-grained security and an advanced extension model. 
+				It provides support for monitoring base operating system information on six operating systems as well as 
+				management of Apache, JBoss Application Server and other related projects.<br />
+</p>
+<p>
+				See the <a href="http://www.jboss.org/jopr" class="externalLink">jopr website</a>
+ for more information<br />
+ or See the <a href="http://www.jboss.org/embjopr" class="externalLink">jopr embedded website</a>
+</p>
+<p>
+				This documentation provides information on how to enable the management of Mobicents Sip Servlets Servers through Jopr with our custom Jopr plugin.<br />
+<b><i>Note that 2 versions of Jopr are available. One embedded which is more targeted to dev environment and the full one more targeted for production envrionment,
+				We will showcase both throughout this documentation page</i>
+</b>
+</p>
+</div>
+<div class="section"><h2><a name="Features"></a>
+Features</h2>
+<p>
+				With the Mobicents Sip Servlet jopr plugin, you can currently see metrics related to your deployed applications and manage the SipApplicationDispatcher which is a central piece in the Mobicents Sip Servlets Architecture since 
+				it has the responsibility of dispatching the SIP requests and responses (that is gets from the underlying jain-sip stack) to the deployed Sip Servlets applications.<br />
+</p>
+<p>
+				On the SipApplicationDispatcher, you can define the Concurrency
+			</p>
+<p><a href="./mss-jopr-concurrency.png"><img src="small-mss-jopr-concurrency.png" /></a>
+</p>
+<p>
+				and Congestion Control settings
+			</p>
+<p><a href="./mss-jopr-queue.png"><img src="small-mss-jopr-queue.png" /></a>
+</p>
+<p>
+				(More information on <a href="./concurrency.html">Mobicents Sip Servlets Concurrency</a>
+ and <a href="./mss-congestion.html">Mobicents Sip Servlets Congestion Control</a>
+)
+				and also you can see graphically the total number of SIP requests/responses processed by the server,
+				the number of pending messages to be processed in all queues and the current percentage of memory used by the container.
+			</p>
+<p><a href="./mss-jopr-metrics.png"><img src="small-mss-jopr-metrics.png" /></a>
+</p>
+<p>
+				On your deployed applications, you can see http (since your applications can be converged applications) and sip metrics.<br />
+
+				Regarding the http metrics, you can get the same ones as those provided by the <a href="http://www.jboss.org/community/docs/DOC-12829" class="externalLink">Tomcat Jopr plugin</a>
+<br />
+
+				Regarding the SIP metrics, for each application, be it a pure SIP application, a converged HTTP/SIP application or a SIP application embedded in an EAR, you can see the following metrics :<br />
+<ul><li>Currently Active Sip Sessions and Sip Application Sessions</li>
+<li>Maximum number of Active Sip Sessions and Sip Application Sessions</li>
+<li>Number of sip sessions created for the sipapp and Sip Application Sessions</li>
+<li>Number of expired sip sessions and Sip Application Sessions</li>
+<li>Number of sip sessions and Sip Application Sessions rejected</li>
+<li>Sip Session and Sip Application Sessions Average alive time</li>
+<li>Max Sip Session and Sip Application Sessions alive time</li>
+</ul>
+<a href="./mss-jopr-session-metrics.png"><img src="small-mss-jopr-session-metrics.png" /></a>
+</p>
+</div>
+<div class="section"><h2><a name="Installation_Instructions"></a>
+Installation Instructions</h2>
+<div class="section"><h3><a name="Jopr_for_Development"></a>
+Jopr for Development</h3>
+<p>
+					The Embedded Jopr called also JBoss Administration console is available from  <a href="http://mobicents.googlecode.com/files/embedded-jopr-1.1.war" class="externalLink">here</a>
+ and works with Mobicents Sip Servlets starting from version 0.7.<br />
+
+					If you want to install it from the source, follow those instructions :
+					<ul><li>Follow the <a href="http://www.jboss.org/community/docs/DOC-12807" class="externalLink">Embedded Jopr installation instructions</a>
+ to install the latest version of Embedded Jopr.</li>
+<li>Instead of dropping the embedded-jopr.war in $JBOSS_HOME/server/default/ directory, create a directory called embedded-jopr.war in $JBOSS_HOME/server/default/deploy directory and unzip the embedded-jopr.war in it</li>
+<li>Get the Mobicents Sip Servlets Jopr Plugin from the source code : <code>svn checkout http://mobicents.googlecode.com/svn/trunk/servers/sip-servlets/jopr-plugin mss-jopr-plugin</code></li>
+<li>In mss-jopr-plugin, do a mvn clean install</li>
+<li>Then copy the generated <code>jopr-mobicents-sip-servlets-plugin-1.1-SNAPSHOT.jar</code> from the target directory to the <code>$JBOSS_HOME/server/default/deploy/embedded-jopr.war/plugins/</code></li>
+<li>Start your JBoss Application Server (you can start it on localhost)</li>
+</ul>
+</p>
+</div>
+<div class="section"><h3><a name="Jopr_for_Production"></a>
+Jopr for Production</h3>
+<p><b>Note that those instructions works equally to install the Mobicents Sip Servlets Jopr plugin for RHQ or JON</b>
+</p>
+<p><ul><li>Follow the <a href="http://jboss.org/community/docs/DOC-12828" class="externalLink">jopr installation instructions</a>
+ to install the latest version of jopr. </li>
+<li>Stop the jopr server and agent if they are running</li>
+<li>Get the Mobicents Sip Servlets Jopr Plugin from the source code : <code>svn checkout http://mobicents.googlecode.com/svn/trunk/servers/sip-servlets/jopr-plugin mss-jopr-plugin</code></li>
+<li>In mss-jopr-plugin, do a mvn clean install</li>
+<li>Then copy the generated <code>jopr-mobicents-sip-servlets-plugin-1.1-SNAPSHOT.jar</code> in the target directory to the <code>jopr-server-2.1.0.GA/jbossas/server/default/deploy/rhq.ear/rhq-downloads/rhq-plugins/</code></li>
+<li>Start the jopr server then the agent</li>
+<li>Start your JBoss Application Server in making sure that you specify the binding address when starting such <code>sh run.sh -b 192.168.0.10</code> 
+					(the JBoss AS will not get recognized on localhost)</li>
+</ul>
+</p>
+</div>
+</div>
+<div class="section"><h2><a name="Usage_Instructions"></a>
+Usage Instructions</h2>
+<div class="section"><h3><a name="Jopr_for_Development"></a>
+Jopr for Development</h3>
+<p><ul><li>Log in to the jopr console on <a href="http://localhost:8080/embedded-jopr" class="externalLink"></a>
+ and login as admin (user=admin, password=admin)</li>
+<li>From the tree on the left side of the screen, under <b>Services</b>
+, click on <b>MobicentsSipServlets</b>
+ link then click on the <b>jboss.web:type=SipApplicationDispatcher</b>
+ link to see the metrics coming in.</li>
+<a href="./mss-embjopr-home.png"><img src="small-mss-embjopr-home.png" /></a>
+<li>To get the metrics coming in, you will need to use an example application such as location service by example so that the SipApplicationDispatcher process requests.</li>
+<a href="./mss-embjopr-metrics.png"><img src="small-mss-embjopr-metrics.png" /></a>
+<li>To see Metrics about your application, click on your application under <b>Converged SIP/Web Application (SAR/WAR)</b>
+ link.</li>
+<a href="./mss-embjopr-applications.png"><img src="small-mss-embjopr-applications.png" /></a>
+<li>Then select the <b>Metrics</b>
+ tab to actually see the metrics of your application.</li>
+<a href="./mss-embjopr-session-metrics.png"><img src="small-mss-embjopr-session-metrics.png" /></a>
+</ul>
+</p>
+</div>
+<div class="section"><h3><a name="Jopr_for_Production"></a>
+Jopr for Production</h3>
+<p><b>Note that those instructions works equally to use the Mobicents Sip Servlets Jopr plugin for RHQ or JON</b>
+</p>
+<p><ul><li>Log in to the jopr console on <a href="http://localhost:7080" class="externalLink"></a>
+ and from the <b>Dashboard</b>
+ Tab, in the <b>Auto Discovery</b>
+ portlet, import your server (by example <code>deruelle-laptop JBossAS 4.2.3.GA default (192.168.0.12:1099)</code>) from under localhost.</li>
+<a href="./mss-jopr-auto-disc.png"><img src="small-mss-jopr-auto-disc.png" /></a>
+<li>Then from the Dashboard, in the <b>Recently Added Resources</b>
+ portlet, click on the server,</li>
+<a href="./mss-jopr-resources.png"><img src="small-mss-jopr-resources.png" /></a>
+<li>Then on the new Monitor view click on the <b>JBossWeb Server</b>
+ link</li>
+<a href="./mss-jopr-monitor.png"><img src="small-mss-jopr-monitor.png" /></a>
+<li>Then click on the <b>SipApplicationDispatcher</b>
+ link to see the metrics coming in.</li>
+<a href="./mss-jopr-jboss-web.png"><img src="small-mss-jopr-jboss-web.png" /></a>
+<li>To get the metrics coming in, you will need to use an example application such as location service by example so that the SipApplicationDispatcher process requests.</li>
+<a href="./mss-jopr-metrics.png"><img src="small-mss-jopr-metrics.png" /></a>
+<li>To see Metrics about your application, click on the <b>Converged SIP/Web Application (SAR/WAR)</b>
+ link.</li>
+<a href="./mss-jopr-sip-apps.png"><img src="small-mss-jopr-sip-apps.png" /></a>
+<li>Then click on your application.</li>
+<a href="./mss-jopr-applications.png"><img src="small-mss-jopr-applications.png" /></a>
+<li>You will need to click on the <b>Configure</b>
+ link for the Monitor Tab to select the metric data you want to see</li>
+<a href="./mss-jopr-configure-metrics.png"><img src="small-mss-jopr-configure-metrics.png" /></a>
+<li>and then select the <b>MetaData</b>
+ tab to actually see the metrics of your application.</li>
+<a href="./mss-jopr-session-metrics.png"><img src="small-mss-jopr-session-metrics.png" /></a>
+</ul>
+</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

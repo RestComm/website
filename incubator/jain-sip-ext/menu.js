@@ -1,0 +1,12 @@
+var cText = ''
+        cText+='<p><a href="intro.html">Introduction</a></p>'
+        cText+='<p><a href="http://groups.google.com/group/mobicents-public">Forum</a></p>'
+        cText+='<p><a href="http://mobicents.googlecode.com/svn/trunk/servers/jain-sip-ext">Anonymous SVN</a></p>'
+        cText+='<p><a href="https://mobicents.googlecode.com/svn/trunk/servers/jain-sip-ext">Committer SVN</a></p>'
+        cText+='<p><a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/jain-sip-ext">Browse SVN</a></p>'
+        cText+='<p><a href="http://groups.google.com/group/mobicents-public/web">User Wiki</a></p>'
+        cText+='<p><a href="http://hudson.jboss.org/hudson/view/Mobicents/job/MobicentsBooks/lastSuccessfulBuild/artifact/api-docs/jain-sip-ext/index.html">JAIN-SIP-Ext Javadocs API</a></p>'
+        cText+='<p><a href="docs.html">Documentation</a></p>'
+        cText+='<p><a href="http://code.google.com/p/mobicents/issues/list?can=2&q=Component%3DJAIN-SIP-Ext&colspec=ID+Priority+Component+Milestone+Version+Release+Type+Status+Owner+Summary&cells=tiles">Issue Tracker</a></p>'
+        cText+='<p><a href="roadmap.html">Roadmap</a></p>'
+document.write(cText)

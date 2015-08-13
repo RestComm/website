@@ -1,0 +1,708 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - 2.0 Roadmap</title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org-a.googlepages.com/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div class="bar">
+<ul>
+	<li class="browse_category">Select Category:</li>
+
+	<li><a href="index.html" accesskey="h">Home</a></li>
+	<li class="active"><a href="products.html" accesskey="p">Products</a></li>
+	<li><a href="services.html" accesskey="s">Services</a></li>
+
+	<li><a href="community.html" accesskey="c">Community</a></li>
+	<li><a href="faq.html" accesskey="c">FAQ</a></li>
+
+	<li><a href="about.html" accesskey="a">About Us</a></li>
+
+</ul>
+</div>
+<div class="contentwrapper">
+<div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2><a name="The_Road_to_2.0"></a>
+The Road to 2.0</h2>
+<p>
+				This is the tentative roadmap (Still a work in progress) for the Mobicents Sip Servlets 1.x series to release our 2.0 version.<br />
+<br />
+
+				The roadmap is subject to change based on new features asked or contributed by the community.
+			</p>
+<p><br />
+
+				If you would like to propose any kind of features that you would like to see supported,  
+				Feel free to open a new thread on mobicents-public@google-groups.com to discuss it with us or open a new issue.
+				<br />
+<br />
+
+				Note : our archived 1.0 roadmap for our 0.x to 1.0 releases is available <a href="./roadmap-1-x.html">here</a>
+</p>
+<div class="section"><h3><a name="Released_Versions"></a>
+Released Versions</h3>
+</div>
+<div class="section"><h3><a name="Planned_Versions"></a>
+Planned Versions</h3>
+<div class="section"><h3><a name="Version_1.1_-_1st_December_2009"></a>
+Version 1.1 - 1st December 2009</h3>
+<p><img src="green.jpeg" />
+						JAIN SIP Blocking IO UDP Buffering 
+						<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=902" class="externalLink">
+						JAIN SIP pluggable data structures and clustering aka JAIN SIP HA
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=965" class="externalLink">
+						Sip Session Dialog replication moved to JAIN SIP HA
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1016" class="externalLink">
+						Move RMI Keep alive notifying Mobicents SIP Load Balancers to JAIN SIP HA
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=990" class="externalLink">
+						JAIN SIP Configurable Timers
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=989" class="externalLink">
+						New 'Transaction' Concurrency Control Mode
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=987" class="externalLink">
+						Default Application Router to support INBOUND and OUTBOUND differentiation
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=961" class="externalLink">														
+						Allow Regexp in Default Application Router to select based on headers.
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=999" class="externalLink">
+						HA perf tests and improvements 
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=955" class="externalLink">
+						HA colocating Load Balancer and nodes
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=956" class="externalLink">
+						Distributed Load Balancer
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=953" class="externalLink">
+						Stateless SIP Load Balancer
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=958" class="externalLink">
+						Add HTTP Forwarder to Mobicents Load Balancer
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=954" class="externalLink">
+						Load Balancer pluggable algorithms
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=660" class="externalLink">
+						HA persistent timers (JB5 version only)
+						</a>
+<br />
+<img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1039" class="externalLink">
+						Move to Diameter 1.1.0.GA and inclusion of Diameter in JBoss 5 version 
+						</a>
+<br />
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+						<ul><li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=851" class="externalLink">
+									NPE on handling of URI parameters in address headers
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=859" class="externalLink">
+									JAIN SIP ACK creation not interoperable with Microsoft OCS
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=856" class="externalLink">
+									User Guide : Add section to configure a cluster on the same machine
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=867" class="externalLink">
+									Sequential proxy misbehaviour
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=868" class="externalLink">
+									SIP Load Balancer keep routing CANCEL requests to dead nodes
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=870" class="externalLink">
+									Sip Load Balancer should not OK CANCEL requests
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=873" class="externalLink">
+									Replication issue with handlerServlet
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=879" class="externalLink">
+									Proxy generates excessive retransmissions on cancelled branches
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=880" class="externalLink">
+									MSS crashes under proxy load
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=882" class="externalLink">
+									HTTP requests to a SIP application always create an HTTP session, even for static resources
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=886" class="externalLink">
+									JSR 289 Section 11.1.6 Transaction Timeout not implemented
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=905" class="externalLink">
+									ACK is not passed to SipServlet for non-initial INVITE
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=906" class="externalLink">
+									CSeq is not increased correctly for REGISTER requests if registrar requires authentication.
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=917" class="externalLink">
+									Sequential proxy doesn't forward bad final responses if used in single branch mode
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=924" class="externalLink">
+									calling setProxyTimeout second time causes Exceptions / Instabillity
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=943" class="externalLink">
+									JAIN SIP dialog is null in the stack for reINVITE after a failover crash
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=967" class="externalLink">
+									Remove Display of Exception if Load Balancer cannot be accessed
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=988" class="externalLink">
+									Allow modifying Contact header parameters when creating INVITE requests
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=991" class="externalLink">
+								Obfuscate Via Headers routing
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1002" class="externalLink">
+								B2buaHelperImpl.singletonHeadersNames map is mising some headers
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1010" class="externalLink">
+								Unable to set flag parameter to parameterable header
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1015" class="externalLink">
+								Exception on addition a custom header to request.
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1019" class="externalLink">
+								JMX methods to enumerate, add or remove SIP listening points
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1021" class="externalLink">
+								Sip Session key should not contain addresses only tags
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1024" class="externalLink">
+								Proxy SipSessions are invalidated improperly on client transaction termination
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1025" class="externalLink">
+								SipServletListener.servletInitialized is called twice after redeployment
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1042" class="externalLink">
+								Retransmitted INVITE is handled as new request
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1044" class="externalLink">
+								javax.sip.SipException: Tag mismatch dialogTag during process B2B response
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1061" class="externalLink">
+								sipErrorListener.noAckReceived is not fired
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1071" class="externalLink">
+								too much error logging in JAIN SIP when ACK is not sent
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=10721" class="externalLink">
+								Exception on PRACK under high load
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1073" class="externalLink">
+								B2buaHelper.createRequest() and SipSessionImpl.createRequest(String) not JSR 289 compliant
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1082" class="externalLink">
+								[MSS HA] No stats, Converged Apps not recognized in JMX/Jopr in HA profile
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1086" class="externalLink">
+
+								</a>
+</li>
+<li><img src="green.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1087" class="externalLink">
+Can not make an instance of SipApplicationSession for servlet-selection type of applications		
+								</a>
+</li>
+</ul>
+<br />
+</p>
+</div>
+<!--#roadmap.gen.start-->
+<div class="section"><h3><a name="Version-1.2.00_-_15th December"></a>
+Version-1.2.00 - 15th December</h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1031" class="externalLink">
+						More Congestion Controls : Sip Session/ Sip App Session Creation per sec; and Alerts and value or percentage for back to normal
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1030" class="externalLink">
+						Call tracing and Jopr Console Logging 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1028" class="externalLink">
+						Server Logging Localization 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1032" class="externalLink">
+						More Monitoring Stats : per Status code, Request Method, per sip listener
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1029" class="externalLink">
+						SNMP Support 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1034" class="externalLink">
+						Server Header Support 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1033" class="externalLink">
+						More Monitoring Stats LB : per Status code, per Request Method, per sip listener, per node 
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul><li><img src="red.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=1081" class="externalLink">
+									[MSS HA] Make SipApplicationSession Timer Fault Tolerant
+								</a>
+</li>
+<li><img src="red.jpeg" /><a href="http://code.google.com/p/mobicents/issues/detail?id=925" class="externalLink">
+									frq: timeout on trying / timeout on some response(s)
+								</a>
+</li>
+</ul>
+<br />
+</p>
+</div>
+<div class="section"><h3><a name="Version-1.3.00_-_1st February 2010"></a>
+Version-1.3.00 - 1st February 2010</h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=704" class="externalLink">
+						Implement NIO and lazy parsing in jain sip
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=702" class="externalLink">
+						Integrate MSS with JVoiceXML
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1046" class="externalLink">
+						Diameter Ro/Rf examples 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1047" class="externalLink">
+						XCAP Support
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=627" class="externalLink">
+						Sip Servlets Presence Client Libraries
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+</div>
+<div class="section"><h3><a name="Version-1.4.00_-_15th April 2010 "></a>
+Version-1.4.00 - 15th April 2010 </h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=721" class="externalLink">
+						Plug JSLEE RAs into Mobicents Sip Servlets
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=132" class="externalLink">
+						Parlay X support
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=131" class="externalLink">
+						XMPP support 
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+</div>
+<div class="section"><h3><a name="Version-1.5.00_-_1st June 2010 "></a>
+Version-1.5.00 - 1st June 2010 </h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1052" class="externalLink">
+						SipX Interop/Integration Example 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1051" class="externalLink">
+						JBoss BRMS integration example 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1050" class="externalLink">
+						JBoss Portal integration example 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1048" class="externalLink">
+						JBoss RESTEasy integration example 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=485" class="externalLink">
+						MSS Asterisk Interop/Integration example
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1049" class="externalLink">
+						JBoss Messaging integration example 
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+</div>
+<div class="section"><h3><a name="Version-1.6.00_-_15th August 2010 "></a>
+Version-1.6.00 - 15th August 2010 </h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1054" class="externalLink">
+						SS7 support 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1053" class="externalLink">
+						ENUM Support 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=579" class="externalLink">
+						Provide support for ICE and TURN
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=324" class="externalLink">
+						Sip Servlets working as IMS node
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+</div>
+<div class="section"><h3><a name="Version-1.7.00_-_1st October 2010 "></a>
+Version-1.7.00 - 1st October 2010 </h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=674" class="externalLink">
+						Remove dependency on JAIN SIP internal classes
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=677" class="externalLink">
+						Support for hot deployment of Application Router
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+</div>
+<div class="section"><h3><a name="Version-1.8.00_-_15th December 2010"></a>
+Version-1.8.00 - 15th December 2010</h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1057" class="externalLink">
+						Torquebox SIP Framework 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1055" class="externalLink">
+						Mocking Framework 
+						</a>
+<br />
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1056" class="externalLink">
+						Torquebox Media Abstraction API 
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+</div>
+<div class="section"><h3><a name="Version-1.9.00_-_1st February 2011"></a>
+Version-1.9.00 - 1st February 2011</h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1058" class="externalLink">
+						Rolling upgrade 
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+</div>
+<div class="section"><h3><a name="Version-2.0.00_-_15th April 2011"></a>
+Version-2.0.00 - 15th April 2011</h3>
+<p>
+<img src="red.jpeg"/><a href="http://code.google.com/p/mobicents/issues/detail?id=1059" class="externalLink">
+						SAF Integration 
+						</a>
+<br />
+
+<img src="green.jpeg" />
+						Various Enhancements and Bug fixes :
+<ul></ul>
+<br />
+</p>
+</div>
+
+<!--#roadmap.gen.end-->
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="products_sip_servlets.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="mss-downloads.html">Downloads</a>
+          </li>
+              
+    <li class="none">
+              <strong>Roadmap</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="license.html">License</a>
+          </li>
+              
+    <li class="none">
+                    <a href="qa.html">QA</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="./user_guides/sip_servlets/index.html">Community User Guide</a>
+          </li>
+          </ul>
+              <h5>Examples</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="examples.html">Examples</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="mss-jb4-examples.html">JBoss 4.x only Examples</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="mss-jb5-examples.html">JBoss 5.x only Examples</a>
+                </li>
+          </ul>
+              <h5>Contribute</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="contributor.html">How to Contribute</a>
+          </li>
+              
+    <li class="none">
+                    <a href="tests.html">Write a Test/Run the Testsuite</a>
+          </li>
+              
+    <li class="none">
+                    <a href="feedback.html">Feedback</a>
+          </li>
+              
+    <li class="none">
+                    <a href="source-repository.html">Source Repository</a>
+          </li>
+              
+    <li class="none">
+                    <a href="mss-ide-setup.html">Mobicents Sip Servlets in Eclipse</a>
+          </li>
+          </ul>
+              <h5>Community</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="team-list.html">Project Team</a>
+          </li>
+              
+    <li class="none">
+                    <a href="acknowledgements.html">Acknowledgements</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/mobicents/issues/list?q=label%3Acomponent%20label%3Asip-servlets&can=2" class="externalLink">Issue Tracker</a>
+          </li>
+              
+    <li class="none">
+                    <a href="blogs.html">Project Blogs</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://forums.java.net/jive/forum.jspa?forumID=55" class="externalLink">User Forum</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://forums.java.net/jive/forum.jspa?forumID=54" class="externalLink">Develper Forum</a>
+          </li>
+              
+    <li class="none">
+                    <a href="https://sip-servlets.dev.java.net/" class="externalLink">Legacy Project site</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

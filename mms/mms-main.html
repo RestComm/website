@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Amit Bhayani">
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+<link rel="stylesheet" href="./../maven-mobicents-style.css" type="text/css">
+<title>Mobicents Media Server</title>
+</head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+	</script>
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+<div class="content">
+  <div class="header">
+
+    <div class="top_info">
+      <div class="top_info_right">
+        <!-- Search Google -->
+        <form method="get" action="http://www.google.com/custom" target="_top">
+          Search
+          <input name="q" maxlength="255" value="" type="text">
+          <input name="client" value="pub-5437763180786254" type="hidden">
+          <input name="forid" value="1" type="hidden">
+          <input name="channel" value="5452007684" type="hidden">
+
+          <input name="ie" value="ISO-8859-1" type="hidden">
+          <input name="oe" value="ISO-8859-1" type="hidden">
+          <input name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;" type="hidden">
+          <input name="hl" value="en" type="hidden">
+          <input name="q" value="mobicents" type="hidden">
+        </form>
+      </div>
+      <div class="top_info_left"> The Open Source SLEE and SIP Server </div>
+
+    </div>
+    <div id="logo">
+      <h1><a href="http://www.mobicents.org-a.googlepages.com/" title="Mobicents">Mobicents</a></h1>
+    </div>
+  </div>
+  <div class="bar">
+    <ul>
+      <li class="browse_category">Select Category:</li>
+
+      <li><a href="../index.html" accesskey="h">Home</a></li>
+      <li class="active"><a href="../products.html" accesskey="p">Products</a></li>
+      <li><a href="../services.html" accesskey="s">Services</a></li>
+      <li><a href="../community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+      <li><a href="../partners.html" accesskey="r">Partners</a></li>
+      <li><a href="../faq.html" accesskey="c">FAQ</a></li><li><a href="../incubator.html" accesskey="i">Incubator</a></li>
+
+      <li><a href="../about.html" accesskey="a">About Us</a></li>
+    </ul>
+  </div>
+  <div class="contentwrapper">
+    <div class="left">
+      <h3 id="h3_2">Mobicents Media Server - MMS</h3>
+
+	<div class="section"><h2>Goals </h2>
+      	Mobicents Media Gateway is open source implementation aimed to:
+      <ol>
+
+        <li>Deliver competitive, complete, best-of-breed media gateway functionality featuring highest quality.</li>
+        <li>Meet the demands of converged wireless, wireline, cable broadband access and fixed-mobile converged VoIP networks from a single media gateway platform</li>
+        <li>Increase flexibility with a media gateway that supports wide variety of call control protocols and scales down to meet the demands of enterprises and small carrier providers.</li>
+        <li>React quickly to dynamic market requirements. </li>
+      </ol>
+      <p>The latest release of Mobicents Media Server can be downloaded from <a href="mms-downloads.html">here</a></p>
+	
+	</div>
+	<div class="section"><h2>Mobicents Media Server Capabilities</h2>
+ 	<p><b>MMS is capable of handling following Audio Codecs</b></p>
+ 	<ol>
+		<li>
+			G.711 u-law
+		</li>
+		<li>
+			G.711 A-law
+		</li>
+		<li>
+			GSM
+		</li>
+		<li>
+			Speex - nb
+		</li>
+		<li>
+			G.729 : This codec is not endabled by default. To use this codec add following line in jboss-service.xml of mobicents-media-server-1.x.y.z.sar/META-INF
+			<br/>
+			18  = G729, 8000, 8, 1;
+			<br/>
+			<br/>
+			<b>WARNING</b> : The G729 is patented and Codec Implementation of G729 bundled with this release is subject to license terms. Look at <a href="http://www.sipro.com/g729_licterms.php">http://www.sipro.com/g729_licterms.php</a>. 
+			<br/>
+			<br/>
+			<b>DISCLAIMER</b> : This code is free (Not charging you to use it), but you might have to pay royalty fees to the G.729 patent holders for using their algorithm. There is  NO WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR STATUTORY, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND DATA ACCURACY.  We do not warrant or make any representations regarding the use of the software or the  results thereof, including but not limited to the correctness, accuracy, reliability or usefulness of the software			
+			
+		</li>
+	 </ol>
+
+ 	<p><b>MMS is capable of </b></p>
+	<ul>
+	<li> <b>Endpoints</b>
+	<br/>
+ 	<ol>
+		<li>
+			Announcement Access Point
+		</li>
+		<li>
+			IVR (Recording) and Generation/Detection of Tone including DTMF (both Inband and RFC2833)
+		</li>
+		<li>
+			Conference Access Point
+		</li>
+		<li>
+			Packet Relay Access Point
+		</li>
+		<li>
+			Loopback (Mostly used for testing)
+		</li>	 
+	 </ol>
+	 </li>
+	<li> <b>Controllers</b>
+	<br/>
+ 	<ol>
+		<li>
+			<a href="mms-mgcp-main.html">MGCP</a>
+		</li>
+	 </ol>
+	 </li>
+	<li> <b>Mobicents has its JSR-309 implementation over MGCP protocol. For details look <a href="mms-jsr309-main.html">here</a></b>
+	 </li>
+	 </ul>
+ 	<p>So far there are two major releases of Mobicents Media Server
+
+<ul>
+<li>MMS 1.x.y <p> MMS 1.x.y is near end of life-cycle and no new feature will be added. Only bug fixes will be done.</p> </li>
+<li>MMS 2.x.y <p> MMS 2.x.y is under active development and its highly recommended to start development on MMS 2.x.y if you are starting fresh on Mobicents Media Server</p> </li>
+</ul>
+The following table shows comparision between MMS 1.x.y and MMS 2.x.y
+<br/>
+
+
+<table rules="none" border="0" cellspacing="0" cols="3" frame="void">
+	<colgroup><col width="198"><col width="406"><col width="322"></colgroup>
+	<tbody>
+		<tr>
+			<td style="border: 1px solid rgb(0, 0, 0);" width="198" align="left" bgcolor="#c0c0c0" height="19"><b><br></b></td>
+			<td style="border: 1px solid rgb(0, 0, 0);" width="406" align="left" bgcolor="#c0c0c0"><b>MMS 1.X.Y</b></td>
+
+			<td style="border: 1px solid rgb(0, 0, 0);" width="322" align="left" bgcolor="#c0c0c0"><b>MMS 2.X.Y</b></td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left" height="19">Standalone MMS Server</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">Not available</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">Available</td>
+		</tr>
+
+		<tr>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left" height="19">Embedded in JBoss AS</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">JBoss AS 4.X.Y</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">JBoss AS 5.X.Y</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left" height="53">MGCP Support</td>
+
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">MGCP Support available via MGCP JAIN SLEE Service (SBB). Hence to use MGCP control protocol one needs to install JAIN SLEE Server, MGCP RA and mgcp-controller-sbb service</td>
+
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">MGCP Controller is inbuilt with MMS. No SLEE required</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left" height="36">JSR-309 Support</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">Not available</td>
+
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">JSR-309 is availale which uses MGCP as MS control protocol</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left" height="36">MSC API</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">Available. This is custom API developed by Mobicents Media Server.</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">Not available</td>
+		</tr>
+
+		<tr>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left" height="36">Performance</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">Compared to 2.x.y, 1.x.y has very high Jitter problems due to large number of threads used. It uses plain sockets for RTP</td>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">Very less Jitter as compared to 1.x.y. It uses NIO for RTP</td>
+		</tr>
+		<tr>
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left" height="103">Basic Architecture</td>
+
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">MMS 1.x.y is built on JMX Microkernel. No flexibility of deciding the media-path for endpoints. For example for IVR, DTMF detection will be used irrespective of application may use it or not.</td>
+
+			<td style="border: 1px solid rgb(0, 0, 0);" align="left">MMS 2.x.y is built on top of Jboss Microcontainer. Flexibility of defining the media-path for endpoints. For example if application will never detect DTMF but only recording, the DTMF detector media component can be completely removed from IVR endpoint and hence save some processing.</td>
+
+		</tr>
+	</tbody>
+</table>
+
+
+
+ 	
+
+
+	</div>
+	<div class="section"><h2>Road Map</h2>
+	The complete roadmap and features already implemented is available at <a href="mms-roadmap.html">Road Map</a>. 
+
+	<p>Below is the highlevel roadmap that we are planing to implement in near future.</p>
+	<ol>
+	<li><b>Support for SS7.</b> Look at public page for further details <a href="http://groups.google.com/group/mobicents-public/web/mobicents-ss7-roadmap">here</a>
+		<ul>
+			<li>B-Channel Endpoint</li>
+			<li>D-Channel Endpoint</li>
+		</ul>	   
+	</li>
+	<li><b>Support for Video</b>
+		<ul>
+			<li>H.261</li>
+		</ul>	   
+	</li>
+	<li><b>Tone Generation/Detection Support</b>
+		<ul>
+			<li>Busy</li>
+			<li>Congestion</li>
+		</ul>
+	</li>
+	<li><b>Text To Speech (TTS) Support</b></li>
+	<li><b>Speech Recognition Support</b></li>
+ 	<li><b>Controllers</b>
+		<ul>
+			<li>MEGACO</li>
+			<li>MSML</li>
+		</ul>	   
+	</li>
+ 	</ol>
+	</div>
+    </div>
+    <div class="right">
+      <h3>Mobicents Media Server</h3>
+      <div class="right_articles">
+	 <h5>Overview</h5>
+	 
+	  <ul>
+	 <li class="none">
+	  <a href="http://groups.google.com/group/mobicents-public">Forum</a>
+	 </li>
+	  <li class="none">
+	    <a href="http://mobicents.googlecode.com/svn/trunk/">Anonymous SVN</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="https://mobicents.googlecode.com/svn/trunk/">Committer SVN</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://code.google.com/p/mobicents/issues/list?q=Media-Server&updated=79&ts=1207472184">Issue Tracker</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://groups.google.com/group/mobicents-public/web">User Wiki</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="mms-docs.html">Documentation</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="mms-downloads.html">Downloads</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/media">Browse SVN</a>
+	 </li>	 
+	 <li class="none">
+	    <a href="mms-roadmap.html">Roadmap</a>
+	 </li>	
+	 </ul> 
+	 
+	  <h5>Control Protocols</h5>
+            <ul>
+            <li class="none">
+                    <a href="mms-jsr309-main.html">JSR-309</a>
+          </li>         
+    <li class="none">
+                    <a href="mms-mgcp-main.html">MGCP</a>
+          </li>
+              
+    <li class="none">
+                    <a href="#">MEGACO</a>
+          </li>
+	      <li class="none">
+                    <a href="#">MSCML</a>
+          </li>
+	  <li class="none">
+                   <a href="mms-vxml-main.html">VoiceXML</a>
+          </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+
+    </p>
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img src="../logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+
+</div>
+</body>
+</html>

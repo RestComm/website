@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Mobicents Sip Servlets Clustering support</h2>
+</div>
+<div class="section"><h2><i>This page is obsolete : More detailed and better looking installation instructions are available from the <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/sip_servlets/index.html#d0e5172" class="externalLink">Mobicents Sip Servlets User Guide</a>
+</i>
+</h2>
+<div class="section"><h3>Description</h3>
+<p>For a good description of Mobicents Sip Servlets clustering system I invite you to read the <a href="http://docs.jboss.org/jbossas/jboss4guide/r4/html/cluster.chapt.html" class="externalLink">JBoss Guide Clustering chapter</a>
+.<br />
+Since Mobicents Sip Servlets SIP Clustering support integrates tightly with the http session clustering implemented in JBoss, the Clustering is available only for JBoss and not Tomcat. We will cover the Mobicents Sip Servlets specific Clustering implementation and configuration below.</p>
+</div>
+<div class="section"><h3>Implementation</h3>
+<p>As for HTTP session replication, SIP session replication is used to replicate the state associated with your SIP clients on other nodes of a cluster. Thus, in the event one of your node crashes, another node in the cluster will be able to recover.&#160; Two distinct functions must be performed:</p>
+<ul><li>SIP Session state replication. </li>
+<li>Load-balance of incoming invocations. <a href="./load-balancer.html">See Mobicents SIP Load Balancer</a>
+<p>SIP Session State replication can be handled directly by JBoss. When you run JBoss in the all configuration, SIP session state replication can be enabled. See below on how to configure the server to enable it.</p>
+<p>SIP Session State replication is comprised of two things : the replication of your sip application session and the underlying sip and http sessions belonging to that application. This will replicate all the attributes you put in those sessions. (Don't forget to mark the application as distributable) JBoss Cache and JGroups technologies are used as the underlying replication mechanism.</p>
+</li>
+</ul>
+</div>
+<div class="section"><h3>Installation &amp; Configuration</h3>
+<p>First of all, to enable SIP Session State Clustering in addition to HTTP Session clustering, you'll need to use the 'all' configuration profile of your Jboss server.<br />
+So repeat the steps described in the <a href="./installation-jboss.html">JBoss Installation Section</a>
+ but for the 'all' configuration profile instead of the 'default' configuration profile. This will make the 'all' configuration profile SIP-enabled.<br />
+Now to enable clustering, you'll need to modify one more file : </p>
+<p>In <tt>jboss_home/server/all/deploy/jboss-web.deployer/META-INF/jboss-service.xml</tt>
+, modify the attribute <tt>ManagerClass</tt>
+ so that its value is <tt>org.jboss.web.tomcat.service.session.JBossCacheSipManager</tt>
+ instead of <tt>org.jboss.web.tomcat.service.session.JBossCacheManager</tt>
+ or make a backup of your <tt>jboss_home/server/default/deploy/jboss-web.deployer/META-INF/jboss-service.xml</tt>
+ file and copy the jboss-service-all.xml located in docs to <tt>jboss_home/server/all/deploy/jboss-web.deployer/META-INF/</tt>
+</p>
+<p>You also need to make your SIP Servlets application distributable. To do that, in the sip.xml and web.xml of your application add the following tag <tt>&lt;distributable/</tt>
+&gt;. See Section 16.5.6 of <a href="http://docs.jboss.org/jbossas/jboss4guide/r4/html/cluster.chapt.html" class="externalLink">JBoss Guide Clustering chapter</a>
+. </p>
+<p>To test clustering please refer to the <a href="./failover.html">Failover Section</a>
+.</p>
+</div>
+<div class="section"><h3>Limitations</h3>
+<p>None. Mobicents Sip Servlets currently support mid call failover for converged applications and pure sip applications (Uas, Uac, B2BUA, Proxy). </p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

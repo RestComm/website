@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Luka Cvrk (www.solucija.com)">
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+<link rel="stylesheet" href="./../maven-mobicents-style.css" type="text/css">
+<title>Mobicents MGCP</title>
+</head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+	</script>
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+<div class="content">
+  <div class="header">
+
+    <div class="top_info">
+      <div class="top_info_right">
+        <!-- Search Google -->
+        <form method="get" action="http://www.google.com/custom" target="_top">
+          Search
+          <input name="q" maxlength="255" value="" type="text">
+          <input name="client" value="pub-5437763180786254" type="hidden">
+          <input name="forid" value="1" type="hidden">
+          <input name="channel" value="5452007684" type="hidden">
+
+          <input name="ie" value="ISO-8859-1" type="hidden">
+          <input name="oe" value="ISO-8859-1" type="hidden">
+          <input name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;" type="hidden">
+          <input name="hl" value="en" type="hidden">
+          <input name="q" value="mobicents" type="hidden">
+        </form>
+      </div>
+      <div class="top_info_left"> The Open Source SLEE and SIP Server </div>
+
+    </div>
+    <div id="logo">
+      <h1><a href="http://www.mobicents.org-a.googlepages.com/" title="Mobicents">Mobicents</a></h1>
+    </div>
+  </div>
+  <div class="bar">
+    <ul>
+      <li class="browse_category">Select Category:</li>
+
+      <li><a href="../index.html" accesskey="h">Home</a></li>
+      <li class="active"><a href="../products.html" accesskey="p">Products</a></li>
+      <li><a href="../services.html" accesskey="s">Services</a></li>
+      <li><a href="../community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+      <li><a href="../partners.html" accesskey="r">Partners</a></li>
+      <li><a href="../faq.html" accesskey="c">FAQ</a></li><li><a href="../incubator.html" accesskey="i">Incubator</a></li>
+
+      <li><a href="../about.html" accesskey="a">About Us</a></li>
+    </ul>
+  </div>
+  <div class="contentwrapper">
+    <div class="left">
+      <h3 id="h3_2">Media Gateway Control Protocol - MGCP</h3>
+
+	<div class="section"><h2>Introduction</h2>
+MGCP is protocol for controlling media gateways (for ex., Mobicents Media Server) from external call control elements called media gateway controllers or Call Agents. 
+<br/>
+<br/>
+MGCP assumes a call control architecture where the call control "intelligence" is outside the gateways and handled by external call control elements known as Call Agents (For example Sip-Servlets application, JAIN SLEE Application, a standalone application which may be Java or any other technology based).  The MGCP assumes that these call control elements, or Call Agents, will synchronize with each other to send coherent commands and responses to the gateways under their control. MGCP is, in essence, a master/slave protocol, where the gateways are expected to execute commands sent by the Call Agents. Further details on MGCP can be found in <a href="http://www.faqs.org/rfcs/rfc3435.html" accesskey="c">RFC 3435</a>
+      <br/>
+      <br/>
+The <a href="http://jcp.org/en/jsr/detail?id=23" accesskey="c">JSR-23</a> provides the Java API for media gateway control in the Telecommunications and Internet industry. The API specified by the JAIN Protocol Expert Group Java Community Process Participants for MGCP are based on the MGCP Internet Drafts. 
+      <br/>
+      <br/>
+      The Mobicents MGCP Stack is first and only open source implementation of JSR-23 available as of today.
+      <br/>
+      <br/>
+      The latest release of Mobicents MGCP Stack can be downloaded from <a href="mms-mgcp-downloads.html">here</a>
+       <br/>
+      <br/>
+      The diagram bellow shows the high-level architecture of how MGCP is used
+      <br/>
+      <img src="../MGCPStack.jpeg" alt="MGCP Stack" border="0" width="500" />
+             <br/>
+      <br/>
+      <br/>
+      In addition to RFC 3435, Mobicents MGCP Stack also implements the <a href="http://tools.ietf.org/html/rfc2897" accesskey="c">RFC2897</a> which introduces advance Package for MGCP.
+            <br/>
+      <br/>
+      For Application (Call Agents) deployed as Service Building Blocks (SBB) on top of JAIN SLEE server have to use the Mobicents MGCP Resource Adaptor which uses the MGCP Stack.
+	</div>
+
+    </div>
+    <div class="right">
+      <h3>Mobicents Media Server</h3>
+      <div class="right_articles">
+	 <h5>Overview</h5>
+	 <ul>
+	 <li class="none">
+	  <a href="http://groups.google.com/group/mobicents-public">Forum</a>
+	 </li>
+	  <li class="none">
+	    <a href="http://mobicents.googlecode.com/svn/trunk/">Anonymous SVN</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="https://mobicents.googlecode.com/svn/trunk/">Committer SVN</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://code.google.com/p/mobicents/issues/list?q=Media-Server&updated=79&ts=1207472184">Issue Tracker</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://groups.google.com/group/mobicents-public/web">User Wiki</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="mms-docs.html">Documentation</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="mms-downloads.html">Downloads</a>
+	 </li>	 
+	  <li class="none">
+	    <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/media">Browse SVN</a>
+	 </li>	
+	 <li class="none">
+	    <a href="mms-roadmap.html">Roadmap</a>
+	 </li> 
+	 </ul> 
+	  <h5>Control Protocols</h5>
+            <ul>
+   
+       <li class="none">
+                   <a href="mms-jsr309-main.html">JSR-309</a>
+          </li>
+    <li class="expanded">
+                   <strong>MGCP</strong>
+		    <ul>                  
+		      <li class="none">
+			  <a href="mms-mgcp-downloads.html">Downloads</a>
+		      </li>
+		    </ul>
+
+
+          </li>
+              
+    <li class="none">
+                    <a href="#">MEGACO</a>
+          </li>
+	      <li class="none">
+                    <a href="#">MSCML</a>
+          </li>
+	  <li class="none">
+                    <a href="mms-vxml-main.html">VoiceXML</a>
+          </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img src="../logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+
+</div>
+</body>
+</html>

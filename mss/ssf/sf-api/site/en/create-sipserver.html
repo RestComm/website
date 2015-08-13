@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>sf-api - Create SIP Server</title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+          <meta name="author" content="Naoki Nishihara" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div class="bar">
+<ul>
+	<li class="browse_category">Select Category:</li>
+
+	<li><a href="http://www.mobicents.org/index.html" accesskey="h">Home</a></li>
+	<li class="active"><a href="http://www.mobicents.org/products.html" accesskey="p">Products</a></li>
+	<li><a href="http://www.mobicents.org/services.html" accesskey="s">Services</a></li>
+
+	<li><a href="http://www.mobicents.org/community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+	<li><a href="http://www.mobicents.org/faq.html" accesskey="c">FAQ</a></li>
+
+	<li><a href="http://www.mobicents.org/about.html" accesskey="a">About Us</a></li>
+
+</ul>
+</div>
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">sf-api</h3>
+<div class="section"><h2>Create SIP Server</h2>
+<div class="section"><h3>Operation of SSF</h3>
+<p>When starting, SSF is processed as follows.</p>
+<ul><li>Get user's POJO from ApplicationContext</li>
+<li>Register the event mapping (for SIP events) from annotation of POJO that handles SIP events.</li>
+</ul>
+<p>When SSF receives the SIP events, basic sequernce is below.</p>
+<img src="./images/sequence1.png" alt="Basic sequence" /><ol type="1"><li>Create the event for handler.</li>
+<li>Check the created event, and get the handler that corresponds to event mappings.</li>
+<li>Dispatch the event to the handler.</li>
+<li>When error occurred, process the error by ErrorHandler.</li>
+</ol>
+<p>Next, create the POJO that is event handler for this sequence. </p>
+</div>
+<div class="section"><h3>Create the event handler.</h3>
+<p>Create the bean that receives the SIP event(s).</p>
+<div class="section"><h4>RegistrarHandler</h4>
+<p>Create the event handler that receives the REGISTER request for registrar.</p>
+<div class="source"><pre>@Component
+public class RegisterHandler {
+
+    @Resource
+    RegistrarBean registrarBean;
+    
+    @Resource
+    CheckRequireBean requireBean;
+    
+    @SipServletRequestMapping(methods = { &quot;REGISTER&quot; })
+    public void handleRequest(SipServletRequest req)
+            throws ServletParseException, IOException {
+        // start
+        this.requireBean.handleRequest(req);
+        if (!req.isCommitted()) {
+            this.registrarBean.handleRegister(req);
+        }
+        // end
+    }
+}</pre>
+</div>
+<p>Description of each annotation</p>
+<ul><li>@Component<p>This annotation is provided by SpringFramework.</p>
+<p>See the below document. <a href="http://static.springsource.org/spring/docs/2.5.x/reference/beans.html" class="externalLink">3.12.1. @Component and further stereotype annotations</a></p>
+</li>
+<li>@Resource<p>This annotation is set to inject values to fields.</p>
+</li>
+<li>@SipServletReqeustMapping<p>This is a original annotation of SSF. In this case, this method is called by SSF when received SIP REGISTER reuest. And arguments of method are injected by SSF.</p>
+</li>
+</ul>
+<p>This handler processes the below, when receives REGISTER request. </p>
+<ol type="1"><li>Check the Require header.</li>
+<li>Check the REGISTER request,register the location of UE, and send 200/REGISTER response. </li>
+</ol>
+<p>Please refer the source about details of each bean.</p>
+</div>
+<div class="section"><h4>ProxyHandler</h4>
+<p>Create the handler for Proxy.</p>
+<div class="source"><pre>@Component
+public class ProxyHandler {
+    private Logger logger = LoggerFactory.getLogger(ProxyHandler.class);
+    @Resource
+    ProxyBean proxyBean;
+    @Resource
+    CheckRequireBean checkRequire;
+    
+    @SipServletRequestMapping(methods = { &quot;INVITE&quot;, &quot;OPTIONS&quot;, &quot;UPDATE&quot;,
+            &quot;MESSAGE&quot;, &quot;PUBLISH&quot; })
+    public void handleRequest(SipServletRequest req) throws Exception {
+        // start
+        if (logger.isDebugEnabled()) {
+            logger.debug(&quot;handleResquest:[req=&quot; + req + &quot;]&quot;);
+        }
+        checkRequire.handleRequest(req);
+        if (req.isCommitted()) {
+            return;
+        }
+        proxyBean.startProxy(req);
+        // end
+    }
+    @SipServletResponseMapping(status = &quot;1xx&quot;)
+    public void handleProvisionalResponse(SipServletResponse res) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(&quot;handleProvisionalResponse:[res=&quot; + res + &quot;]&quot;);
+        }
+    }
+    @SipServletResponseMapping(status = &quot;2xx&quot;)
+    public void handleSuccessResponse(SipServletResponse res) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(&quot;handleSuccessResponse:[res=&quot; + res + &quot;]&quot;);
+        }
+    }
+    @SipServletResponseMapping(status = &quot;3xx&quot;)
+    public void handleRedirectResponse(SipServletResponse res) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(&quot;handleRedirectResponse:[res=&quot; + res + &quot;]&quot;);
+        }
+    }
+    @SipServletResponseMapping(status = { &quot;4xx&quot;, &quot;5xx&quot;, &quot;6xx&quot; })
+    public void handleErrorResponse(SipServletResponse res) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(&quot;handleErrorResponse:[res=&quot; + res + &quot;]&quot;);
+        }
+    } </pre>
+</div>
+<p>Defines the target SIP request and SIP response for the Proxy.</p>
+<p>When receives a request, transfer to the Bean to proxy the request. When receive a response, print the debug log.</p>
+<p>In next, the configuration of handlers is registered to Spring ApplicationContext.</p>
+</div>
+</div>
+<div class="section"><h3>Update the Spring configuration</h3>
+<p>Update the Spring configuration for definition of created beans.</p>
+<ul><li>common-beans.xml<p>Add the below configuration for common beans using in each Web and SIP application</p>
+</li>
+</ul>
+<div class="source"><pre>  &lt;context:annotation-config/&gt;
+  &lt;context:component-scan base-package=&quot;com.oki.test.services.impl&quot; /&gt;</pre>
+</div>
+<p>This package includes below beans.</p>
+<ul><li>UserManagementService<p>This class is used to manage users in SIP Server and managed as singleton scope by Spring.</p>
+</li>
+<li>LocationService<p>This class is used to manage the contact information of users and managed as singleton scope by Spring.</p>
+</li>
+</ul>
+<ul><li>sip-dispatcher-servlet.xml<p>Add the below configuration for SIP application.</p>
+</li>
+</ul>
+<div class="source"><pre>  &lt;context:component-scan base-package=&quot;com.oki.test.sip.sipserver&quot; /&gt;</pre>
+</div>
+<p>This package includes below beans.</p>
+<ul><li>ProxyHandler,RegistrarHandler<p>Event handler for SSF.</p>
+</li>
+<li>CheckRequireBean<p>Check the Require header, and send 420 response when the request includes unsupported extensions. </p>
+</li>
+<li>ProxyBean<p>When receive requests, proxy them to the Contact information that acquired from LocationServie. </p>
+</li>
+<li>RegistrarBean<p>This bean processes according to RFC3261 10.3 (Processing REGISTER Requests).</p>
+<p>When receives REGISTER requests, register (or remove) Contact information to ( or from) LocationService, and send 200/REGISTER response that includes Contact information of user's AoR.</p>
+</li>
+</ul>
+<p>Please refer <a href="http://static.springsource.org/spring/docs/2.5.6/reference/index.html" class="externalLink">The Spring Framework - Reference Documentation</a> 2.5.3. Annotation-based controllers about the context namespace.</p>
+<p>You can get sources of the sample with the following command.</p>
+<div class="source"><pre> $ svn co https://mobicents.googlecode.com/svn/trunk/frameworks/sip-servlets/ssf/sf-examples</pre>
+</div>
+<p><a href="c2c.html">Next page</a></p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>sf-api</h3>
+<div class="right_articles">
+          <h5>SSF API</h5>
+            <ul>
+              
+          
+              
+      
+            
+            
+            
+      
+            
+      
+                    
+            <li class="expanded">
+                    <a href="index.html">Abstraction</a>
+                  <ul>
+                  
+          
+              
+            
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="core-tutorial.html">Core tutorial</a>
+                  <ul>
+                  
+    <li class="none">
+              <strong>Create SIP Server</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="mock-test.html">SIP Mock test</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="c2c.html">Create Click To Call Application</a>
+          </li>
+              </ul>
+        </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

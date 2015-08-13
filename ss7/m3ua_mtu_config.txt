@@ -1,0 +1,60 @@
+***************************************************************************
+* Example Protocol Configuration File (config.txt) for use with
+* Dialogic (R) SIGTRAN links
+*
+* This file needs to be modified to suit individual circumstances.
+* Refer to the relevant Programmer's Manuals for further details.
+*   -> M3UA version
+*
+***************************************************************************
+* Point code 2 (MTR)
+*  If you are running a back-to-back test (with MTU) the other end will have
+*  a similar config, but with the IP addresses swapped, and also the 
+*  pointcodes (here 1 and 2) swapped in the various commands where they appear: 
+*    SNAPI, SNRAI, SCCP_CONFIG, SCCP_SSR
+*
+*
+CNSYS:IPADDR=XXX.XXX.XXX.XXX,PER=0;
+*
+SNSLI:SNLINK=1,IPADDR=YYY.YYY.YYY.YYY,SNEND=S,SNTYPE=m3ua,HPORT=2905,PPORT=2905;
+
+SNAPI:AS=1,OPC=1,RC=1,TRMD=LS;
+SNRAI:RAS=1,RC=1,DPC=2;
+SNALI:SNAL=1,RAS=1,SNLINK=1;
+SNLBI:SNLB=1,AS=1,RAS=1;
+
+*
+* SCCP Parameters:
+* SCCP_CONFIG <local_spc> <ssf> <options>
+SCCP_CONFIG 1 0x8 0x0102
+*
+* Uncomment to record SCCP traces (from s7_log)
+* SCCP_TRACE <op_evt_mask> <ip_evt_mask> <non_prim_mask>
+*SCCP_TRACE 0x3 0x7 0x3
+*
+* Define Remote Signaling Points:
+* SCCP_SSR <ssr_id> RSP <remote_spc> <flags> <pc_mask>
+SCCP_SSR 1 RSP 2 0 0x0000
+*
+* Define Local Sub-Systems:
+* SCCP_SSR <ssr_id> LSS <local_ssn> <module_id> <flags> <protocol>
+SCCP_SSR 2 LSS 0x08 0x2d 0 MAP
+*
+* Define Remote Sub-Systems:
+* SCCP_SSR <ssr_id> RSS <remote_spc> <remote_ssn> <flags>
+SCCP_SSR 3 RSS 2 0x08 0
+*
+*
+* TCAP Parameters:
+* TCAP_CONFIG <base_ogdlg_id> <nog_dialogues> <base_icdlg_id>
+* <nic_dialogues> <options> <dlg_hunt> [<addr_format>]
+TCAP_CONFIG 0x0 8192 0x8000 8192 0x0000 0 0
+*
+* Uncomment to record TCAP traces (from s7_log)
+* TCAP_TRACE <op_evt_mask> <ip_evt_mask> <non_prim_mask>
+*TCAP_TRACE 0x7 0xf 0x0
+*
+*
+* MAP Parameters:
+* MAP_CONFIG <options>
+MAP_CONFIG 0x0

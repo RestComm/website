@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Diameter Sh OpenIMS Core Integration Service</h2>
+<div class="section"><h3>Service Description</h3>
+<p>In this example we will show some integration between Mobicents and OpenIMS, using the Diameter Sh interface to receive profile updates and SIP.</p>
+<p>The idea is to provide a service that will let a user, who has been offline, know who called him while he was offline. To do that our service will be a proxy for SIP messages in the AS so he can capture the 404 sent by the CSCF when a call is made to him, while the user is offline. </p>
+<p>It will also register on the HSS for receiving changes to the User-IMS-State, using the proper Diameter Sh message, Profile-Notification-Request.</p>
+<p>When a call to a non-registered user happens, data is stored, regarding the person who called and the time of the call.&#160; When the user becomes online (registers it's SIP phone), the HSS will fire a notification with the new user state, and by that time we will look into our map to find if the user has missed any call while offline.&#160; If so, the user will receive a message, for each missed call, stating &quot;UserXXX <i>sip:xxx@open-ims.test</i>
+ tried to call you on dd/mm/yyyy at hh:mm:ss&quot;.</p>
+<p>This flow is described in the <a href="http://mobicents-public.googlegroups.com/web/Mobicents-Diameter-Sh-OpenIMS-SD.jpg" class="externalLink">diagram</a>
+ (SIP details and CSCF <i>-</i>
+ HSS communication are not described for simplicity purposes)</p>
+</div>
+<div class="section"><h3>How to activate it</h3>
+<div class="section"><h4>From the binary</h4>
+<p>You can find the war file corresponding to this example <a href="https://repository.jboss.org/nexus/content/groups/public/org/mobicents/servlet/sip/example/diameter-openims/1.6.0.FINAL/diameter-openims-1.6.0.FINAL.war" class="externalLink">here</a>
+.<br />
+Drop the downloaded war file into your <tt>jboss_home/server/default/deploy</tt>
+ directory </p>
+<p>Get the corresponding <a href="/diameteropenims-dar.properties">dar configuration file</a>
+.<br />
+To understand what the dar configuration file is used for, check the <a href="./mss-dar.html">Application Router Documentation</a>
+.<br />
+Drop it in your <tt>jboss_home/server/default/conf/dars</tt>
+ directory.<br />
+To use this dar file for this service, specify in the Service xml tag, darConfigurationFileLocation attribute of the <tt>jboss_home/server/default/deploy/jboss-web.deployer/server.xml</tt>
+, the following :<br />
+<tt>conf/dars/diameteropenims-dar.properties</tt>
+</p>
+<p>You can now run your JBoss container.</p>
+</div>
+<div class="section"><h4>From the source</h4>
+<p>Please check out the diameter openims service example located under this <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/sip-servlets/sip-servlets-examples/diameter-openims" class="externalLink">location</a>
+ from the svn repository.</p>
+<p>Follow the instructions in the README.txt and here to build and run the example. </p>
+</div>
+</div>
+<div class="section"><h3>Configuration</h3>
+<p>There is a lot of configuration needed for this example and it's hard to setup so if you need help, drop us a request in <a href="http://groups.google.com/group/mobicents-public/topics" class="externalLink">Mobicents Discussion</a>
+ or in the <a href="http://forums.java.net/jive/forum.jspa?forumID=55" class="externalLink">Mobicents Users Forum</a>
+ and we should help as possible. Also read all the instructions here before setting up any of the components to ge a full grasp of the thing</p>
+<div class="section"><h4>OpenIMS Core</h4>
+<p>First of all, you should install <a href="http://www.openimscore.org" class="externalLink">OpenIMS Core</a>
+ and set it up to use Mobicents SIP Servlets as the SIP Application Server. </p>
+<p>It is a not-so-easy task, we advise to not tweak too much at the beginning and just change the default IP address 127.0.0.1 to one of your private network such as 192.168.0.10 ... </p>
+<p>You can either install it from the source and follow the <a href="http://www.openimscore.org/installation_guide" class="externalLink">OpenIMS Core Installation guide</a>
+ or use a <a href="http://www.openimscore.org/vm" class="externalLink">VM ready to run VMWare image</a>
+. </p>
+<p>To help you out a bit, we provide a bunch of example configuration files on setting up the whole thing on IP Address 192.168.0.10 in the <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/sip-servlets/sip-servlets-examples/diameter-openims/conf" class="externalLink">conf directory of the example</a>
+ (from the source)</p>
+<p>This conf directory is break down in the following sub directories (<i>Please notice that each file in those directories as a comment saying where the file should be located in your file system</i>
+) :</p>
+<ul><li>dns : the list of DNS files set up to run open-ims.test domain and subdomains resolving to IP address 192.168.0.10. If you don't know how to setup a DNS, changes the IP address to map your own in those files and place them in the corresponding location on your file system and Don't forget to run <tt>sudo /etc/init.d/bind9 restart</tt>
+ to apply the configuration </li>
+<li>mobicents-jdiameter : this is not needed for the OpenIMS setup but needed later on to configure the Mobicents Diameter Solution</li>
+<li>open-ims : this is the configuration files setup to run OpenIMS on IP address 192.168.0.10. If you use those files, use them when you have completed the Step 5 of the <a href="http://www.openimscore.org/installation_guide" class="externalLink">OpenIMS Core Installation guide</a>
+</li>
+<li>open-ims/database : this is a dump of the OpenIMS Core database in a working state with Mobicents Sip Servlets setup to act as a SIP application Server to OpenIMS Core. It is recommended to use this dump instead of the ones provided in Step 4 of the <a href="http://www.openimscore.org/installation_guide" class="externalLink">OpenIMS Core Installation guide</a>
+ </li>
+<li>open-ic : there is only one file in there providing you with the values needed to setup the <a href="http://www.open-ims.org/openic/" class="externalLink">OpenIC IMS client</a>
+ </li>
+</ul>
+<p>Now you'll need to setup OpenIMS Core to use Mobicents Sip Servlets as a SIP Application Server, follow those simple steps (this is a more thorough explanation of what can be found in <a href="http://www.openimscore.org/node/83" class="externalLink">OpenIMS FAQ</a>
+) :</p>
+<ul><li>start the OpenIMS Core HSS server : <tt>cd /opt/OpenIMSCore/FHoSS/deploy/</tt>
+ then <tt>sh startup.sh</tt>
+</li>
+<li>log in into http://192.168.0.10:8080/ with username <tt>hssAdmin</tt>
+ and password <tt>hss</tt>
+</li>
+<li>Click on <tt>Services</tt>
+ Tab</li>
+<li>On the left hand side panel, under <tt>Application Servers</tt>
+ Click on Create. <ul><li>In <tt>name</tt>
+ enter <tt>MSS</tt>
+</li>
+<li>In <tt>Server Name</tt>
+, enter <tt>sip:192.168.0.10:5080</tt>
+</li>
+<li>In <tt>Diameter FQDN</tt>
+, enter <tt>mobicents.open-ims.test</tt>
+ <ul><li>In <tt>Default Handling</tt>
+, select <tt>Session Terminated</tt>
+</li>
+<li>Let <tt>Service Info</tt>
+ empty and <tt>Rep-Data Limit</tt>
+ to 1024</li>
+<li>Check all the Sh Permissions</li>
+<li>Don't attach any iFC for now, it will be done later automatically when you will create the given iFC</li>
+<li>Click on Save</li>
+<li><a href="./mss-ims-as.png">Corresponding Screenshot</a>
+ </li>
+</ul>
+</li>
+</ul>
+<ul><li>On the left hand side panel, under <tt>Trigger Points</tt>
+ Click on Create.<ul><li>In <tt>Name</tt>
+, enter <tt>MSS TP</tt>
+</li>
+<li>In <tt>Conjunction Type CNF</tt>
+, select <tt>Disjunctive Normal Format</tt>
+, click on Save Button</li>
+<li>On the next screen, Don't attach any iFC for now, it will be done later automatically when you will create the given iFC</li>
+<li>Add SPTs to the Trigger point, <tt>SIP Method : INVITE</tt>
+ <b>AND</b>
+ <tt>Session Case : Origin - Session</tt>
+</li>
+<li>Click on Save again </li>
+<li><a href="./mss-ims-tp.png">Corresponding Screenshot</a>
+</li>
+</ul>
+</li>
+<li>On the left hand side panel, under <tt>Initial Filter Criteria</tt>
+ Click on Create.<ul><li>In <tt>Name</tt>
+, enter <tt>MSS iFC</tt>
+</li>
+<li>In <tt>Trigger Point</tt>
+, select <tt>MSS TP</tt>
+</li>
+<li>In <tt>Application Server</tt>
+, select <tt>MSS</tt>
+</li>
+<li>In <tt>Profile Part Indicator</tt>
+, select <tt>Any</tt>
+</li>
+<li>Click on Save Button </li>
+<li><a href="./mss-ims-ifc.png">Corresponding Screenshot</a>
+</li>
+</ul>
+</li>
+<li>On the left hand side panel, under <tt>Service Profiles</tt>
+ Click on Search link then left the input text field blanks and click on Search Button, then select <tt>default_sp</tt>
+.<ul><li>Detach the current iFC <tt>default_ifc</tt>
+</li>
+<li>Attach the MSS iFC <tt>MSS iFC</tt>
+</li>
+<li>Click on Save Button </li>
+<li><a href="./mss-ims-sp.png">Corresponding Screenshot</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Alternatively, if you use the sql database dumps in open-ims/database instead of the one provided by OpenIMS Core, you'll still need to modify the IP Address of the SIP Application Server in the FHoSS Web interface as explained above in Application Server section except that instead of creating it you need to search for an existing one with the name <tt>MSS</tt>
+ </p>
+<p>Start all open ims core elements : </p>
+<ul><li>CSCFs : Start pcscf.sh, icscf.sh and scscf.sh</li>
+<li>HSS: Start FHoSS/deploy/startup.sh</li>
+</ul>
+</div>
+<div class="section"><h4>OpenIC Lite - IMS Client</h4>
+<p>Download and Install <a href="http://www.open-ims.org/openic/" class="externalLink">Free OpenIC Lite IMS client</a>
+, and modify the <tt>OpenIC_Lite.sh</tt>
+ to set the JAVA_HOME variable to match your JDK installation.</p>
+<p>Then start it with <tt>sh OpenIC_Lite.sh</tt>
+. To register Alice with OpenIMS Core (Alice is one of the already configured user in OpenIMS Core, so it's better to use it or Bob for starters), here is the information you need to enter :</p>
+<ul><li>Public identity: <tt>sip:alice@open-ims.test</tt>
+</li>
+<li>Private identity: <tt>alice@open-ims.test</tt>
+</li>
+<li>Secret Key: <tt>alice</tt>
+</li>
+<li>Realm: <tt>open-ims.test</tt>
+</li>
+<li>Proxy Server: <tt>192.168.0.10:4060</tt>
+ (modify the IP address to match your own where Open IMS Core PCSCF component is running)</li>
+</ul>
+<p>Then register and cross your fingers so that it goes through all the way. Registration uses all components and as such, it is a good test if all is up &amp; running </p>
+</div>
+<div class="section"><h4>Mobicents Diameter Solution </h4>
+<p><a href="mss-diameter.html">Install Mobicents Diameter</a>
+ or make sure it is already installed (it comes prepackaged with the Mobicents Sip Servlets JBoss Version)</p>
+<p>You have one file to modify so that it can connect to OpenIMS Core. In <tt>JBOSS_HOME/server/default/deploy/mobicents-diameter-mux-1.0.0.BETA3.sar/lib</tt>
+, you need to modify the <tt>org/mobicents/diameter/stack/jdiameter-config.xml</tt>
+ file in the <tt>mobicents-diameter-mux-jar-1.0.0.BETA3.jar</tt>
+ archive</p>
+<p>Modify it with the file located at <a href="http://mobicents.googlecode.com/svn/trunk/servers/sip-servlets/sip-servlets-examples/diameter-openims/conf/mobicents-jdiameter/jdiameter-config.xml" class="externalLink">http://mobicents.googlecode.com/svn/trunk/servers/sip-servlets/sip-servlets-examples/diameter-openims/conf/mobicents-jdiameter/jdiameter-config.xml</a>
+ (Make sure you modify all the 192.168.0.10 IP addresses in that file to map to your own IP address)</p>
+</div>
+<div class="section"><h4>Mobicents Sip Servlets</h4>
+<p>Since OpenIMS Core HSS component is deploying a management web application on port 8080, you'll need to modify the http connector port in Mobicents Sip Servlets to avoid any conflicts.<br />
+So go edit <tt>JBOSS_HOME/server/default/deploy/jboss-web.deployer/server.xml file.</tt>
+<br />
+Look for the connector tag whose the port is 8080 and change it to 8081 or any other value that makes sense for you.</p>
+</div>
+<div class="section"><h4>Example</h4>
+<p>A configuration file can be found for this example at src/main/sipapp/META-INF/diameter-openims.properties for the source, or at the root inside diameter-openims-<i>version</i>
+.war. Parameters are:</p>
+<ul><li><tt>origin.ip</tt>
+ - The IP address of the MSS server. Used for creating ORIGIN_HOST AVP;</li>
+<li><tt>origin.port</tt>
+ - The Diameter listening port of the MSS server Diameter Mux. Used for creating ORIGIN_HOST AVP;</li>
+<li><tt>origin.realm</tt>
+ - The Diameter Realm of the MSS server;</li>
+<li><tt>origin.host</tt>
+ - If defined, will override generation of ORIGIN_HOST AVP for Diameter Messages (recommended for this example!);</li>
+<li><tt>destination.ip</tt>
+ - The IP address of the OpenIMS HSS. Used for creating DESTINATION_HOST AVP;</li>
+<li><tt>destination.port</tt>
+ - The listening port of the OpenIMS HSS. Used for creating DESTINATION_HOST AVP;</li>
+<li><tt>destination.realm</tt>
+ - The Diameter Realm of the OpenIMS HSS;</li>
+<li><tt>destination.host</tt>
+ - If defined, will override generation of DESTINATION_HOST AVP for Diameter Messages;</li>
+<li><tt>users</tt>
+ - The users to subscribe Profile notifications (separate by comma)</li>
+</ul>
+<p>It is usually only needed to modify <tt>origin.ip</tt>
+ to match to your own IP address. and <tt>destination.ip</tt>
+ to match to the IP address where the HSS is installed (if you installed it on the same machine as Mobicents Sip Servlets the IP address for those properties will be the same)</p>
+<p>Then do a <tt>mvn clean install&gt;&gt; and deploy the war to &lt;&lt;&lt;JBOSS_HOME/server/default/deploy</tt>
+.</p>
+<p>Get the corresponding <a href="/diameteropenims-dar.properties">dar configuration file</a>
+.<br />
+Drop it in your <tt>jboss_home/server/default/conf/dars</tt>
+ directory.<br />
+To use this dar file for this service, specify in the Service xml tag, darConfigurationFileLocation attribute of the <tt>jboss_home/server/default/deploy/jboss-web.deployer/server.xml</tt>
+, the following :<br />
+<tt>conf/dars/diameteropenims-dar.properties</tt>
+ </p>
+</div>
+</div>
+<div class="section"><h3>How to play with it</h3>
+<p>Start JBoss on the binding address of the same IP address you configured elsewhere, by example <tt>sh run.sh -b 192.168.0.10</tt>
+, and make sure no exception pop up during startup because that could mean that Diameter cannot connect to the OpenIMS Core HSS server</p>
+<p>Start one OpenIC Lite with some account (doesn't have to be registered, but it's OK if it is).</p>
+<p>Make a call to one of the other user configured for this service (alice@open-ims.test or bob@open-ims.test by default), that is <b>NOT</b>
+ registered.<br />
+CSCF will answer with a 404 NOT FOUND and the example will use that info for collecting a missed call.</p>
+<p>Now, register the called user (you can do it with the same SIP phone or a different one), and by that time the application should receive a Diameter Push-Notification-Request and will be aware of the user new state (REGISTERED). After that it will retrieve the missed calls data and send him SIP Message(s) with that information. So when the called user is fully registered, it will receive a message stating that &quot;User XXX tried to call at dd/mm/yyyy at hh:mm:ss&quot;.</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

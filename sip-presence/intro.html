@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Luka Cvrk (www.solucija.com)">
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+<link rel="stylesheet" href="../org_mobicentsstyle.css" type="text/css">
+<title>Mobicents SIP Presence Service</title>
+</head>
+<body>
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+	</script>
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+	
+<div class="content">
+  
+  <div class="header">
+  	<div class="top_info">
+    	<div class="top_info_right">
+        	<!-- Search Google -->
+        	<form method="get" action="http://www.google.com/custom" target="_top">
+          	Search
+          		<input name="q" maxlength="255" value="" type="text">
+          		<input name="client" value="pub-5437763180786254" type="hidden">
+          		<input name="forid" value="1" type="hidden">
+          		<input name="channel" value="5452007684" type="hidden">
+	        	<input name="ie" value="ISO-8859-1" type="hidden">
+    	    	<input name="oe" value="ISO-8859-1" type="hidden">
+        		<input name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;" type="hidden">
+          		<input name="hl" value="en" type="hidden">
+          		<input name="q" value="mobicents" type="hidden">
+        	</form>
+        </div>
+		<div class="top_info_left"> The Open Source SIP Presence Service</div>
+    </div>      
+    <div id="logo">
+      <h1><a href="../index.html" title="Mobicents">Mobicents</a></h1>
+    </div>  
+  </div>
+  
+  <div class="bar">
+    <ul>
+      <li class="browse_category">Select Category:</li>
+      <li><a href="../index.html" accesskey="h">Home</a></li>
+      <li class="active"><a href="../products.html" accesskey="p">Products</a></li>
+      <li><a href="../services.html" accesskey="s">Services</a></li>
+      <li><a href="../community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+      <li><a href="../partners.html" accesskey="r">Partners</a></li>
+      <li><a href="../faq.html" accesskey="c">FAQ</a></li><li><a href="../incubator.html" accesskey="i">Incubator</a></li>
+      <li><a href="../about.html" accesskey="a">About Us</a></li>
+    </ul>
+  </div>
+  
+  <div class="contentwrapper">
+  
+    <div class="left">
+    	
+    	<div class="section">
+	  		<h3 id="h3_4">Introduction</h3>
+      		<br/>      							
+			<p>The Mobicents SIP Presence Service (MSPS) provides presence functionalities to SIP-based networks using standards developed by the Internet Engineering Task Force (IETF), the Open Mobile Alliance (OMA), the 3rd Generation Partnership Project (3GPP) and the European Telecommunications Standards Institute (ETSI). It is comprised of three separate but interrelated servers:</p>
+			<div align="center"><img src="images/msps_servers.jpg" align="middle"/><div><p>Mobicents SIP Presence Service servers</p></div></div>
+		</div>	
+		
+		<div class="section">
+	  		<h3 id="h3_4">XDM Server</h3>
+	  		<br/>
+			<p>The XML Document Management Server (XDMS) is a functional element of next-generation IP communications networks is responsible for handling the management of user XML documents stored on the network side, such as presence authorization rules, static presence information, contact and group lists (also known as resource lists), policy data, and many others.</p>
+			<br/>
+			<p>The XDMS includes the following XCAP Application Usages:</p>
+			<ul><li><p>
+				<a class="ulink" href="http://tools.ietf.org/html/rfc5025">IETF Presence Rules (RFC 5025)</a>
+			</p></li><li><p>
+				<a class="ulink" href="http://www.openmobilealliance.org/Technical/release_program/Presence_simple_v1_1.aspx">OMA Presence Rules (OMA Presence Simple v1.1)</a>
+			</p></li><li><p>
+				<a class="ulink" href="http://tools.ietf.org/html/rfc4826">IETF Resource Lists</a>
+			</p></li><li><p>
+				<a class="ulink" href="http://www.openmobilealliance.org/Technical/release_program/xdm_v1_1.aspx">OMA Group Usage List (OMA XDM v1.1)</a>
+			</p></li><li><p>
+				<a class="ulink" href="http://tools.ietf.org/html/rfc4826">IETF RLS Services (RFC 4826)</a>
+			</p></li><li><p>
+				<a class="ulink" href="http://www.openmobilealliance.org/Technical/release_program/xdm_v2_0.aspx">OMA User Profile (OMA XDM v2.0)</a>
+			</p></li><li><p>
+				<a class="ulink" href="http://www.openmobilealliance.org/Technical/release_program/xdm_v2_0.aspx">OMA Locked User Profile (OMA XDM v2.0)</a>
+			</p></li><li><p>
+				<a class="ulink" href="http://tools.ietf.org/html/rfc4825">IETF XCAP-CAPS (RFC 4825)</a>
+			</p></li><li><p>
+				<a class="ulink" href="http://www.openmobilealliance.org/Technical/release_program/xdm_v1_1.aspx">OMA XCAP Directory (OMA XDM v1.1)</a>
+			</p></li></ul>
+		</div>
+		
+		<div class="section">
+	  		<h3 id="h3_4">Presence Server</h3>
+	  		<br/>
+			<p>The SIP Presence Server (PS) is an entity that accepts, stores and distributes SIP Presence Information. The PS performs the following functions:</p>
+			<ul>
+				<li><p>It manages publications from one or multiple presence source(s) of a certain presentity. This includes refreshing presence information, replacing existing presence information with newly-published information, or removing presence information.</p></li>
+				<li><p>It manages subscriptions from watchers to presence information and generates notifications about presence information state changes, retrieving the presence authorization rules from the XDM Server.</p></li>
+				<li><p>It manages subscriptions from watcher information subscribers to watcher information and generates notifications about watcher information state changes.</p></li>
+			</ul>
+		</div>
+		
+		<div class="section">
+	  		<h3 id="h3_4">Resource List Server</h3>
+	  		<br/>	
+			<p>The Resource List Server (RLS) handles subscriptions to presence lists. It creates and manages back-end subscriptions to all resources in the presence list. The list content is retrieved from the XDM Server.</p>				
+		</div>
+		
+		<div class="section">
+	  		<h3 id="h3_4">Mobicents SIP Presence Service Implementation</h3>
+			<br/>
+			<p>The Mobicents SIP Presence Service servers, depending on your needs, can be deployed separately, or all can be integrated in a single server.</p>
+			<br/>
+			<div align="center"><img src="images/msps_integrated.jpg" align="middle"/><div><p>Mobicents SIP Presence Service Integrated server</p></div></div>
+			<br/>
+			<p>The Mobicents SIP Presence Services is built on top of Mobicents JAIN SLEE 2.x, a high performance and scalable Application Server, and uses many additional Java Enterprise (JEE) technologies, such as Java Persistence API (JPA) to manage data.</p>
+			<br/>
+			<div align="center"><img src="images/msps_implementation.jpg" align="middle"/><div><p>Mobicents SIP Presence Service Integrated implementation</p></div></div>
+			<br/>
+			<p>In addition, there are JAIN SLEE internal client interfaces available for interaction with each server, which distinguishes Mobicents SIP Presence Service from other presence services, which does not support plugging additional applications, or make it considerably difficult to achieve that.</p>
+		</div>
+    </div>
+	
+   	<div class="right">
+      <h1 id="h3_3">Mobicents SIP Presence Service</h1>
+      <div class="right_articles">
+        <p><a href="intro.html">Introduction</a></p>
+        <p><a href="downloads.html">Downloads</a></p>
+        <p><a href="docs.html">Documentation</a></p>
+        <p><a href="roadmap.html">Roadmap</a></p>
+        <p><a href="http://groups.google.com/group/mobicents-public/" target="_blank">Community</a></p>
+        <p><a href="http://code.google.com/p/mobicents/issues/list?can=2&q=Component%3DMSPS" target="_blank">Issue Tracker</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+  </div>
+  <div id="footer">
+  	<div>
+    	<div align="center"><a href="http://www.redhat.com/"><img src="../logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br /></div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> 
+  </div>
+  
+<!-- SiteCatalyst code version: H.1.
+ Copyright 1997-2005 Omniture, Inc. More info available at
+ http://www.omniture.com sec -->
+<div id="oTags">
+<script type="text/javascript" src="http://www.redhat.com/j/s_code.js"></script>
+<script><!--
+ /* You may give each page an identifying name, server, and channel on
+ the next lines. */
+/* E-commerce Variables */
+
+ /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//--></script>
+
+<script type="text/javascript"><!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+//--></script><noscript><img
+src="https://smtrcs.redhat.com/b/ss/redhatmobicent,redhatglobal/1/H.2--NS/0"
+height="1" width="1" border="0" alt="" /></noscript><!--/DO NOT REMOVE/-->
+</div>
+
+<!-- End SiteCatalyst code version: H.1. -->
+</body>
+</html>

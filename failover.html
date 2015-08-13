@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Mobicents Sip Servlets Failover support</h2>
+</div>
+<div class="section"><h2><i>This page is obsolete : More detailed and better looking installation instructions are available from the <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/sip-servlets/index.html#d0e5172" class="externalLink">Mobicents Sip Servlets User Guide</a>
+</i>
+</h2>
+<div class="section"><h3>Description</h3>
+<p>For a good description of Mobicents fail-over system (and even give us some feeback about it), I invite to read the <a href="http://groups.google.com/group/mobicents-public/web/mobicents-sip-balancer" class="externalLink">Mobicents SIP High Availability and Clustering document</a>
+.<br />
+You can only read Section 1 and 2 since following sections are for jslee.<br />
+We will cover the Mobicents Sip Servlets specific failover implementation, configuration and an example below.</p>
+</div>
+<div class="section"><h3>Implementation</h3>
+<p>As in Mobicents JSLEE, Mobicents Sip Servlets uses no standby nodes, so typically in this configuration proxies/registrars will need to share the user location table by using a database cluster. </p>
+<p>The Mobicents Sip Balancer (Sip Call-Id aware load-balancer) will be used as the man in the middle, forwarding (transaction statefully) requests to any of the different nodes of the cluster.</p>
+<p>This implementation has many pros :</p>
+<ul><li>No need for standby nodes, because the remaining nodes take over the load of the failed node as both the Mobicents SIP load Balancer and Mobicents Sip Servlets support mid-call failover.</li>
+<li>No need to make sure requests are directed to the right node, as all nodes can serve requests to any users</li>
+<li>All hardware is in use, reducing costs</li>
+<li>Maintenance is easier, as all nodes have equal configurations </li>
+</ul>
+</div>
+<div class="section"><h3>Installation &amp; Configuration</h3>
+<p>Please refer to <a href="./load-balancer.html">Mobicents SIP Load Balancer</a>
+ and <a href="./clustering.html">Mobicents Sip Servlets Clustering</a>
+. Both combined will make mid call failover available for your application. </p>
+</div>
+<div class="section"><h3>Step-By-Step Examples</h3>
+<div class="section"><h4>Cluster spread on 2 machines</h4>
+<p>We provide an example to run the Mobicents Sip Servelts cluster (comprised of 2 nodes), the load balancer and client application on different machines.</p>
+<p>Please checkout <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/sip-servlets/sip-servlets-test-suite/sipp-scenarios/clustering" class="externalLink">our clustering and mid-call failover example</a>
+ and follow the README-network.txt instructions.</p>
+</div>
+<div class="section"><h4>Cluster on the same machine</h4>
+<p>We provide an example to run the Mobicents Sip Servelts cluster (comprised of 2 nodes), the load balancer and client application on the same machine for ease of testing purposes.</p>
+<p>Please checkout <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/sip-servlets/sip-servlets-test-suite/sipp-scenarios/clustering" class="externalLink">our clustering and mid-call failover example</a>
+ and follow the README.txt instructions.</p>
+<p>Here is the modifications needed to run two application servers running at the same time on the same machine. (Those steps are done in the above example as part of the prepare-jboss-server-for-clustering-failover.sh script)</p>
+<p>As we need two application servers running at the same time, we must avoid any conflict. For instance we will need JBoss Tomcat to bind its socket on two different ports otherwise a network conflict will occur. We will leverage the service binding manager <a href="http://docs.jboss.org/jbossas/jboss4guide/r3/html/ch10.html" class="externalLink">this chapter</a>
+ of the JBoss AS documentation.</p>
+<p>The first step is to copy the all configuration of JBoss into two separate configurations that we name ports-01 and ports-02 :</p>
+<p><tt>cd JBOSS_HOME/server</tt>
+<br />
+<tt>cp -r all ports-01</tt>
+<br />
+<tt>cp -r all ports-02</tt>
+</p>
+<p>Edit the file <tt>JBOSS_HOME/server/ports-01/conf/jboss-service.xml</tt>
+ and uncomment the service binding manager :</p>
+<p><tt>&lt;mbean code=&quot;org.jboss.services.binding.ServiceBindingManager&quot;</tt>
+<br />
+<tt>name=&quot;jboss.system:service=ServiceBindingManager&quot;</tt>
+&gt;<br />
+<tt>&lt;attribute name=&quot;ServerName&quot;&gt;ports-01&lt;/attribute</tt>
+&gt;<br />
+<tt>&lt;attribute name=&quot;StoreURL&quot;&gt;${jboss.home.url}/docs/examples/binding-manager/sample-bindings.xml&lt;/attribute</tt>
+&gt;<br />
+<tt>&lt;attribute name=&quot;StoreFactoryClassName&quot;&gt;org.jboss.services.binding.XMLServicesStoreFactory&lt;/attribute</tt>
+&gt;<br />
+<tt>&lt;/mbean</tt>
+&gt;</p>
+<p>Edit the file <tt>JBOSS_HOME/server/ports-02/conf/jboss-service.xml</tt>
+, uncomment the service binding manager and change the value ports-01 into ports-02:</p>
+<p><tt>&lt;mbean code=&quot;org.jboss.services.binding.ServiceBindingManager&quot;</tt>
+<br />
+<tt>name=&quot;jboss.system:service=ServiceBindingManager&quot;</tt>
+&gt;<br />
+<tt>&lt;attribute name=&quot;ServerName&quot;&gt;node-02&lt;/attribute</tt>
+&gt;<br />
+<tt>&lt;attribute name=&quot;StoreURL&quot;&gt;${jboss.home.url}/docs/examples/binding-manager/sample-bindings.xml&lt;/attribute</tt>
+&gt;<br />
+<tt>&lt;attribute name=&quot;StoreFactoryClassName&quot;&gt;org.jboss.services.binding.XMLServicesStoreFactory&lt;/attribute</tt>
+&gt;<br />
+<tt>&lt;/mbean</tt>
+&gt;</p>
+</div>
+</div>
+<div class="section"><h3>Limitations</h3>
+<p>Mobicents Sip Servlets currently support mid call failover for converged applications and pure sip applications (Uas, Uac, B2BUA, Proxy).<br />
+However failover support for dialogs not yet established is not supported.</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

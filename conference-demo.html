@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<p><b>JSR-309 version :</b>
+ <i>This example is also available in JSR-309 based <a href="conference-demo-jsr309.html">Conference Demo</a>
+ version. The JSR-309 example can run in both JBoss 4 and JBoss 5 </i>
+</p>
+<div class="section"><h2>Sip Servlets Conference Demo</h2>
+<div class="section"><h3>Service Description</h3>
+<p>This example is focusing on the interaction with the more advanced features in Mobicents Media Server - endpoint composition and conferencing. It is using the <a href="http://code.google.com/webtoolkit/" class="externalLink">Google's GWT</a>
+ Ajax framework with <a href="http://code.google.com/p/google-web-toolkit-incubator/wiki/ServerPushFAQ" class="externalLink">server-push</a>
+ updates (a.k.a &quot;reverse Ajax&quot; or Comet) to provide desktop-like experience for the user interface. The application is demonstrating how Sip Servlets can work seamlessly with any third-party web framework without repackaging or modifying the deployment descriptors. All that is needed are a two Java annotations in the code to specify the application name and the servlet name, nothing else.</p>
+</div>
+<div class="section"><h3>How to activate it</h3>
+<div class="section"><h4>From the binary</h4>
+<p>You can find the war file corresponding to this example <a href="https://repository.jboss.org/nexus/content/groups/public/org/mobicents/servlet/sip/examples/conference-demo/1.6.0.FINAL/conference-demo-1.6.0.FINAL.war" class="externalLink">here</a>
+.<br />
+Drop the downloaded war file into your <tt>tomcat_home/webapps</tt>
+ directory or <tt>jboss_home/server/default/deploy</tt>
+ directory </p>
+<p>Get the corresponding <a href="/conference-demo-dar.properties">dar configuration file</a>
+.<br />
+To understand what the dar configuration file is used for, check the <a href="./mss-dar.html">Application Router Documentation</a>
+.<br />
+Drop it in your <tt>tomcat_home/conf/dars</tt>
+ directory or <tt>jboss_home/server/default/conf/dars</tt>
+ directory.<br />
+To use this dar file for this service, specify in the Service xml tag, darConfigurationFileLocation attribute of the <tt>tomcat_home/conf/server.xml</tt>
+ file or <tt>jboss_home/server/default/deploy/jboss-web.deployer/server.xml</tt>
+, the following :<br />
+<tt>conf/dars/conference-demo-dar.properties</tt>
+</p>
+<p>Alternatively you can Navigate you browser to the <a href="http://localhost:8080/sip-servlets-management" class="externalLink">Sip Servlets Management console</a>
+ and select the &quot;Conference&quot; application to receive the INVITE requests. Then save the configuration.</p>
+</div>
+<div class="section"><h4>From the source</h4>
+<p>You can get the source code by executing the following command:</p>
+<p><tt>svn co http://mobicents.googlecode.com/svn/trunk/servers/sip-servlets/sip-servlets-examples/conference-demo</tt>
+</p>
+<p>To build it you need Maven 2. If you set the JBOSS_HOME environment variable to a location with Mobicents Sip Servlets server the following command will build and deploy the application:</p>
+<p><tt>mvn install -Pdeploy</tt>
+</p>
+<p>Navigate you browser to the <a href="http://localhost:8080/sip-servlets-management" class="externalLink">Sip Servlets Management console</a>
+ and select the &quot;Conference&quot; application to receive the INVITE requests. Then save the configuration. </p>
+</div>
+</div>
+<div class="section"><h3>How to use it</h3>
+<p>Once the application is deployed it is ready to serve requests. You can navigate to the <a href="http://localhost:8080/conference-demo-1.0" class="externalLink">application homepage</a>
+ (your URL may be different) to observe the conference status. There are two way to join the conference:</p>
+<ol type="1"><li>You can dial &quot;sip-servlets-conference@localhost:5080&quot; from a SIP Phone in order to join the conference. </li>
+<li>You can dial a SIP Phone from the form in the web application.<p>Additionally once the conference is started you can play an announcement by typing a file name in the respective text-box and pressing &quot;Play file&quot;. The file must be PCM, mono, 16 bits, 8KHz WAV.</p>
+<p>Participants can be muted and unmuted at any time.</p>
+</li>
+</ol>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

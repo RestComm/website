@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<p><b>Important Note :</b>
+ <i>This example is a modified version of the Mobicents JSLEE Converged Demo available at <a href="http://groups.google.com/group/mobicents-public/web/converged-application-demo?hl=en" class="externalLink">http://groups.google.com/group/mobicents-public/web/converged-application-demo?hl=en</a>
+.<br />
+It is has been modified to fit to Sip Servlets v 1.1 specification. The purpose here is to demonstrate integration with more technologies and protocols than just SIP and HTTP.<br />
+It is a Converged JEE Application showing SEAM &amp; JEE integration and Media integration with TTS and DTMF support.<br />
+This application only works on a full JEE Container, in other words it will only work on top of Jboss AS and not Tomcat.</i>
+</p>
+<p><b>JSR-309 version :</b>
+ <i>This example is also available in JSR-309 based <a href="shopping-demo-jsr309.html">Shopping Demo</a>
+ version. The JSR-309 example can run in both JBoss 4 and JBoss 5 </i>
+</p>
+<div class="section"><h2>Shopping Demo</h2>
+<div class="section"><h3>Service Description</h3>
+<p>The idea is to have a converged application that shows how JEE application can leverage Sip Servlets to have voice, message and data transfer seamlessly.&#160; This example is built using Seam, Mobicents Sip Servlets and Mobicents Media Server deployed on Jboss AS. </p>
+<div class="section"><h4>Application Flow </h4>
+<ul><li>Once User places an order, he/she receives call to confirm for the same.<ul><li>User presses 1 and order state remains as OPEN and flow continues. If User presses 2 order gets CANCELLED and flow completes</li>
+</ul>
+</li>
+<li>If order is less than 100$ it gets approved automatically as per the rule set by jBPM and User receives call to set delivery date and time.</li>
+<li>If order is greater than 100$, Admin has to either approve or reject the order.</li>
+<li>If Admin doesn't log on the site and take necessary action, call is initiated to Admin and Admin preses DTMF to take necessary action<ul><li>Admin presses 1 and order state changes to PROCESSING and flow continues. If Admin presses 2 order gets CANCELLED and flow completes.<ul><li>User id for Admin is 'manager' and password is 'password'</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Once order is approved by Admin, a call is initiated to User to set the date and time for delivery<ul><li>Please note that for orders greater than 100$ call to User to set delivery date and time is only initiated if Admin logs on to system and approves. This is becuase the logic is tied with jBPM process and I haven't yet taken care that in SBB.</li>
+</ul>
+</li>
+<li>User sets delivery date and time by punching numbers on his/her phone. As soon as this is done user can see the delivery date and time set on 'My Orders' tab and click on 'Show Details' for corresponding order.</li>
+<li>Once again the ball roles on to Admin, and he/she has to log in the site and mark the order for Shipping</li>
+<li>As soon as Admin marks the order for Shipping, call is initiated to User to remind him/her date and time when the shipment will arrive.</li>
+</ul>
+</div>
+</div>
+<div class="section"><h3>How to activate it</h3>
+<div class="section"><h4>From the binary</h4>
+<p>You can find the ear file corresponding to this example <a href="https://repository.jboss.org/nexus/content/groups/public/org/mobicents/servlet/sip/example/shopping-demo-ear/1.6.0.FINAL/shopping-demo-ear-1.6.0.FINAL.ear" class="externalLink">here</a>
+.<br />
+It's working with the Mobicents Media Server 1.0.3.GA.<br />
+Rename it to shopping-demo.ear<br />
+Drop the renamed shopping-demo.ear file into your <tt>jboss_home/server/default/deploy</tt>
+ directory. </p>
+<p>Get the corresponding <a href="/shopping-demo-dar.properties">dar configuration file</a>
+.<br />
+To understand what the dar configuration file is used for, check the <a href="./mss-dar.html">Application Router Documentation</a>
+.<br />
+Drop it in your <tt>jboss_home/server/default/conf/dars</tt>
+ directory.<br />
+To use this dar file for this service, specify in the Service xml tag, darConfigurationFileLocation attribute of the <tt>jboss_home/server/default/deploy/jboss-web.deployer/server.xml</tt>
+, the following :<br />
+<tt>conf/dars/shopping-demo-dar.properties.properties</tt>
+</p>
+<p>You can now run your Jboss AS Converged Container.</p>
+</div>
+<div class="section"><h4>From the source</h4>
+<p>Setup your Jboss AS to become a converged container as explained <a href="/installation-jboss.html">here</a>
+.</p>
+<p>Please check out the shopping demo example located under this <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/sip-servlets/sip-servlets-examples/shopping-demo" class="externalLink">location</a>
+ from the svn repository. Follow the instructions in the README.txt to build and run the example.</p>
+<p>The DAR file for this example can be found at the root of the project. Use this as a DAR file (Service tag/darConfigurationFileLocation attribute in the jboss's server.xml): file:///E:/workspaces/sip-servlets/sip-servlets-examples/shopping-demo/shopping-demo-dar.properties </p>
+</div>
+</div>
+<div class="section"><h3>How to play with it</h3>
+<p>http://localhost:8080/shopping-demo/</p>
+<p>Start a Sip Phone, make it register as a customer (let's say sip:jean@shopping-demo.com) to your Jboss AS SIP Connector listening point (default to 127.0.0.1:5080).</p>
+<p>Start another Sip Phone, make it register as admin (if you're using the binary or if you didn't change the sip.xml file it should be sip:admin@shopping-demo.com) to your Jboss AS SIP Connector listening point (default to 127.0.0.1:5080).</p>
+<p>Before shopping create a new account and make sure that you enter the SIP address for Phone field of your registered Sip Phone (here sip:jean@shopping-demo.com).</p>
+<p><i>Note: The new account created won't survive server restart. If you want it to survive server restart, it requires you to modify import.sql which is stored under &quot;ShoppingDemo.ear/ShoppingDemo.jar&quot;. This is because the SIP phone addresses for all the users (user1,user2 etc...) are hardcoded here and we are using an in-memory database called HSQLDB that is created and dropped on every restart. If you SIP client address is different, this is where you would modify it. To make this easy you can explode the ear under deploy directory and also explode the jar under the ear. That way you can easily modify the import.sql.</i>
+ </p>
+<p>For SIP Phone settings you can see examples at <a href="http://groups.google.com/group/mobicents-public/web/sip-phone-settings-for-converged-demo?hl=en" class="externalLink">SIP Phone Settings for Converged Demo</a>
+ </p>
+<ul><li>After creation of account once you check out the cart a call will be received on the customer SIP Phone for confirmation.</li>
+<li>You can check your Order Status via 'My Orders' tab</li>
+<li>After 30000 milli secs ( value specified for order.approval.waitingtime in convergeddemo.properties) call is received by Admin to confirm the order for Shipping or Cancel if order is greater than 100$ or a call will be received on the customer sip phone for choosing delivery date if order is lower than 100$</li>
+<li>You can check log out and relog in as manager to accept the order if it is greater than 100$, then a call will be received on the customer sip phone for choosing delivery date. You can also ship the orders that have been accepted and then a reminder call will be placed on the customer sip phone. </li>
+</ul>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>sf-flow-api - sf-flowの概要</title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+          <meta name="author" content="Yukinobu Imai" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div class="bar">
+<ul>
+	<li class="browse_category">Select Category:</li>
+
+	<li><a href="http://www.mobicents.org/index.html" accesskey="h">Home</a></li>
+	<li class="active"><a href="http://www.mobicents.org/products.html" accesskey="p">Products</a></li>
+	<li><a href="http://www.mobicents.org/services.html" accesskey="s">Services</a></li>
+
+	<li><a href="http://www.mobicents.org/community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+	<li><a href="http://www.mobicents.org/faq.html" accesskey="c">FAQ</a></li>
+
+	<li><a href="http://www.mobicents.org/about.html" accesskey="a">About Us</a></li>
+
+</ul>
+</div>
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">sf-flow-api</h3>
+<div class="section"><h2>sf-flowについて</h2>
+<p>sf-flowは、sf-coreを拡張したSIPアプリケーション用のフレームワークです。</p>
+</div>
+<div class="section"><h2>sf-flowの開発方法</h2>
+<p>sf-flowを使う場合、以下の順番で開発を行います。</p>
+<ol type="1"><li>状態遷移図の作成</li>
+<li>アプリケーションの実装<p>最初に状態遷移を設計するのには理由が２つあります。 １つは、SIPアプリケーションの場合、状態遷移を設計することが重要だからです。 もう１つは、sf-flowが状態遷移図を元にして、アプリケーションを開発できるように設計されているからです。 sf-flowで開発を行う場合、アプリケーションの状態をいくつも作成し、各状態におけるイベントとアクションと状態の遷移を実装します。</p>
+<p>例えば、Fig.1のアプリケーションを作成する場合を考えます。</p>
+<img src="./images/sequence-transition-example.png" alt="Sequence example" /><p>Fig.1 サンプルアプリケーションのシーケンス図と状態遷移図</p>
+<p>この状態遷移図を元に、sf-flowでアプリケーションを実装するとFig.2になります。</p>
+<img src="./images/sf-flow-example.png" alt="State example" /><p>Fig.2 sf-flowでの実装例</p>
+<p>sf-flowでは、状態をパッケージとして作成します。図の場合だと初期状態をstep00という名前で作成しています。</p>
+<p>各状態でイベントが発生した場合に自動的に呼ばれるクラスがあります。 例えば、SipRequestというクラスはSIPのリクエストを受信した際に呼び出されます。 こういったイベントが発生した際に呼び出されるクラスは、Evaluate Classと呼ばれます。 Evaluate Classで、どのイベントが発生した際にどのアクションを実行するか実装します。 例えば、図の場合だと、SipRequest.javaの中では、受信したSIPリクエストがINVITEだった場合、SendSuccessActionを呼び出すように実装します。</p>
+<p>Evaluate Classから呼び出されるクラスをAction Classと呼びます。 Action Classではアクションを実装します。また、このクラスが実行された後に、次にどの状態に遷移するか実装します。 例えば、図の場合だと、SendSuccessActionがAction Classです。この中でINVITEに対する200 OK 応答を送信するように実装します。また、接続中状態に遷移するように実装します。</p>
+<p>以降、同様に&quot;接続中状態&quot;、&quot;接続状態&quot;も作成していきます。</p>
+<p>詳しい実装方法については、次以降で説明します。</p>
+</li>
+</ol>
+</div>
+<div class="section"><h2>sf-flowの実装方法の概要</h2>
+<p>sf-flowの実装方法の概要を説明します。</p>
+<p>sf-flowでの状態の概念図をFig.3に示します。</p>
+<img src="./images/state-transition2.png" alt="State" /><p>Fig.3 sf-flowでの状態の概念図</p>
+<ul><li>State<p>水色がStateを表しています。各StateにEvaluate ClassとAction Classを作成します。</p>
+</li>
+<li>Evaluate Class<p>緑色がEvaluate Classを表しています。Evaluate Classでは、どのイベントに対してどのアクションを実行するかを実装します。</p>
+<p>Evaluate Classはイベントが発生した際に呼び出されます。 sf-coreの場合は&quot;INVITEの受信&quot;や&quot;暫定応答の受信&quot;など、細かい単位で呼び出されますが、sf-flowの場合は&quot;リクエストの受信&quot;や&quot;レスポンスの受信&quot;といったように、sf-coreと比べて大きな単位で呼び出されます。 従って、細かい条件分岐が必要な場合は、適時実装する必要があります。</p>
+<p>sf-flowで呼び出される単位は以下になります。</p>
+<ul><li>SIPリクエストの受信</li>
+<li>SIPレスポンスの受信</li>
+<li>ServletTimerのタイムアウト</li>
+<li>ACK、PRACKが受信できなかった場合</li>
+<li>SipApplicationSessionがExpireした場合</li>
+<li>Webからの呼出し</li>
+</ul>
+</li>
+<li>Action Class<p>青色がAction Classを表しています。Action Classでは、実行するアクションの内容と、アクションの実行後にどのStateに遷移するかを実装します。 </p>
+<p>具体的な実装方法については次で説明します。</p>
+</li>
+</ul>
+</div>
+<div class="section"><h2>sf-flowの実装方法</h2>
+<p>sf-flowでの実装方法をFig.4に示します。</p>
+<img src="./images/package-state-transition.png" alt="State transition" /><p>Fig.4 sf-flowの実装方法</p>
+<div class="section"><h3>FlowRootの作成</h3>
+<p>sf-flowでは、複数の状態を１つのパッケージの中にまとめて作成します。このまとめたパッケージのことをFlowRootと呼びます。</p>
+<p>FlowRootは、package-info.javaに＠FlowRootアノテーションを付けることで作成できます。</p>
+<p>図の場合、&quot;flow&quot;パッケージがFlowRootです。&quot;flow&quot;パッケージのpackage-info.javaは以下のように記述します。</p>
+<div class="source"><pre>@FlowRoot(startState=&quot;state1&quot;)
+package sample.flow;
+import org.mobicents.ssf.flow.configuration.FlowRoot;</pre>
+</div>
+</div>
+<div class="section"><h3>Stateの作成</h3>
+<p>Stateは、FlowRoot以下にパッケージを作成し、package-info.javaで＠Stateアノテーションを付けることで作成できます。</p>
+<p>package-info.javaの例を以下に示します。</p>
+<div class="source"><pre>@State(name=&quot;step00&quot;)
+package sample.flow.step00;
+
+import org.mobicent.ssf.flow.configuration.State;</pre>
+</div>
+</div>
+<div class="section"><h3>Evaluate Classの作成</h3>
+<p>Evaluate Classは、各Stateのパッケージ内に作成します。イベントの種類毎に作成する必要があり、それぞれ作成するクラス名が決まっています。</p>
+<p>Table.1 イベントの種類と呼び出されるクラス</p>
+<table class="bodyTable"><tbody><tr class="a"><td align="left">Event Type</td>
+<td align="left">Java Source File Name</td>
+</tr>
+<tr class="b"><td align="left">SIPリクエストの受信</td>
+<td align="left">SipRequest.java</td>
+</tr>
+<tr class="a"><td align="left">SIPレスポンスの受信</td>
+<td align="left">SipResponse.java</td>
+</tr>
+<tr class="b"><td align="left">ServletTimerのタイムアウト</td>
+<td align="left">TimerTimeout.java</td>
+</tr>
+<tr class="a"><td align="left">SipApplicationSessionがExpireした場合</td>
+<td align="left">SipApplicationExpired.java</td>
+</tr>
+<tr class="b"><td align="left">ACKやPRACKを受信しなかった場合</td>
+<td align="left">SipErrorOccurred.java</td>
+</tr>
+<tr class="a"><td align="left">Webからの呼出し</td>
+<td align="left">Dispatcher.java</td>
+</tr>
+</tbody>
+</table>
+<p>作成したEvaluate Classで、実際に評価を行うメソッドには＠Evaluateアノテーションを付けます。＠Evaluateアノテーションを付けることで、イベントが発生した際にこのメソッドが呼ばれます。</p>
+<p>Evaluate Classでは、実行するAction Classを指定します。Action Classの指定は２箇所で実施する必要があります。</p>
+<ul><li>＠TransitionSetアノテーション</li>
+<li>メソッドの返り値</li>
+</ul>
+<p>＠TransitionSetアノテーションで指定する値と、メソッドの返り値は一致している必要があります。またメソッドの返り値が複数ある場合は、＠TransitionSetアノテーションではカンマ区切りで全て記述します。</p>
+<p>メソッドの返り値(＠TransitionSet)で指定した値の一文字目を大文字にし、語尾に&quot;Action&quot;を追加した名前のクラスがAction Classになります。</p>
+<p>Evaluate Classの例を以下に示します。</p>
+<div class="source"><pre>package com.oki.sample.b2bua.flow.step00;
+
+import javax.servlet.sip.SipServletRequest;
+
+import org.mobicents.ssf.flow.annotation.Evaluate;
+import org.mobicents.ssf.flow.configuration.TransitionSet;
+
+@TransitionSet(values={&quot;forwardInvite&quot;})
+public class SipRequest {
+    
+    @Evaluate
+    public String evaluate(SipServletRequest req) {
+        if (req.isInitial() &amp;&amp; &quot;INVITE&quot;.equals(req.getMethod())) {
+            return &quot;forwardInvite&quot;;
+        }
+        return null;
+    }
+}</pre>
+</div>
+<p>この例の場合、INVITEリクエストを受信した場合に&quot;ForwardInviteAction&quot;という名前のAction Classを実行します。</p>
+</div>
+<div class="section"><h3>Action Classの作成</h3>
+<p>Action ClassもStateのパッケージ内に作成します。Action Classの名前はEvaluate Classで指定した値と同じもので作成します。</p>
+<p>アクションの内容を記述したメソッドには、＠Transitionアノテーションを付けます。＠Transitionアノテーションを付けることで、Evaluate Classの後にメソッドが呼ばれます。</p>
+<p>また、＠Transitionアノテーションで遷移先の状態を指定する必要があります。このAction Classの処理完了後、指定した状態に遷移します。</p>
+<p>Action Classの例を以下に示します。</p>
+<div class="source"><pre>public class ForwardInvAction {
+
+    @Transition(&quot;step10&quot;)
+    public void execute(SipServletRequest req, SipFactory factory, PeerLocation peerLocation) throws Exception {
+        
+        // create HeaderMap
+        SipURI uri = (SipURI)peerLocation.getAddress(req.getFrom(), req.getTo()).getURI();
+        Map&lt;String, List&lt;String&gt;&gt; map = HeaderMapUtil.createHeaderMap(&quot;To&quot;, uri.toString());
+        
+        // create new INVITE Request
+        B2buaHelper helper = req.getB2buaHelper();
+        SipServletRequest invite = helper.createRequest(req, true, map);
+        invite.setRequestURI((URI)uri);
+        SipContentUtil.copy(req, invite);
+        
+        // send INVITE Request
+        invite.send();
+    }
+}</pre>
+</div>
+</div>
+<div class="section"><h3>Maven2Archetypeの利用</h3>
+<p>上述した内容を全て手作業でやるのは手間がかかります。</p>
+<p>しかし、sf-flowで開発を行うためのMaven2Archetypeを用意しています。このArchetypeを利用することで、開発する上で必要なJavaファイルや設定ファイルを自動生成してくれるので、開発の手間が大幅に省けます。</p>
+<p>次のページでは、sf-flowのMaven2Archetypeについて説明します。</p>
+<p><a href="./flow-tutorial-2.html"> 次へ</a></p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>sf-flow-api</h3>
+<div class="right_articles">
+          <h5>sf-flow</h5>
+            <ul>
+              
+          
+              
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="">チュートリアル</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="index.html">目次</a>
+          </li>
+                  
+    <li class="none">
+              <strong>sf-flow概要</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="flow-tutorial-2.html">sf-flow用のMaven2Archetype</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="flow-tutorial-3.html">B2BUAアプリケーションの開発</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="flow-tutorial-4.html">B2BUAアプリケーションの機能追加</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="flow-tutorial-5.html">動作確認</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>プロジェクト文書</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">プロジェクト情報</a>
+                </li>
+              
+                
+              
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">プロジェクトレポート</a>
+                </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

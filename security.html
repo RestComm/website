@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Enable Security for Sip Servlets Applications</h2>
+</div>
+<div class="section"><h2><i>This page is obsolete : More detailed and better looking installation instructions are available from the <a href="http://ci.jboss.org/jenkins/view/Mobicents/job/Mobicents-Books/lastSuccessfulBuild/artifact/sip-servlets/index.html#sss-SIP_Servlet_Security" class="externalLink">Mobicents Sip Servlets User Guide</a>
+</i>
+</h2>
+<div class="section"><h3>To enable security in JBoss AS</h3>
+<p>To enable security for JBoss Application Server, basically you have to create a security domain suitable for digest authentication and then configure your Sip Servlets application to use this security domain.<br />
+Here are the steps to make a simple configuration with static users, passwords and roles:</p>
+<ol type="1"><li>In server/default/conf/login-config.xml add a new security policy with hashed passwords, like this:<br />
+<tt>&lt;application-policy name = &quot;sip-servlets&quot;</tt>
+&gt;<br />
+<tt>&lt;authentication</tt>
+&gt;<br />
+<tt>&lt;login-module code=&quot;org.jboss.security.auth.spi.UsersRolesLoginModule&quot; flag = &quot;required&quot;</tt>
+&gt;<br />
+<tt>&lt;module-option name=&quot;usersProperties&quot;&gt;props/sip-servlets-users.properties&lt;/module-option</tt>
+&gt;<br />
+<tt>&lt;module-option name=&quot;rolesProperties&quot;&gt;props/sip-servlets-roles.properties&lt;/module-option</tt>
+&gt;<br />
+<tt>&lt;module-option name=&quot;hashAlgorithm&quot;&gt;MD5&lt;/module-option</tt>
+&gt;<br />
+<tt>&lt;module-option name=&quot;hashEncoding&quot;&gt;rfc2617&lt;/module-option</tt>
+&gt;<br />
+<tt>&lt;module-option name=&quot;hashUserPassword&quot;&gt;false&lt;/module-option</tt>
+&gt;<br />
+<tt>&lt;module-option name=&quot;hashStorePassword&quot;&gt;true&lt;/module-option</tt>
+&gt;<br />
+<tt>&lt;module-option name=&quot;passwordIsA1Hash&quot;&gt;true&lt;/module-option</tt>
+&gt;<br />
+<tt>&lt;module-option name=&quot;storeDigestCallback&quot;&gt;org.jboss.security.auth.spi.RFC2617Digest&lt;/module-option</tt>
+&gt;<br />
+<tt>&lt;/login-module</tt>
+&gt;<br />
+<tt>&lt;/authentication</tt>
+&gt;<br />
+<tt>&lt;/application-policy</tt>
+&gt;</li>
+<li>In the file props/sip-servlets-users.properties put this:<br />
+# A sample users.properties file, this line creates user &quot;admin&quot; with password &quot;admin&quot; for &quot;sip-servlets-realm&quot;<br />
+admin=9640e13fedc736bdafa6b9007d965c56<p>The cryptic string here is the A1 value of the digest authentication algorithm and can be generated with the following command:<br />
+<tt>java -cp ../server/default/lib/jbosssx.jar org.jboss.security.auth.spi.RFC2617Digest username &quot;My Realm&quot; password</tt>
+<br />
+<tt>RFC2617 A1 hash: 9b47ec6f03603dd49863e7d58c4c49ea</tt>
+</p>
+</li>
+<li>In the file props/sip-servlets-roles.properties put this:<br />
+# A sample roles.properties file for use with some roles<br />
+admin=caller,role1,role2,..<p>Each line in this file assigns roles to the users defined in sip-servlets-users.properties</p>
+</li>
+<li>In jboss-web.xml in your application put this:<br />
+<tt>&lt;jboss-web</tt>
+&gt;<br />
+<tt>&lt;!-- Uncomment the security-domain to enable security. You will need to edit the htmladaptor login configuration to setup the login modules used to authentication users. --</tt>
+&gt;<br />
+<tt>&lt;security-domain&gt;java:/jaas/sip-servlets&lt;/security-domain</tt>
+&gt;<br />
+<tt>&lt;/jboss-web</tt>
+&gt;</li>
+<li>In sip.xml in your application add some security constraint and authentication type, for example:<br />
+<tt>&lt;security-constraint</tt>
+&gt;<br />
+<tt>&lt;display-name&gt;REGISTER Method Security Constraint&lt;/display-name</tt>
+&gt;<br />
+<tt>&lt;resource-collection</tt>
+&gt;<br />
+<tt>&lt;resource-name&gt;SimpleSipServlet&lt;/resource-name</tt>
+&gt;<br />
+<tt>&lt;description&gt;Require authenticated REGSITER requests&lt;/description</tt>
+&gt;<br />
+<tt>&lt;servlet-name&gt;SimpleSipServlet&lt;/servlet-name</tt>
+&gt;<br />
+<tt>&lt;sip-method&gt;REGISTER&lt;/sip-method</tt>
+&gt;<br />
+<tt>&lt;/resource-collection</tt>
+&gt;<br />
+<tt>&lt;auth-constraint</tt>
+&gt;<br />
+<tt>&lt;role-name&gt;caller&lt;/role-name</tt>
+&gt;<br />
+<tt>&lt;/auth-constraint</tt>
+&gt;<br />
+<tt>&lt;/security-constraint</tt>
+&gt;<p><tt>&lt;login-config</tt>
+&gt;<br />
+<tt>&lt;auth-method&gt;DIGEST&lt;/auth-method</tt>
+&gt;<br />
+<tt>&lt;realm-name&gt;sip-servlets-realm&lt;/realm-name</tt>
+&gt;<br />
+<tt>&lt;/login-config</tt>
+&gt;</p>
+</li>
+</ol>
+</div>
+<div class="section"><h3>To enable security in Tomcat</h3>
+<p>You have to specify some security realm for the servlet container or it's parents, and add some contraints to the application. There are the steps: \</p>
+<ol type="1"><li>Open <tt>&lt;tomcat_home&gt;/conf/server.xml</tt>
+ and uncomment the following line:<br />
+<tt>&lt;Realm className=&quot;org.apache.catalina.realm.MemoryRealm&quot; /</tt>
+&gt;</li>
+<li>Open <tt>&lt;tomcat_home&gt;/conf/tomcat-users.xml</tt>
+ and add the following <i>user</i>
+ sub-element:<br />
+<tt>&lt;user name=&quot;user&quot; password=&quot;password&quot; roles=&quot;caller&quot; /</tt>
+&gt;</li>
+<li>In sip.xml in your application add some security constraint and authentication type, for example:<br />
+<tt>&lt;security-constraint</tt>
+&gt;<br />
+<tt>&lt;display-name&gt;REGISTER Method Security Constraint&lt;/display-name</tt>
+&gt;<br />
+<tt>&lt;resource-collection</tt>
+&gt;<br />
+<tt>&lt;resource-name&gt;SimpleSipServlet&lt;/resource-name</tt>
+&gt;<br />
+<tt>&lt;description&gt;Require authenticated REGSITER requests&lt;/description</tt>
+&gt;<br />
+<tt>&lt;servlet-name&gt;SimpleSipServlet&lt;/servlet-name</tt>
+&gt;<br />
+<tt>&lt;sip-method&gt;REGISTER&lt;/sip-method</tt>
+&gt;<br />
+<tt>&lt;/resource-collection</tt>
+&gt;<br />
+<tt>&lt;auth-constraint</tt>
+&gt;<br />
+<tt>&lt;role-name&gt;caller&lt;/role-name</tt>
+&gt;<br />
+<tt>&lt;/auth-constraint</tt>
+&gt;<br />
+<tt>&lt;/security-constraint</tt>
+&gt;<p><tt>&lt;login-config</tt>
+&gt;<br />
+<tt>&lt;auth-method&gt;DIGEST&lt;/auth-method</tt>
+&gt;<br />
+<tt>&lt;realm-name&gt;sip-servlets-realm&lt;/realm-name</tt>
+&gt;<br />
+<tt>&lt;/login-config</tt>
+&gt;</p>
+</li>
+</ol>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="author" content="Luka Cvrk (www.solucija.com)"/>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"/>
+<link rel="stylesheet" href="../../org_mobicentsstyle.css" type="text/css"/>
+<title>Mobicents</title>
+</head>
+<body>
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+	</script>
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+	
+<div class="content">
+
+	<div class="header">
+		<div class="top_info">
+			<div class="top_info_right">
+				<!-- Search Google -->
+				<form method="get" action="http://www.google.com/custom"
+					target="_top">
+					Search
+					<input name="q" maxlength="255" value="" type="text" />
+					<input name="client" value="pub-5437763180786254" type="hidden" />
+					<input name="forid" value="1" type="hidden" />
+					<input name="channel" value="5452007684" type="hidden" />
+
+					<input name="ie" value="ISO-8859-1" type="hidden" />
+					<input name="oe" value="ISO-8859-1" type="hidden" />
+					<input name="cof"
+						value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+						type="hidden" />
+					<input name="hl" value="en" type="hidden" />
+					<input name="q" value="mobicents" type="hidden" />
+				</form>
+			</div>
+
+		</div>
+		<div id="logo">
+			<h1>
+				<a href="http://www.mobicents.org-a.googlepages.com/" title="Mobicents">Mobicents
+				</a>
+			</h1>
+		</div>
+	</div>
+
+	<div class="bar">
+		<ul>
+			<li class="browse_category">Select Category:</li>
+			<li>
+				<a href="../../index.html" accesskey="h">Home</a>
+			</li>
+			<li class="active">
+				<a href="../../products.html" accesskey="p">Products</a>
+			</li>
+			<li>
+				<a href="../../services.html" accesskey="s">Services</a>
+			</li>
+			<li>
+				<a href="../../community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a>
+			</li>
+			<li>
+				<a href="../../partners.html" accesskey="r">Partners</a>
+			</li>
+			<li>
+				<a href="../../faq.html" accesskey="c">FAQ</a>
+			</li>
+			<li>
+				<a href="../../incubator.html" accesskey="i">Incubator</a>
+			</li>
+			<li>
+				<a href="../../about.html" accesskey="a">About Us</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="contentwrapper">
+
+		<div class="left">
+			<div class="section">
+				<h1 id="h3_3">Introduction</h1>
+				<br />
+				<p>USSD stands for Unstructured Supplementary Service Data what is a
+					capability of GSM mobile phone much like the Short Message Service
+					(SMS). But there is a difference between USSD and SMS handling. </p>
+				<p>SMS uses store and forward method of message delivery. Short
+					Message is delivered first to Sender's Short Message Service Center
+					(SMSc) which will try to deliver the message to recipient. So SMS
+					does not guarantee that message will be delivered instantly.</p>
+				<p>USSD information is sent from mobile handset directly to
+					application platform handling service. So USSD suppose to establish
+					a real time session between mobile handset and application handling
+					the service. The concept of real time session is very useful for
+					constructing an interactive menu driven application.</p>
+				<p>A user who is dialing USSD service number initiates dialog with
+					USSD handling application deployed on the Mobicents Platform as
+					depicted on the figure below. The "Network Node" depicted could be
+					MSC, HLR or VLR. The Mobicents Platform integrates with "Network
+					Node" using MAP protocol.</p>
+				<div align="center">
+					<img src="images/ussd-arch.png" alt=" Red Hat" border="0"
+						width="600px" />
+				</div>
+
+
+
+				<p>
+					The detailed description of the allowed MMIs or phone number which
+					user can dial is presented in 3GPP TS 22.090. In the user's home
+					network the following number range is defined for USSD services:
+	
+					<!--
+						How to put this?
+					-->
+					<i>1, 2 or 3 digits from the set (*, #) followed by 1X(Y),
+						where X=any number 0-4, Y=any number 0-9, then, optionally "*" followed
+						by any number of any characters, and concluding with # SEND </i>
+				</p>
+				<p>For example user can dial *#122# to reach a specific USSD service
+					which is deployed in the home network and. The application in its
+					order can reply with menu. One of the biggest benefits is that this
+					service is always available even when user is currently in roaming.
+				</p>
+				<p>Below diagram depicts typical MAP message flow for implementing
+					data transfer between "Network Node" and Mobicents platform to
+					implement menu driven application.
+					For more information on mobile- (and network-) initiated USSD
+					operations and the use of MAP USSD services, refer to [3GPPTS
+					24.090] in the References section.</p>
+
+				<div align="center">
+					<img src="images/ussd-map.png" alt=" Red Hat" border="0" width="600px"
+						align="m" />
+				</div>
+				<p>Mobile initiated USSD service starts when user dials USSD string
+					*#122#. </p>
+				<ul>
+					<li>
+						<p>The Network sends TCAP Begin message with Component
+							MAP_PROCESS_UNSTRUCTURED_SS_REQUEST to the Mobicents platform.
+							The
+							Mobicents platform invokes USSD application logic . </p>
+					</li>
+					<li>
+						<p>Application request additional information from user (action
+							one or
+							action two) via MAP_UNSTRUCTURED_SS_REQUEST encapsulated in TCAP
+							Continue message. At this time TCAP Dialogue starts.</p>
+					</li>
+					<li>
+						<p>Application receives user's selection of the action.</p>
+					</li>
+					<li>
+						<p>Application performs its logic and sends a response back to the
+							user. At this time application do not want to get additional
+							information from the user and it sends response using
+							MAP_PROCESS_UNSTRUCTURED_SS_REQUEST and terminates TCAP dialogue.
+						</p>
+					</li>
+				</ul>
+
+				<p>Existing MSC, VLR, and HLR network elements are proprietary and
+					run on non-standard operating environments located in trusted
+					operator's zones that make it difficult to build and deploy new
+					applications. Also, these network elements do not provide the tools
+					and interfaces needed to access and retrieve data from content
+					providers over Internet. The USSD Gateway connects to the MSC, VLR,
+					or HLR and enables the flow of USSD messages to be extended to an
+					open, standards-based application server located in the IP network.
+					The AS also provides the tools and interfaces to enable access to
+					the content providers through the Internet.</p>
+				<p>Mobicents implementation of USSD Gateway is first and only open
+					source USSD Gateway available as of today. The Mobicents USSD
+					Gateway makes use of SIP, HTTP and SMPP protocol between gateway
+					and Value Added Service Modules or third party applications.
+					Mobicents USSD Gateway receives the USSD request from subscriber
+					handset/device via GSM Signaling network, these requests are
+					translated to SIP, HTTP or SMPP depending on the rules set by the
+					user and then routed to corresponding Value Added Service (VAS) or
+					3rd party application.
+
+					JBoss Drools is used to derive the protocol between Gateway and USSD
+					Application and also the information of the server (for example IP,
+					port etc) where these applications are deployed.</p>
+			</div>
+		</div>
+
+		<div class="right">
+			<h1 id="h3_3">USSD Gateway</h1>
+			<div class="right_articles">
+				<script type="text/javascript"  src="menu.js"></script>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="footer">
+		<div>
+			<div align="center">
+				<a href="http://www.redhat.com/">
+					<img src="../../logo_rh_home.png" alt=" Red Hat" border="0"
+						height="31" width="96" />
+				</a>
+				<br />
+			</div>
+		</div>
+		<div align="center">
+			&copy; 2008 Red Hat Middleware, LLC. All rights reserved.
+			<a href="http://www.jboss.com/privacy_policy">Privacy Policy</a>
+		</div>
+	</div>
+
+	<!--
+		SiteCatalyst code version: H.1. Copyright 1997-2005 Omniture, Inc.
+		More info available at http://www.omniture.com sec
+	-->
+	<div id="oTags">
+		<script type="text/javascript" src="http://www.redhat.com/j/s_code.js"></script>
+		<script>
+			<!--
+				/* You may give each page an identifying name, server, and channel
+				on the next lines. */ /* E-commerce Variables */ /************* DO
+				NOT ALTER ANYTHING BELOW THIS LINE ! **************/ var
+				s_code=s.t();if(s_code)document.write(s_code)//
+			--></script>
+
+		<script type="text/javascript">
+			<!--
+				if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+				//
+			--></script>
+		<noscript>
+			<img
+				src="https://smtrcs.redhat.com/b/ss/redhatmobicent,redhatglobal/1/H.2--NS/0"
+				height="1" width="1" border="0" alt="" />
+		</noscript><!--/DO NOT REMOVE/-->
+	</div>
+
+	<!-- End SiteCatalyst code version: H.1. -->
+</div>
+</body>
+</html>

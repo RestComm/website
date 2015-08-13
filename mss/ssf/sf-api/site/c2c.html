@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>sf-api - Click To Call アプリの作成</title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+          <meta name="author" content="Naoki Nishihara" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div class="bar">
+<ul>
+	<li class="browse_category">Select Category:</li>
+
+	<li><a href="http://www.mobicents.org/index.html" accesskey="h">Home</a></li>
+	<li class="active"><a href="http://www.mobicents.org/products.html" accesskey="p">Products</a></li>
+	<li><a href="http://www.mobicents.org/services.html" accesskey="s">Services</a></li>
+
+	<li><a href="http://www.mobicents.org/community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a></li>
+	<li><a href="http://www.mobicents.org/faq.html" accesskey="c">FAQ</a></li>
+
+	<li><a href="http://www.mobicents.org/about.html" accesskey="a">About Us</a></li>
+
+</ul>
+</div>
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">sf-api</h3>
+<div class="section"><h2>アプリケーションの拡張</h2>
+<p>3PCCを実行する機能を追加します。</p>
+<p>この場合、プロキシするSIPメッセージと3PCCによるSIPメッセージのメソッド(200/INVITE等) が重なる場合があります。</p>
+<p>例えば、3PCCを実行したINVITE応答とプロキシしたメッセージのINVITE応答が同一Servletで処理 されることになり、メッセージの振り分けを行うハンドラの処理が複雑になります。</p>
+<p>このため同一コンテキスト上で別アプリケーションとして処理することが望ましくなります。</p>
+<div class="section"><h3>sip.xmlの変更</h3>
+<p>以下の図ような構成にします。</p>
+<img src="./images/servlet-context2.png" alt="ApplicationContext構成" /><p>このため、以下のようにsip.xmlを変更します。</p>
+<div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;sip-app xmlns=&quot;http://www.jcp.org/xml/ns/sipservlet&quot;
+  xmlns:javaee=&quot;http://java.sun.com/xml/ns/javaee&quot;&gt;
+
+    &lt;app-name&gt;sf-core-app&lt;/app-name&gt;
+    &lt;distributable /&gt;
+
+    &lt;context-param&gt;
+        &lt;param-name&gt;&lt;/param-name&gt;
+        &lt;param-value&gt;&lt;/param-value&gt;
+    &lt;/context-param&gt;
+
+    &lt;listener&gt;
+        &lt;listener-class&gt;org.mobicents.ssf.servlet.SipDispatcherListener&lt;/listener-class&gt;
+    &lt;/listener&gt;
+
+    &lt;servlet-selection&gt;
+        &lt;main-servlet&gt;sip-dispatcher&lt;/main-servlet&gt;
+    &lt;/servlet-selection&gt;
+
+    &lt;servlet&gt;
+        &lt;!-- Receive all inbound requests --&gt;
+        &lt;javaee:servlet-name&gt;sip-dispatcher&lt;/javaee:servlet-name&gt;
+        &lt;javaee:servlet-class&gt;org.mobicents.ssf.servlet.SipDispatcherServlet&lt;/javaee:servlet-class&gt;
+        &lt;javaee:load-on-startup&gt;10&lt;/javaee:load-on-startup&gt;
+    &lt;/servlet&gt;
+&lt;!-- 
+        Receive all dispatcher requests from Web
+--&gt;
+    &lt;servlet&gt;
+        &lt;javaee:servlet-name&gt;sip-dispatcher-call&lt;/javaee:servlet-name&gt;
+        &lt;javaee:servlet-class&gt;org.mobicents.ssf.servlet.SipDispatcherServlet&lt;/javaee:servlet-class&gt;
+        &lt;javaee:load-on-startup&gt;11&lt;/javaee:load-on-startup&gt;
+    &lt;/servlet&gt;
+
+    &lt;!--
+        &lt;proxy-config&gt;
+        &lt;sequential-search-timeout&gt;0&lt;/sequential-search-timeout&gt;
+        &lt;/proxy-config&gt;
+    --&gt;
+&lt;/sip-app&gt;</pre>
+</div>
+<p>Webからの呼出を受けるためのsip-dispatcher-callを追加しています。</p>
+<p>また、SIPアプリケーションの呼出を行うweb.xmlでも変更を行う必要があります。 web.xmlは以下のようになります。</p>
+<div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;web-app xmlns=&quot;http://java.sun.com/xml/ns/j2ee&quot;
+        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+        xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;
+        version=&quot;2.4&quot;&gt;
+  &lt;display-name&gt;SSF Web Applications&lt;/display-name&gt;
+  &lt;distributable/&gt;
+  &lt;context-param&gt;
+    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+    &lt;param-value&gt;
+      /WEB-INF/common-beans.xml
+    &lt;/param-value&gt;
+  &lt;/context-param&gt;
+  &lt;listener&gt;
+    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+  &lt;/listener&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;dispatcher&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;webDispatcher&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.mobicents.ssf.servlet.WebDispatcherServlet&lt;/servlet-class&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;targetSipServletName&lt;/param-name&gt;
+      &lt;param-value&gt;sip-dispatcher-call&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;dispatcher&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;webDispatcher&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/webDispatcher.html&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+  &lt;welcome-file-list&gt;
+    &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+  &lt;/welcome-file-list&gt;
+&lt;/web-app&gt;</pre>
+</div>
+<p>ここでは、WebDispatcherServletへの初期化パラメータ&quot;targetSipServletName&quot;として、sip.xmlにて 追加したsip-dispatcher-callを設定しています。</p>
+</div>
+<div class="section"><h3>WebDispatcherServlet</h3>
+<div class="section"><h4>WebDispatcherServletとは？</h4>
+<p>WebDispatcherServletはSipDispatcherServletと連携して、Webアプリ側からSipDispatcherServletを呼び出して SIP処理を実行するためのHttpServletです。</p>
+<p>WebDispatcherServletは以下のように動作します。</p>
+<ul><li>初期化時<p>初期化パラメータから&quot;targetSipServletName&quot;を取得します。</p>
+</li>
+<li>呼出時<ul><li>targetSipServletNameが指定されていた場合、指定された名前のSipDispatcherServletを ServletContextから取得します。 指定されていない場合、ServletContextの属性値でSipDispatcherServletとなっているものを取得します。</li>
+<li>HttpServletRequest.requestParameterMap()からリクエスト情報を取得します。</li>
+<li>リクエストパラメータもしくはリクエストの属性値にWebDispatcherServlet.SIP_APPLICATION_SESSION_IDが 指定されていた場合、指定されたSipApplicationSessionのIDを使用してSIP処理を行います。 指定されていない場合、新規にSipApplicationSessionを作成します。</li>
+<li>リクエストパラメータもしくはリクエストの属性値にWebDispatcherServlet.SYNC_CALLが指定 されており、その値が&quot;true&quot;の場合に同期処理します。 それ以外の場合、非同期に処理します。 同期処理を行った場合、コンテナ側の同期機能（SipApplicationSessionによる同期処理等）を利用することが できません。このため、SIPメッセージを送信するような処理の場合には非同期処理で行うことを強く推奨します。</li>
+</ul>
+</li>
+</ul>
+<p>以上のように動作することで、Webアプリ等からSIP処理を行うことが可能です。 SIPメッセージに関する同期処理はSIP Servlet コンテナの機能となりますので、それぞれのコンテナの機能を確認してください。</p>
+</div>
+<div class="section"><h4>WebDispatcherServletの呼出</h4>
+<p>&quot;webDispatcher&quot;の名前でWebDispatcherServletが登録されている場合、JSPやServlet等からの WebDispatcherServletの呼び出し方は以下のようになります。</p>
+<div class="source"><pre>    RequestDispatcher dispatcher = req.getSession().getServletContext().getNamedDispatcher(&quot;webDispatcher&quot;);
+    dispatcher.include(req, res);
+    
+    String id = (String)req.getAttribute(WebDispatcherServlet.SIP_APPLICATION_SESSION_ID);
+    if(logger.isDebugEnabled()) {
+        logger.debug(&quot;id:&quot; + id);
+    }</pre>
+</div>
+<p>呼出後、SSFで新規に生成されたSipApplicationSessionのIDはリクエストの属性値として設定されています。 このIDをHttpSessionやユーザ情報に関連づけることで、後に呼の終了等を行うことが可能となります。</p>
+</div>
+</div>
+<div class="section"><h3>Webアプリからの呼出を処理するハンドラの作成</h3>
+<div class="source"><pre>@Component
+public class CallHandler {
+    private Logger logger = LoggerFactory.getLogger(CallHandler.class);
+    
+    @DispatcherMapping(params={&quot;exec=makeCall&quot;})
+    public void makeCall(DispatcherParams params, Conference conf, Call call) throws Exception {
+        if(logger.isDebugEnabled()) {
+            logger.debug(&quot;params:&quot; + params);
+        }
+        String p = params.getParameterAsString(&quot;parties&quot;);
+        String mode = params.getParameterAsString(&quot;mode&quot;);
+        
+        String[] parties = toArray(p);
+        
+        SipApplicationSession appSession = params.getApplicationSession();
+        call.setSipApplicationSession(appSession);
+        conf.startCall(call, parties, mode);
+    }
+    
+    public String[] toArray(String p) {
+        StringTokenizer token = new StringTokenizer(p, &quot; ,&quot;);
+        ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        while(token.hasMoreTokens()) {
+            list.add(token.nextToken());
+        }
+        
+        return list.toArray(new String[]{});
+    }
+}</pre>
+</div>
+<p>アノテーションの説明です。</p>
+<ul><li>@DispatcherMapping<p>SSF独自のアノテーションです。 この場合、呼出し時にパラメータ名&quot;exec&quot;、パラメタ値&quot;makeCall&quot;の場合に呼び出されます。 また、メソッドの引数にはSpringのApplicationContextで管理されているBeanを利用可能です。</p>
+<p>この場合、DispatcherParams,Conference,CallがSSFにより注入されています。 DispatcherParamsはWebDispatcherServlet呼出時のHTTPリクエストのパラメータを ラップしています。</p>
+</li>
+</ul>
+</div>
+<div class="section"><h3>各処理を行うBeanの作成</h3>
+<p>3PCCを実行するため、以下のBeanをSpringFrameworkに登録しています。</p>
+<ul><li>LocationService<p>プロキシおよび登録サーバ（Registrar）にて使用される、UE（ユーザ端末）のContact情報を登録/取得するための singleton ScopeのBeanです。</p>
+</li>
+<li>UserManagementService<p>登録サーバ（Registrar）にて使用される、ユーザ情報を管理するためのsingleton ScopeのBeanです。</p>
+</li>
+<li>Conference<p>呼を開始するためのsingleton ScopeのBeanです。 Callに対する基本的な操作を行うためのクラスとして利用します。</p>
+</li>
+<li>Call<p>呼を管理するためのsipApplicationSession Scope のBeanです。</p>
+</li>
+</ul>
+<p>これらのBeanはメソッド呼出時等に引数として指定した場合、自動的にSSFにより注入されます。</p>
+<p>以下、3PCC開始時のシーケンスは以下のようになります。</p>
+<img src="./images/sample-seq1.png" alt="3PCC開始シーケンス" /><ol type="1"><li>WebDispatcherServletを呼出<p>WebアプリがWebDispatcherServetを呼び出します。 SSFはSipApplicationSessionの作成を行い、イベントの作成およびイベントマッピングによる ハンドラの作成等を行います。</p>
+</li>
+<li>Conferenceインスタンスの取得<p>CallHandler.makeCall()の引数をApplicationContextから取得します。</p>
+</li>
+<li>Callインスタンスの生成<p>CallHandler.makeCall()の引数をsipApplicationSession Scope で生成します。</p>
+</li>
+<li>CallHnadler.makeCall()の呼出<p>呼を開始するため、CallHandlerを呼び出します。 DispatcherParamsから必要な情報を取得し、Conferenceを呼び出します。</p>
+</li>
+<li>Conference.startCall()の呼出<p>Conferenceを開始するために呼び出します。</p>
+</li>
+<li>Call.addParty()の呼出<p>3PCC開始前に参加者の追加を行います。</p>
+<p>Scopeを&quot;sipApplicationSession&quot;とすることで、SipApplicationSessionとCallの インスタンスは一対一になっており、Bean作成者はSipApplicationSessionの属性情報の 管理等を意識する必要はありません。</p>
+</li>
+<li>Call.start()の呼出<p>3PCCを開始します。</p>
+<p>Call.addParty()で追加された１番目の参加者に対してINVITEの送信が行われます。</p>
+</li>
+</ol>
+<p>以上のようにして、Beanの組み合わせで3PCCの開始処理を行うことが可能です。</p>
+<p>この他の処理については、各Beanのソースを参照してください。</p>
+<p>このように、SSFを利用することで、SIPの処理を単純なBeanの単位に分割することが容易になっています。 SIP Servlet APIにおいてもSipServletを工夫することで可能ですが、SSFを利用することで 無駄な記述を大幅に削減できます。</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>sf-api</h3>
+<div class="right_articles">
+          <h5>SSF API</h5>
+            <ul>
+              
+          
+              
+      
+            
+      
+            
+            
+                    
+            <li class="expanded">
+                    <a href="index.html">概要</a>
+                  <ul>
+                  
+          
+              
+      
+            
+            
+              
+            <li class="expanded">
+                    <a href="core-tutorial.html">アノテーションチュートリアル</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="create-sipserver.html">SIPサーバ作成</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Click To Call アプリの作成</strong>
+        </li>
+              </ul>
+        </li>
+              </ul>
+        </li>
+          </ul>
+              <h5>プロジェクト文書</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">プロジェクト情報</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">プロジェクトレポート</a>
+                </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

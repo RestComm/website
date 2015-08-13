@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Installation Instructions</h2>
+<div class="section"><h3>From the source (From the trunk, on Tomcat 6.x) </h3>
+<p>Install <a href="http://tomcat.apache.org" class="externalLink">Tomcat 6.0.14</a>
+</p>
+<p>Install <a href="http://maven.apache.org" class="externalLink">maven 2</a>
+</p>
+<p>Check out the sip-servlets project at <a href="http://mobicents.googlecode.com/svn/trunk/servers/sip-servlets/" class="externalLink">http://mobicents.googlecode.com/svn/trunk/servers/sip-servlets/</a>
+ </p>
+<p>Set up the environment variable CATALINA_HOME and make it the same as your tomcat root installation by example E:\servers\apache-tomcat-6.0.14 </p>
+<p>Run <tt>mvn clean install</tt>
+ from the project root</p>
+<p>To run the sip servlet container : check that the following files have been copied during the mvn clean install</p>
+<ul><li>in TOMCAT_HOME/lib directory, there should be a sip-servlets-impl-1.0-SNAPSHOT.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a sip-servlets-application-router-1.0-SNAPSHOT.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a sip-balancer-1.0-BETA4.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a sip-servlets-spec-1.1.9-SNAPSHOT.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a sip-servlets-tomcat-jboss4-1.0-SNAPSHOT.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a jain-sip-api-1.2.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a jain-sip-ri-1.2.96.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a log4j-1.2.12.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a commons-logging-1.0.4.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a stun4j-1.0-MOBICENTS.jar</li>
+<li>in TOMCAT_HOME/lib directory, there should be a dnsjava-2.0.6.jar</li>
+</ul>
+<p>Make a backup of your TOMCAT_HOME/conf/server.xml file copy the server-tomcat-6.xml located in docs to TOMCAT_HOME/conf and rename it to server.xml</p>
+<p>Go to your TOMCAT_HOME/bin directory<br />
+run the following command : <tt>./catalina.bat run</tt>
+ or <tt>./catalina.sh run</tt>
+ </p>
+<p>Run a mvn clean install at the root of simple-sip-servlet project<br />
+and drop in the TOMCAT_HOME\webapps directory the war file generated in target dir of simple-sip-servlet, you should see the deployment occuring.</p>
+<p>18 juil. 2007 08:09:46 org.mobicents.servlet.sip.startup.SipContextConfig start INFO: /WEB-INF/sip.xml has been found !<br />
+18 juil. 2007 08:09:46 org.mobicents.servlet.sip.startup.SipContextConfig start INFO: /WEB-INF/sip.xml has been parsed !<br />
+log4j:WARN No appenders could be found for logger (SipContainer).<br />
+log4j:WARN Please initialize the log4j system properly.<br />
+the simple sip servlet has been started<br />
+18 juil. 2007 08:09:48 org.apache.coyote.http11.Http11BaseProtocol start INFO: Démarrage de Coyote HTTP/1.1 sur http-8080<br />
+18 juil. 2007 08:09:48 org.apache.jk.common.ChannelSocket init INFO: JK: ajp13 listening on /0.0.0.0:8009<br />
+18 juil. 2007 08:09:48 org.apache.jk.server.JkMain start INFO: Jk running ID=0 time=0/15 config=null<br />
+18 juil. 2007 08:09:48 org.apache.catalina.storeconfig.StoreLoader load INFO: Find registry server-registry.xml at classpath resource<br />
+18 juil. 2007 08:09:48 org.apache.catalina.startup.Catalina start INFO: Server startup in 1984 ms\</p>
+<p>In any case send an email on the <a href="http://groups.google.com/group/mobicents-public" class="externalLink">mobicents-public google group</a>
+, <a href="http://code.google.com/p/mobicents/issues/list" class="externalLink">post an issue on google code</a>
+ if you encounter any problems.</p>
+<p>To play with real examples check out the different examples located under <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/sip-servlets/sip-servlets-examples/" class="externalLink">location</a>
+ from the svn repository.</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

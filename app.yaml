@@ -1,0 +1,21 @@
+application: mobicents-www
+
+version: 5
+## You will also need to change the version for java in WEB-INF/appengine-web.xml file
+
+runtime: python
+#api_version: 1
+
+handlers:
+- url: /
+  #static_files: index.html
+  #upload: index.html
+- url: /diameter
+  #static_files: /diameter/index.html
+  #upload: /diameter/index.html
+- url: /(.*)
+  #static_files: \1
+  #upload: (.*)
+
+
+

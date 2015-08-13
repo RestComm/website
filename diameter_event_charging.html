@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Mobicents Sip Servlets - </title>
+    <link rel="stylesheet" href="./maven-mobicents-style.css" type="text/css">
+    <meta name="author" content="Luka Cvrk (www.solucija.com)">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+<body>
+<script src="http://www.google-analytics.com/urchin.js"
+	type="text/javascript">
+	</script>
+
+<script type="text/javascript">
+	_uacct = "UA-212380-1";
+	urchinTracker();
+	</script>
+
+<div class="content">
+<div class="header">
+<div class="top_info">
+<div class="top_info_right"><!-- Search Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+
+Search
+<input name="q" maxlength="255" value="" type="text">
+<input name="client" value="pub-5437763180786254" type="hidden">
+<input name="forid" value="1" type="hidden">
+<input name="channel" value="5452007684" type="hidden">
+<input name="ie" value="ISO-8859-1" type="hidden">
+<input name="oe" value="ISO-8859-1" type="hidden">
+<input name="cof"
+	value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+	type="hidden">
+<input name="hl" value="en" type="hidden">
+<input name="q" value="mobicents" type="hidden">
+</form>
+
+
+</div>
+<div class="top_info_left">The Open Source SLEE and SIP Server</div>
+</div>
+
+<div id="logo">
+<h1><a href="http://www.mobicents.org/"
+	title="Mobicents">Mobicents</a></h1>
+</div>
+</div>
+
+<div
+	class="bar">
+	<ul>
+		<li
+			class="browse_category">Select Category:</li>
+		<li>
+			<a
+				href="index.html"
+				accesskey="h">Home</a>
+
+		</li>
+		<li
+			class="active">
+			<a
+				href="products.html"
+				accesskey="p">Products</a>
+		</li>
+		<li>
+			<a
+				href="services.html"
+				accesskey="s">Services</a>
+		</li>
+		<li>
+
+			<a
+				href="community.html"
+				accesskey="c">Community</a>
+		</li>
+		<li>
+			<a
+				href="partners.html"
+				accesskey="r">Partners</a>
+		</li>
+		<li>
+			<a
+				href="faq.html"
+				accesskey="c">FAQ</a>
+
+		</li>
+		<li><a href="http://www.mobicents.org/incubator.html" accesskey="i">Incubator</a></li>
+		<li>
+			<a
+				href="about.html"
+				accesskey="a">About Us</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contentwrapper"><div class="left">
+<h3 id="h3_2">Mobicents Sip Servlets</h3>
+<div class="section"><h2>Diameter Event Charging Service</h2>
+<div class="section"><h3>Service Description</h3>
+<p>Diameter Event Charging service based on Location Service that performs call charging at a fixed-rate (event charging). When the call is initiated there's a debit of 10.0 euros. In case of the call being rejected or the caller hangs up before an answer is received, that value is refunded into the user account.</p>
+<p>The steps performed by the application and container are as follows:</p>
+<ul><li>Alice makes a call to sip:receiver@sip-servlets.com. The INVITE is received by the servlet container <b>which sends the debit request to the Charging Server</b>
+ and invokes the location service</li>
+<li>The location service determines, using non-SIP means, where the callee (receiver) is registered with two locations, identified by, say, two SIP URIs (sip:receiver@127.0.0.1:5090 and sip:receiver@127.0.0.1:6090).</li>
+<li>The service proxies to those two destinations in parallel, without record-routing, and without the supervised mode.</li>
+<li>Once one of the destinations return 200 (OK), the other branch is cancelled by the container.</li>
+<li>The 200 is forwarded upstream to Alice and the call setup is completed as per usual.</li>
+<li><b>If none of the destinations accepts the call, a Diameter Accounting-Request for refund is sent to the Diameter Charging Server in order to credit the 10.0 euros debited.</b>
+</li>
+</ul>
+</div>
+<div class="section"><h3>How to activate it</h3>
+<div class="section"><h4>From the binary</h4>
+<p>You can find the war file corresponding to this example <a href="https://repository.jboss.org/nexus/content/groups/public/org/mobicents/servlet/sip/example/diameter-event-charging/1.6.0.FINAL/diameter-event-charging-1.6.0.FINAL.war" class="externalLink">here</a>
+.<br />
+Drop the downloaded war file into your <tt>jboss_home/server/default/deploy</tt>
+ directory </p>
+<p>Get the corresponding <a href="/diametereventcharging-dar.properties">dar configuration file</a>
+.<br />
+To understand what the dar configuration file is used for, check the <a href="./mss-dar.html">Application Router Documentation</a>
+.<br />
+Drop it in your <tt>jboss_home/server/default/conf/dars</tt>
+ directory.<br />
+To use this dar file for this service, specify in the Service xml tag, darConfigurationFileLocation attribute of the <tt>jboss_home/server/default/deploy/jboss-web.deployer/server.xml</tt>
+, the following :<br />
+<tt>conf/dars/diametereventcharging-dar.properties</tt>
+</p>
+<p>You can now run your JBoss container.</p>
+</div>
+<div class="section"><h4>From the source</h4>
+<p>Please check out the location service example located under this <a href="http://code.google.com/p/mobicents/source/browse/trunk/servers/sip-servlets/sip-servlets-examples/diameter-event-charging" class="externalLink">location</a>
+ from the svn repository.</p>
+<p>Follow the instructions in the README.txt to build and run the example. </p>
+</div>
+</div>
+<div class="section"><h3>How to play with it</h3>
+<p>This example must be run under JBoss.</p>
+<p>You will also need <a href="http://mobicents.googlecode.com/files/ChargingSDK-1_0_D31E.zip" class="externalLink">Ericsson SDK Charging Emulator v1.0</a>
+.</p>
+<p>Run the Charging Emulator (PPSDiamEmul.jar) and configure it like this:<br />
+Peer Id: aaa://127.0.0.1:21812<br />
+Realm: mobicents.org<br />
+Host IP: 127.0.0.1\</p>
+<img src="config_options.png" /><p>Start two SIP Phones.<br />
+One phone should be setup as sip:receiver@sip-servlets.com on ip address 127.0.0.1 and port 5090<br />
+The other phone can be setup as anything.<br />
+The SIP phone doesn't have to be registered.<br />
+We recommend using 3CX Phone, SJ Phone or WengoPhone.&#160;</p>
+<p>From the second phone, make a call to sip:receiver@sip-servlets.com you should have the other phone ringing.</p>
+<p>You should see there is one first request, right after the invite and before the other party accept/reject the call, sent to the Charging Emulator, that's when the debit is made. In case the call is rejected, or the caller gives up, there's a new Diameter Request sent which will be the refund of the unused value. In case the call is accepted, nothing else will happen, related to Diameter.</p>
+<p>You can see the user balance in the emulator: in the menu Config &gt; Account &gt; Click on &quot;00001000-Klas Svensson&quot; and watch the balance. Stretch the window down to see the history.</p>
+<img src="config_account.png" /><p>Please note that this is not the most correct way to do charging, as Diameter provides other means such as unit reservation, but only as purpose of a demo, where you can see debit and refund working. Also, this is a fixed price call, no matter what the duration. You can also have it using time-based charging.</p>
+</div>
+</div>
+
+</div>
+
+<div class="right">
+<h3>Mobicents Sip Servlets</h3>
+<div class="right_articles">
+          <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/" class="externalLink">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Downloads" class="externalLink">Downloads</a>
+          </li>
+              
+    <li class="none">
+                    <a href="http://goo.gl/xmPp4" class="externalLink">Roadmap</a>
+          </li>
+          </ul>
+              <h5>Documentation</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="http://code.google.com/p/sipservlets/wiki/Welcome?tm=6" class="externalLink">Community Documentation</a>
+          </li>
+          </ul>
+      </div>
+<div align="center">
+<a href="http://www.jboss.org/jopr/"><img src="http://www.jboss.org/dms/jopr/images/managedbyjopr_badge_gold.png"/></a>
+</div>
+</div>
+</div>
+<div class="footer">   
+  </div>
+  <div id="footer">
+    <div>
+      <div align="center"><a href="http://www.redhat.com/"><img  src="logo_rh_home.png" alt=" Red Hat" border="0" height="31" width="96" /></a><br />
+      </div>
+    </div>
+    <div align="center">&copy; 2008 Red Hat Middleware, LLC. All rights reserved. <a href="http://www.jboss.com/privacy_policy">Privacy Policy</a></div> </div>
+</div>
+  </body>
+</html>

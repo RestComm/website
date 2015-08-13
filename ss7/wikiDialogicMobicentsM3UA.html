@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta name="author" content="Luka Cvrk (www.solucija.com)" />
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+		<link rel="stylesheet" href="../maven-mobicents-style.css" type="text/css" />
+		<title>Mobicents</title>
+	</head>
+	<body>
+
+		<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+		</script>
+		<script type="text/javascript">
+			_uacct = "UA-212380-1";
+			urchinTracker();
+	</script>
+
+		<div class="content">
+
+			<div class="header">
+				<div class="top_info">
+					<div class="top_info_right">
+						<!-- Search Google -->
+						<form method="get" action="http://www.google.com/custom"
+							target="_top">
+							Search
+							<input name="q" maxlength="255" value="" type="text" />
+							<input name="client" value="pub-5437763180786254" type="hidden" />
+							<input name="forid" value="1" type="hidden" />
+							<input name="channel" value="5452007684" type="hidden" />
+
+							<input name="ie" value="ISO-8859-1" type="hidden" />
+							<input name="oe" value="ISO-8859-1" type="hidden" />
+							<input name="cof"
+								value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"
+								type="hidden" />
+							<input name="hl" value="en" type="hidden" />
+							<input name="q" value="mobicents" type="hidden" />
+						</form>
+					</div>
+				</div>
+				<div id="logo">
+					<h1>
+						<a href="http://www.mobicents.org-a.googlepages.com/" title="Mobicents">Mobicents
+						</a>
+					</h1>
+				</div>
+			</div>
+
+			<div class="bar">
+				<ul>
+					<li class="browse_category">Select Category:</li>
+					<li>
+						<a href="../index.html" accesskey="h">Home</a>
+					</li>
+					<li class="active">
+						<a href="../products.html" accesskey="p">Products</a>
+					</li>
+					<li>
+						<a href="../services.html" accesskey="s">Services</a>
+					</li>
+					<li>
+						<a href="../community.html" accesskey="c">Community</a></li><li><a href="http://www.mobicents.org/calendar.html" accesskey="i">Calendar</a>
+					</li>
+					<li>
+						<a href="../partners.html" accesskey="r">Partners</a>
+					</li>
+					<li>
+						<a href="../faq.html" accesskey="c">FAQ</a>
+					</li>
+					<li>
+						<a href="../incubator.html" accesskey="i">Incubator</a>
+					</li>
+					<li>
+						<a href="../about.html" accesskey="a">About Us</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="contentwrapper">
+				<div class="right">
+					<h1 id="h3_3">Mobicents SS7</h1>
+					<div class="right_articles">
+						<script type="text/javascript"  src="menu.js"></script>
+					</div>
+				</div>
+				<div class="left">
+					<div class="section">
+
+						<h1 id="h3_2">USSD (MAP) Testing with Dialogic M3UA</h1>
+						<br />
+						<div class="section"><h2>Introduction</h2>
+						<p>
+							This wiki talks about how to test the Mobicents USSD Demo SLEE Application with Dialogic MAP Test Utility (MTU) tool over M3UA.
+						</p>
+						<p>
+							It is assumed that you have two servers connected over IP. You can also have a virtual machine setup on same host. One of the server's will have Dialogic M3UA (server A) and Dialogic SS7 stack with MTU while other server will have Mobicents M3UA (Server B) and Mobicents SS7 stack.
+						</p>
+						<p>
+To understand how to install the Dialogic drivers follow the instruction given at
+<A HREF="http://www.dialogic.com/~/media/manuals/ss7/cd/GenericInfo/GeneralDocumentation/U10SSS-SwEnv-PM.pdf">U10SSS-SwEnv-PM.pdf</A>
+						</p>
+						<p>
+							The Dialogic drivers are available at <A HREF="http://www.dialogic.com/Products/signaling-and-ss7-components/download/dsi-interface-protocol-stacks.aspx">dsi-interface-protocol-stacks</A>
+						</p>
+						<p>
+							The SS7 layers involved are shown below
+						</p>
+						<img src="./images/DialogiMTUOverM3UA.jpg" NAME="graphics1" BORDER="0" />
+						</div>
+
+						<div class="section">
+							<h2>MTU Setup</h2>
+							<p>
+Download the modified MTU code for USSD from <A HREF="http://www.dialogic.com/support/helpweb/helpweb.aspx/1580/ussd_map_sample_code/Signaling_SS7">ussd_map_sample_code</A>
+							</p>
+							<p>
+Attached here with <FONT FACE="Courier New, monospace"><a href="./m3ua_mtu_config.txt">m3ua_mtu_config.txt</a></FONT> and <FONT FACE="Courier New, monospace"><a href="m3ua_mtu_system.txt">m3ua_mtu_system.txt</a></FONT> is
+sample configuration and system file used for MTU. Rename these to config.txt and system.txt respectively and place it to correct folder (<FONT FACE="Courier New, monospace">/opt/dpklnx/</FONT> for linux) before loading the driver. Dialogic SCCP, TCAP, MAP and MTU is loaded on host system.
+							</p>
+
+							<div class="section"><h3>Modify m3ua_mtu_config.txt as below</h3>
+								<P><FONT FACE="Courier New, monospace">CNSYS:IPADDR : (=XXX.XXX.XXX.XXX)</FONT> 
+							Is the IP address of machine where Dialogic Stack is running. Make suer you change this to reflect the
+							IP address of your machine (Server A)
+							</P>
+							<P><FONT FACE="Courier New, monospace">SNSLI:IPADDR (YYY.YYY.YYY.YYY)</FONT> is the IP address of machine where Mobicents is running. Make sure you change this to reflect IP address of Mobicent's machine (Server B). 
+							</P>
+
+								<P><FONT FACE="Courier New, monospace">OPC</FONT>: The OPC code assigned for Server A is 1</P>
+								<P><FONT FACE="Courier New, monospace">DPC</FONT>: The DPC code for Server A is 2.</P>
+								<P><FONT FACE="Courier New, monospace">RC</FONT>: Routing Context is fixed to 1</P>
+								<p>In-terms of SCTP, Server A acts as server and Server B will initiate the SCTP connection as client.</p>
+								<p>This example exchanges (double exchange) peer-to-peer (IPSP) M3UA messages.</p>
+							</div>
+							<div class="section"><h3>Command to load drivers#</h3>
+								<p><FONT FACE="Courier New, monospace"><FONT SIZE=2>root@abhayani:/opt/dpklnx# ./gctload -d</FONT></FONT></P>
+								<p>
+									Once the drivers are loaded don't forget to execute the mtucfg.ms7 script. This script registers the MTU with Dialogic SCCP stack
+								</p>
+								<P STYLE="margin-bottom: 0in"><FONT FACE="Courier New, monospace"><FONT SIZE=2>root@abhayani:/opt/dpklnx#
+./s7_play -fmtucfg.ms7</FONT></FONT></P>
+							</div>
+							
+
+						</div>
+						<div class="section"><h2>Mobicents USSD Application Setup</h2>
+							<p>
+								Download the latest release of Mobicents SS7 from <A HREF="http://www.mobicents.org/ss7/downloads.html">http://www.mobicents.org/ss7/downloads.html</A>
+							</p>
+							<p>
+								Download the latest Mobicents SLEE release from <A HREF="http://www.mobicents.org/ss7/downloads.html">http://www.mobicents.org/ss7/downloads.html</A>
+							</p>
+							<p>
+								Execute the following onetime commands on Mobicents command line interface to setup the SCTP , M3UA and SCCP.
+							</p>
+							<OL>
+								<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>sctp association create MTRAssoc CLIENT XXX.XXX.XXX.XXX 2905
+								YYY.YYY.YYY.YYY 2905</FONT></FONT></P>
+								<P>Above command creates sctp association with peer ip:port XXX.XXX.XXX.XXX:2905 and host:port YYY.YYY.YYY.YYY:2905</P>
+
+								<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>m3ua
+								as create MTRAS IPSP mode DE ipspType server rc 1 traffic-mode
+								loadshare</FONT></FONT></P>
+								<P>Above command creates M3UA IPSP with double exchange</P>
+
+								<LI><P><FONT FACE="Courier New, monospace"><FONT SIZE=2>m3ua route add MTRAS 1 -1 -1</FONT></FONT></P>
+								<P>Above command add's the routing rule that for every MSU with DPC=1 use
+								“MTRAS” for routing the message</P>
+
+								<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Courier New, monospace"><FONT SIZE=2>m3ua
+								asp create MTRASP MTRAssoc</FONT></FONT></P>
+								<P>Above command adds the new ASP which leverages already created SCTP association</FONT></P>
+
+								<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Courier New, monospace"><FONT SIZE=2>m3ua
+								as add MTRAS MTRASP</FONT></FONT></P>
+								<P>Above command adds the newly created “MTRASP” to “MTRAS”</P>
+
+								<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Courier New, monospace"><FONT SIZE=2>m3ua
+								asp start MTRASP</FONT></FONT></P>
+								<P>And finally we start the “MTRASP”. At this point M3UA messages
+								should be exchanged between the two servers and if you are tracing
+								message on wireshark you will notice that both servers should
+								exchange NOTIFY indicating that AS's are in Active state now.</P>
+							</OL>
+							<P>Make sure you change the <FONT FACE="Courier New, monospace">jboss-5.1.0.GA/server/default/deploy/mobicents-ss7-service/META-INF/jboss-beans.xml</FONT> and set the <FONT FACE="Courier New, monospace">localSpc</FONT> propert to 2 in <FONT FACE="Courier New, monospace">SccpStack</FONT>
+							bean.</FONT></P>
+
+
+							<P><FONT FACE="Courier New, monospace">&lt;bean name=&quot;SccpStack&quot; 
+							class=&quot;org.mobicents.protocols.ss7.sccp.impl.SccpStackImpl&quot;&gt;
+							</FONT></P>
+							<P><FONT FACE="Courier New, monospace">		&lt;property
+							name=&quot;localSpc&quot;&gt;2&lt;/property&gt;
+							</FONT></P>
+							<P STYLE="margin-bottom: 0in"><FONT FACE="Courier New, monospace">		&lt;property
+							name=&quot;ni&quot;&gt;3&lt;/property&gt;
+							</FONT></P>
+							<P><FONT FACE="Courier New, monospace">	...</FONT></P>
+							<P><FONT FACE="Courier New, monospace">	...</FONT></P>
+							<P><FONT FACE="Courier New, monospace">	&lt;/bean&gt;</FONT></P>
+						</div>
+						<div class="section"><h2>Test</h2>
+							<p>Execute the following MTU command from MTU (Server A) machine</p>
+							<P><FONT FACE="Courier New, monospace"><FONT SIZE=2>ussdtest
+-d6 -g43010008 -a43020008 -i987654321 -s&quot;1&quot; -U*88#</FONT></FONT></P>
+
+<P>You should see the [INFO] messages in the Mobicents JAIN SLEE Server console about received USSD short codes and response sent.</P>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div id="footer">
+				<div>
+					<div align="center">
+						<a href="http://www.redhat.com/">
+							<img src="../logo_rh_home.png" alt=" Red Hat" border="0"
+								height="31" width="96" />
+						</a>
+						<br />
+					</div>
+				</div>
+				<div align="center">
+					&copy; 2008 Red Hat Middleware, LLC. All rights reserved.
+					<a href="http://www.jboss.com/privacy_policy">Privacy Policy</a>
+				</div>
+			</div>
+
+			<!--
+				SiteCatalyst code version: H.1. Copyright 1997-2005 Omniture, Inc.
+				More info available at http://www.omniture.com sec
+			-->
+			<div id="oTags">
+				<script type="text/javascript" src="http://www.redhat.com/j/s_code.js"></script>
+				<script>
+					<!--
+						/* You may give each page an identifying name, server, and channel
+						on the next lines. */ /* E-commerce Variables */ /************* DO
+						NOT ALTER ANYTHING BELOW THIS LINE ! **************/ var
+						s_code=s.t();if(s_code)document.write(s_code)//
+					--></script>
+
+				<script type="text/javascript">
+					<!--
+						if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+						//
+					--></script>
+				<noscript>
+					<img
+						src="https://smtrcs.redhat.com/b/ss/redhatmobicent,redhatglobal/1/H.2--NS/0"
+						height="1" width="1" border="0" alt="" />
+				</noscript><!--/DO NOT REMOVE/-->
+			</div>
+
+			<!-- End SiteCatalyst code version: H.1. -->
+		</div>
+	</body>
+</html>
