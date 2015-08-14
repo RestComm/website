@@ -1,6 +1,6 @@
-application: mobicents-www
+application: mobicentsdotorg
 
-version: 5
+version: 2
 ## You will also need to change the version for java in WEB-INF/appengine-web.xml file
 
 runtime: python
