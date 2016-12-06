@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
   <application>mobicentsdotorg</application>
-  <version>2</version>
+  <version>3</version>
   <!-- Don't forget to sync the version with the python config file (app.yaml) -->
   <threadsafe>true</threadsafe>
 </appengine-web-app>
